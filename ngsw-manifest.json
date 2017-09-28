@@ -1,0 +1,55 @@
+{
+  "static.ignore": [
+      "^\/assets\/ignore.*$"
+  ],
+  "routing": {
+      "index": "/index.html",
+      "routes": {
+        "/": {
+          "match": "exact"
+        },
+        "^/.*$": {
+          "match": "regex"
+        }
+      }
+    },
+  "external": {
+    "urls": []
+  } ,
+  "dynamic": {
+    "group": [{
+      "name": "user",
+      "urls": {
+        ".*/v1/users$": {
+          "match": "regex"
+        }
+      },
+      "cache": {
+        "optimizeFor": "performance",
+        "strategy": "lru",
+        "maxAgeMs": 3600000,
+        "maxEntries": 2
+      }
+    },
+      {
+        "name": "auth",
+        "urls": {
+          ".*/api/auth$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "freshness",
+          "strategy": "fifo",
+          "maxAgeMs": 3600000,
+          "maxEntries": 2,
+          "networkTimeoutMs": 1000
+        }
+      }
+    ]
+  },
+  "push": {
+    "showNotifications": true,
+    "backgroundOnly": false
+  }
+}
