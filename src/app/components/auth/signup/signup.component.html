@@ -1,0 +1,20 @@
+<div class="container">
+  <div>
+    <h1>SignUp Form</h1>
+    <form (ngSubmit)="onSubmit()" #alienForm="ngForm">
+      <div class="form-group">
+        <label for="email">Mail</label>
+        <input type="text" class="form-control" id="email" required [(ngModel)]="alien.email" name="email" #name="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="alien.password" name="password">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!alienForm.form.valid">Submit</button>
+      <a routerLink="/" routerLinkActive="active">Login</a>
+      
+    </form>
+  </div>
+</div>

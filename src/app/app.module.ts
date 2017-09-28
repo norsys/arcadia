@@ -1,16 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { SigninComponent } from './components/auth/signin/signin.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { Routing } from './app.routes';
+import { AuthService } from './services/auth.service';
+import { HomeComponent } from './components/game/home/home.component';
+import { EnsureAuthenticated } from './services/ensure-authenticated.service';
+import { LoginRedirect } from './services/login-redirect.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SigninComponent,
+    SignupComponent,
+    HomeComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    Routing
   ],
-  providers: [],
+  providers: [AuthService,LoginRedirect,EnsureAuthenticated],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

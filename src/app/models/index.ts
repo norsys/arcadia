@@ -1,0 +1,1 @@
+export {Alien} from './alien';

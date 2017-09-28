@@ -1,0 +1,21 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Login Form</h1>
+    <form (ngSubmit)="onSubmit()" #alienForm="ngForm">
+      <div class="form-group">
+        <label for="nickname">Email</label>
+        <input type="text" class="form-control" id="email" required [(ngModel)]="alien.email" name="email" #name="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required [(ngModel)]="alien.password" name="password">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!alienForm.form.valid">Login</button>
+    </form>
+    <a routerLink="/signup" routerLinkActive="active">Create your alien</a>
+
+
+  </div>
+</div>
