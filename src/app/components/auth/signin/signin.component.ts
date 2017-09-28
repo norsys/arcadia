@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  private alien: Alien = new Alien();
-  private submitted: boolean = false;
+  public alien: Alien = new Alien();
+  public submitted: boolean = false;
 
   constructor(private auth: AuthService, private router: Router) { }
 

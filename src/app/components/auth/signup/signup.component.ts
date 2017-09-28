@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  private alien: Alien = new Alien();
+  public alien: Alien = new Alien();
 
   constructor(private auth: AuthService, private router: Router) { }
   onSubmit() {
