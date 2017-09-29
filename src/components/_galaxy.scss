@@ -1,0 +1,155 @@
+.top-header {
+	display: flex;
+	justify-content: space-around;
+	padding: .5em;
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+	.header-item {
+		position: relative;
+		width: 19%;
+		height: auto;
+		padding-top: calc(19% - 4px);
+		background-color: $white;
+		border: 2px solid $black;
+		border-radius: 50%;
+
+		&.item-avatar {
+			background-size: 100%;
+		}
+
+		p {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+}
+
+.outer-space {
+	position: relative;
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+	.planet-frame {
+		position: absolute;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		z-index: 1;
+
+		&.completed::before {
+			content: "";
+			position: absolute;
+			width: 7.5vw;
+			height: 7.5vw;
+			top: -6.5vw;
+			left: 65%;
+			background-image: url('../img/planets/black-flag.png');
+			background-size: 100%;
+			transform: translateX(-50%);
+			z-index: 0;
+		}
+	}
+
+	.spaceship {
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			position: absolute;
+			background-image: url('../img/rudder-overlapping-piece.png');
+			background-size: 100%;
+			width: 3.9vw;
+			height: 6.9vw;
+			bottom: 27.75vw;
+			left: 50vw;
+			transform: translateX(-50%);
+			z-index: 10;
+		}
+
+		.spaceship-cockpit {
+			position: relative;
+			width: 100%;
+			margin-top: -2px;
+			z-index: 2;
+		}
+
+		.spaceship-planet-frame {
+			position: absolute;
+			width: 15vw;
+			height: auto;
+			padding-bottom: 15vw;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			z-index: 4;
+
+			&.completed {
+				opacity: 0.35;
+			}
+		}
+
+		.spaceship-gauges {
+			position: absolute;
+			width: 90vw;
+			height: 20vw;
+			bottom: 24vw;
+			left: 50vw;
+			background-image: url('../img/fuel-gauges.png');
+			background-size: 100%;
+			transform: translateX(-50%);
+			z-index: 4;
+		}
+	}
+
+	.galaxy-sector-changement-container {
+		display: flex;
+		justify-content: space-between;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		z-index: 3;
+
+		.galaxy-sector-changement {
+			width: 10vw;
+		}
+	}
+
+	.spaceship-planets-frame-links,
+	.planets-frame-links {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		.spaceship-planet-frame {
+			position: absolute;
+			width: 15vw;
+			height: auto;
+			padding-bottom: 15vw;
+			border-radius: 50%;
+			z-index: 6;
+		}
+	}
+
+	[data-planet-position="1"] {
+		left: 50vw;
+		bottom: 29vw;
+		transform: translateX(-50%);
+	}
+
+	[data-planet-position="2"] {
+		left: 10vw;
+		bottom: 19vw;
+		transform: translateX(-25%);
+	}
+
+	[data-planet-position="3"] {
+		right: 10vw;
+		bottom: 19vw;
+		transform: translateX(25%);
+	}
+}

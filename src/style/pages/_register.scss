@@ -1,0 +1,136 @@
+.register {
+	position: relative;
+	background-image: url('/assets/img/outer-space/galaxy-register.png');
+	background-size: 100%;
+	width: 100vw;
+	height: 177vw;
+	overflow-x: hidden;
+	text-align: center;
+
+	.app-title {
+		font-size: 9vw;
+		color: $white;
+		padding: 6vw 0;
+	}
+
+	.register-form {
+		padding: 10vw 20vw;
+		text-align: left;
+
+		.galaxy-form-row {
+			margin-bottom: 7.5vw;
+
+			input[type="text"],
+			input[type="password"],
+			input[type="mail"],
+			select {
+				width: 100%;
+				font-size: 6vw;
+				font-family: 'space_ageregular', sans-serif;
+				font-weight: normal;
+				border: 1vw solid $purple-red;
+				border-radius: 3vw;
+				padding: 1.5vw;
+
+				&:focus {
+					outline: none;
+					border-color: $purple-red-lighter;
+				}
+
+				option {
+					font-size: 4vw;
+
+					&.select-placeholder {
+						color: $gray-placeholder;
+					}
+				}
+			}
+
+			.galaxy-radio-group {
+				display: flex;
+			}
+
+			.galaxy-radio-container {
+				flex-grow: 1;
+				display: flex;
+				height: 30px;
+				background-color: $white;
+				border: 1vw solid $purple-red;
+
+				&:first-child {
+					border-top-left-radius: 3vw;
+					border-bottom-left-radius: 3vw;
+				}
+
+				&:last-child {
+					border-top-right-radius: 3vw;
+					border-bottom-right-radius: 3vw;
+				}
+
+				input[type="radio"] {
+					visibility: hidden;
+					clip: rect(0, 0, 0, 0);
+					position: absolute;
+
+					&:checked ~ .galaxy-gender {
+						box-shadow: 0 0 5px 1px $purple-red;
+					}
+				}
+
+				.galaxy-gender {
+					margin: auto;
+					position: relative;
+					width: 3vw;
+					height: 3vw;
+					border: 1px solid $black;
+					border-radius: 50%;
+
+					&.gender-male::before {
+						content: "";
+						position: absolute;
+						height: 1px;
+						width: 2.5vw;
+						top: -1vw;
+						right: -2vw;
+						background-color: $black;
+						transform: rotate(-45deg);
+					}
+
+					&.gender-male::after {
+						content: "";
+						position: absolute;
+						height: 2vw;
+						width: 2vw;
+						top: -2vw;
+						right: -2vw;
+						border-style: solid;
+						border-width: 1px;
+						border-color: $black $black transparent transparent;
+					}
+
+					&.gender-female::before {
+						content: "";
+						position: absolute;
+						height: 2.5vw;
+						width: 1px;
+						bottom: -2.5vw;
+						left: 50%;
+						background-color: $black;
+						transform: translateX(-50%);
+					}
+
+					&.gender-female::after {
+						content: "";
+						position: absolute;
+						height: 1px;
+						width: 2.5vw;
+						bottom: -1.25vw;
+						left: 50%;
+						background-color: $black;
+						transform: translateX(-50%);
+					}
+				}
+			}
+		}
+	}
+}

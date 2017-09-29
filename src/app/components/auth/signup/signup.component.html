@@ -1,20 +1,54 @@
-<div class="container">
-  <div>
-    <h1>SignUp Form</h1>
-    <form (ngSubmit)="onSubmit()" #alienForm="ngForm">
-      <div class="form-group">
-        <label for="email">Mail</label>
-        <input type="text" class="form-control" id="email" required [(ngModel)]="alien.email" name="email" #name="ngModel">
-      </div>
+<main class="register">
+  <h1 class="app-title">Arcadia</h1>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" [(ngModel)]="alien.password" name="password">
+  <form class="register-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-last-name" placeholder="email" id="email" required autocomplete="off" [(ngModel)]="alien.email"
+        name="email" #name="ngModel">
+    </div>
+    <div class="galaxy-form-row">
+      <input type="password" name="galaxy-last-name" placeholder="password" id="password" required autocomplete="off" [(ngModel)]="alien.password"
+        name="password" #name="ngModel">
+    </div>
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-first-name" placeholder="prénom" id="firstname" required autocomplete="off" [(ngModel)]="alien.firstname"
+        name="firstname" #name="ngModel">
+    </div>
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-last-name" placeholder="nom" id="lastname" required autocomplete="off" [(ngModel)]="alien.lastname"
+        name="lastname" #name="ngModel">
+    </div>
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-nickname" placeholder="surnom" id="nickname" required autocomplete="off" [(ngModel)]="alien.nickname"
+        name="nickname" #name="ngModel">
+    </div>
+    <div class="galaxy-form-row">
+      <div class="galaxy-radio-group">
+        <div class="galaxy-radio-container">
+          <input type="radio" name="galaxy-gender" id="galaxy-gender-female" value="F" [(ngModel)]="alien.sex">
+          <label for="galaxy-gender-female" class="galaxy-gender gender-female"></label>
+        </div>
+        <div class="galaxy-radio-container">
+          <input type="radio" name="galaxy-gender" id="galaxy-gender-male" value="M" [(ngModel)]="alien.sex">
+          <label for="galaxy-gender-male" class="galaxy-gender gender-male"></label>
+        </div>
+        <div class="galaxy-radio-container">
+          <input type="radio" name="galaxy-gender" id="galaxy-gender-neutral" value="N" [(ngModel)]="alien.sex">
+          <label for="galaxy-gender-neutral" class="galaxy-gender"></label>
+        </div>
       </div>
+    </div>
+    <div class="galaxy-form-row">
+      <select name="galaxy-agency" [(ngModel)]="alien.agence_id">
+        <option *ngFor="let agency of agencies" value={{agency.id}} >{{agency.name}}</option>       
+      </select>
+    </div>
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-home-address" placeholder="Home Place" id="city" required autocomplete="off" [(ngModel)]="alien.city"
+        name="city" #name="ngModel">
+    </div>
+    <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Submit</button>
+    <a routerLink="/" routerLinkActive="active">Login</a>
 
-      <button type="submit" class="btn btn-success" [disabled]="!alienForm.form.valid">Submit</button>
-      <a routerLink="/" routerLinkActive="active">Login</a>
-      
-    </form>
-  </div>
-</div>
+  </form>
+</main>

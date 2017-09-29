@@ -11,6 +11,8 @@ import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/game/home/home.component';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
+import { HeaderComponent } from './components/game/header/header.component';
+import { ShipComponent } from './components/game/ship/ship.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { LoginRedirect } from './services/login-redirect.service';
     SigninComponent,
     SignupComponent,
     HomeComponent,
+    HeaderComponent,
+    ShipComponent,
   ],
   imports: [
     BrowserModule,

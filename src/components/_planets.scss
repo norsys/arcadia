@@ -1,0 +1,22 @@
+.planet {
+	.galaxy-sector-changement-container {
+		z-index: initial;
+
+		.galaxy-sector-changement {
+			z-index: 6;
+		}
+	}
+
+	.aliens-frame {
+		position: relative;
+		height: 154.5vw;
+
+		.alien-frame {
+			position: absolute;
+
+			img {
+				max-width: 100%;
+			}
+		}
+	}
+}

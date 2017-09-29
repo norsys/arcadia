@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CanActivate, Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
