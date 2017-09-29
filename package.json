@@ -8,7 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "docker:build": "docker build -t 'hub-docker.norsys.fr/norsys/arcadia:latest' .",
+    "docker:push": "docker push hub-docker.norsys.fr/norsys/arcadia:latest"
   },
   "private": true,
   "dependencies": {
