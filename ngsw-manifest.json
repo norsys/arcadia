@@ -1,40 +1,55 @@
 {
   "static.ignore": [
-      "^\/assets\/ignore.*$"
+    "^\/assets\/ignore.*$"
   ],
   "routing": {
-      "index": "/index.html",
-      "routes": {
-        "/": {
-          "match": "exact"
-        },
-        "^/.*$": {
-          "match": "regex"
-        }
+    "index": "/index.html",
+    "routes": {
+      "/": {
+        "match": "exact"
+      },
+      "^/.*$": {
+        "match": "regex"
       }
-    },
+    }
+  },
   "external": {
     "urls": []
-  } ,
+  },
   "dynamic": {
-    "group": [{
-      "name": "user",
-      "urls": {
-        ".*/v1/users$": {
-          "match": "regex"
+    "group": [
+      {
+        "name": "user",
+        "urls": {
+          ".*/v1/users$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "strategy": "lru",
+          "maxAgeMs": 3600000,
+          "maxEntries": 2
         }
       },
-      "cache": {
-        "optimizeFor": "performance",
-        "strategy": "lru",
-        "maxAgeMs": 3600000,
-        "maxEntries": 2
-      }
-    },
+      {
+        "name": "agency",
+        "urls": {
+          ".*/v1/agencies$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "strategy": "lru",
+          "maxAgeMs": 3600000,
+          "maxEntries": 2
+        }
+      },
       {
         "name": "auth",
         "urls": {
-          ".*/api/auth$": {
+          ".*/v1/auth$": {
             "match": "regex"
           }
         },

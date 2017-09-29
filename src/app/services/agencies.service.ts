@@ -12,6 +12,6 @@ export class AgenciesService {
 
 
   findAll(): Observable<Array<Agency>> {
-    return this.http.get(environment.apiUri + '/agencies').map((response: Response) => response.json());
+    return this.http.get('/v1/agencies').map((response: Response) => response.json());
   }
 }

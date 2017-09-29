@@ -10,10 +10,10 @@ export class AuthService {
 
 
   login(alien): Promise<any> {
-    return this.http.post(environment.apiUri + '/auth', alien).toPromise();
+    return this.http.post('/v1/auth', alien).toPromise();
   }
 
   register(alien): Promise<any> {
-    return this.http.post(environment.apiUri + '/users', alien).toPromise();
+    return this.http.post('/v1/users', alien).toPromise();
   }
 }
