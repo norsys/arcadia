@@ -1,4 +1,4 @@
-<section class="home" [ngClass]="{'home-pulled': displayLogin() }" id="1" id="home-login" (swipeleft)="swip()">
+<section class="home" [ngClass]="{'home-pulled': displayLogin() }" id="1" id="home-login">
   <h1 class="app-title">Arcadia</h1>
 
   <form class="galaxy-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
@@ -12,7 +12,7 @@
     </div>
     <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Login</button>
   </form>
-  <div class="home-message-container home-message-right">
+  <div (swipeleft)="swip()" class="home-message-container home-message-right">
     <p class="home-message">Sign-up</p>
   </div>
 </section>
