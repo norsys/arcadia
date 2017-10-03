@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
     this.auth.register(this.alien)
       .then((user) => {
         console.log(user.json());
+        this.onSwipe.emit(!this.swipeValue);
         this.router.navigate(['/']);
       })
       .catch((err) => {
