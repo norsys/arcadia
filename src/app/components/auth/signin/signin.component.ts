@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Alien } from '../../../models/index';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -8,10 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent {
 
   public alien: Alien = new Alien();
   public submitted: boolean = false;
+
+  @Input() swipeValue: boolean = false;
+
+  @Output() onSwipe = new EventEmitter<boolean>();
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -27,8 +31,11 @@ export class SigninComponent implements OnInit {
         console.log(err);
       });
   }
-
-  ngOnInit() {
+  displayLogin() {
+    return this.swipeValue;
+  }
+  swip() {
+    this.onSwipe.emit(!this.swipeValue);
   }
 
 }

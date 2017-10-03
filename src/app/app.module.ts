@@ -1,6 +1,6 @@
-import { BrowserModule, } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
 import { HeaderComponent } from './components/game/header/header.component';
 import { ShipComponent } from './components/game/ship/ship.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ShipComponent } from './components/game/ship/ship.component';
     HomeComponent,
     HeaderComponent,
     ShipComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import { ShipComponent } from './components/game/ship/ship.component';
     HttpModule,
     Routing
   ],
-  providers: [AuthService,LoginRedirect,EnsureAuthenticated],
+  providers: [AuthService, LoginRedirect, EnsureAuthenticated],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

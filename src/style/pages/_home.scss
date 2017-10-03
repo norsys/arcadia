@@ -1,0 +1,231 @@
+.home-container {
+	display: flex;
+	width: 100vw;
+	overflow: hidden;
+}
+
+.home {
+	position: relative;
+	flex-shrink: 0;
+	background-image: url('/assets/img/outer-space/galaxy-register.png');
+	background-size: 100%;
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+	text-align: center;
+	transition: margin 0.3s ease-in-out;
+
+	&.home-pulled {
+		margin-left: -100vw;
+	}
+
+	.app-title {
+		font-size: 9vw;
+		color: $white;
+		padding: 6vw 0;
+	}
+
+	.galaxy-form {
+		padding: 10vw 20vw;
+		text-align: left;
+
+		.galaxy-form-row {
+			margin-bottom: 7.5vw;
+
+			input[type="text"],
+			input[type="password"],
+			input[type="mail"],
+			select {
+				width: 100%;
+				font-size: 6vw;
+				font-family: 'space_ageregular', sans-serif;
+				font-weight: normal;
+				border: 1vw solid $purple-red;
+				border-radius: 3vw;
+				padding: 1.5vw;
+
+				&:focus {
+					outline: none;
+					border-color: $purple-red-lighter;
+				}
+
+				option {
+					font-size: 4vw;
+
+					&.select-placeholder {
+						color: $gray-placeholder;
+					}
+				}
+			}
+
+			.galaxy-radio-group {
+				display: flex;
+			}
+
+			.galaxy-radio-container {
+				flex-grow: 1;
+				display: flex;
+				height: 15vw;
+				background-color: $white;
+				border: 1vw solid $purple-red;
+
+				&:first-child {
+					border-top-left-radius: 3vw;
+					border-bottom-left-radius: 3vw;
+				}
+
+				&:last-child {
+					border-top-right-radius: 3vw;
+					border-bottom-right-radius: 3vw;
+				}
+
+				input[type="radio"] {
+					visibility: hidden;
+					clip: rect(0, 0, 0, 0);
+					position: absolute;
+
+					&:checked ~ .galaxy-gender {
+						box-shadow: 0 0 3vw 1vw $purple-red;
+					}
+				}
+
+				.galaxy-gender {
+					margin: auto;
+					position: relative;
+					width: 5vw;
+					height: 5vw;
+					border: 1px solid $black;
+					border-radius: 50%;
+
+					&.gender-male::before {
+						content: "";
+						position: absolute;
+						height: 1px;
+						width: 3vw;
+						top: -1vw;
+						right: -2vw;
+						background-color: $black;
+						transform: rotate(-45deg);
+					}
+
+					&.gender-male::after {
+						content: "";
+						position: absolute;
+						height: 2vw;
+						width: 2vw;
+						top: -2.16vw;
+						right: -2.1vw;
+						border-style: solid;
+						border-width: 1px;
+						border-color: $black $black transparent transparent;
+					}
+
+					&.gender-female::before {
+						content: "";
+						position: absolute;
+						height: 2.5vw;
+						width: 1px;
+						bottom: -2.5vw;
+						left: 50%;
+						background-color: $black;
+						transform: translateX(-50%);
+					}
+
+					&.gender-female::after {
+						content: "";
+						position: absolute;
+						height: 1px;
+						width: 2.5vw;
+						bottom: -1.25vw;
+						left: 50%;
+						background-color: $black;
+						transform: translateX(-50%);
+					}
+				}
+			}
+
+			.galaxy-avatar-list {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: left;
+				padding: 2.5vw;
+				border: 1vw solid $purple-red;
+				border-radius: 3vw;
+				background-color: $white;
+				overflow: hidden;
+
+				.galaxy-avatar {
+					width: 17.5vw;
+					height: 17.5vw;
+					margin-bottom: 3vw;
+					text-align: center;
+
+					img {
+						max-width: 100%;
+						max-height: 100%;
+						top: auto;
+						left: auto;
+						transform: translate(0, 0);
+						transition: all .5s ease-out;
+					}
+
+					&.galaxy-avatar-selected {
+						background-color: $purple-red;
+						padding: 0.75vw;
+					}
+
+					&.galaxy-avatar-zoomed {
+						position: fixed;
+						top: 0;
+						left: 0;
+						width: 100vw;
+						height: 100vh;
+						background-color: $semi-transparent-black;
+						z-index: 3;
+
+						img {
+							position: absolute;
+							top: 50vh;
+							left: 50vw;
+							transform: translate(-50%, -50%);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.home-message-container {
+		position: absolute;
+		top: 50vh;
+		width: 100vh;
+		padding: 3vw 0;
+		text-align: center;
+		transform: translateY(-50%);
+
+		&::before {
+			content: "";
+			position: absolute;
+			border-style: solid;
+			border-width: 2.5vw 2.5vw 0;
+			border-color: $white transparent transparent;
+			bottom: 0;
+		}
+
+		&.home-message-right {
+			left: -1vh;
+			transform: translateY(-50%) rotate(-90deg);
+		}
+
+		&.home-message-left {
+			right: -1vh;
+			transform: translateY(-50%) rotate(90deg);
+		}
+
+		.home-message {
+			color: $white;
+			font-size: 7.5vw;
+			line-height: 12vw;
+		}
+	}
+}

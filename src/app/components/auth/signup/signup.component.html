@@ -1,7 +1,7 @@
-<main class="register">
+<section class="home" id="home-register" (swiperight)="swip()">
   <h1 class="app-title">Arcadia</h1>
 
-  <form class="register-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
+  <form class="galaxy-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
     <div class="galaxy-form-row">
       <input type="text" name="galaxy-last-name" placeholder="email" id="email" required autocomplete="off" [(ngModel)]="alien.email"
         name="email" #name="ngModel">
@@ -48,7 +48,8 @@
         name="city" #name="ngModel">
     </div>
     <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Submit</button>
-    <a routerLink="/" routerLinkActive="active">Login</a>
-
   </form>
-</main>
+  <div class="home-message-container home-message-left">
+    <p class="home-message">SIGN-IN</p>
+  </div>
+</section>

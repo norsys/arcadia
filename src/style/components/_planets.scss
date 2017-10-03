@@ -1,10 +1,7 @@
 .planet {
-	.galaxy-sector-changement-container {
-		z-index: initial;
-
-		.galaxy-sector-changement {
-			z-index: 6;
-		}
+	.outer-space-planet-zoom {
+		opacity: 1;
+		transform: scale(1);
 	}
 
 	.aliens-frame {

@@ -4,5 +4,9 @@ $gray-placeholder: #aaa;
 $black: #000;
 
 // colors
+$space-violet: #1f1141;
 $purple-red: #c01155;
 $purple-red-lighter: lighten($purple-red, 15%);
+
+// transparent greyscale and colors
+$semi-transparent-black: rgba($black, 0.5);

@@ -1,9 +1,13 @@
+body {
+	max-width: 100vw;
+	overflow: hidden;
+}
+
 .top-header {
 	display: flex;
 	justify-content: space-around;
 	padding: .5em;
-	background-size: 100%;
-	background-repeat: no-repeat;
+	background-color: #c4b9b7;
 
 	.header-item {
 		position: relative;
@@ -27,12 +31,46 @@
 	}
 }
 
+.outer-space-container {
+	background-image: url('/assets/img/outer-space/space-movement.jpg');
+	background-size: 100%;
+}
+
 .outer-space {
-	position: relative;
+	position: absolute;
 	background-size: 100%;
 	background-repeat: no-repeat;
+	top: 23vw;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	// If you change the duration, do not forget to change the setTimouts in the JS file 'galaxy.js', at _change_screen().
+	transition: all 2.75s ease-in;
+	opacity: 0;
+	transform: scale(0.01);
+
+	&.outer-space-leaving {
+		opacity: 0;
+		transform: scale(5);
+	}
+
+	&.outer-space-approaching {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	&.outer-space-approached {
+		background-image: url('/assets/img/outer-space/space-static.jpg');
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	&.outer-space-faraway {
+		z-index: -4;
+	}
 
 	.planet-frame {
+		display: flex;
 		position: absolute;
 		background-size: 100%;
 		background-repeat: no-repeat;
@@ -50,106 +88,199 @@
 			transform: translateX(-50%);
 			z-index: 0;
 		}
-	}
 
-	.spaceship {
-		overflow: hidden;
-
-		&::before {
-			content: "";
-			position: absolute;
-			background-image: url('/assets/img/rudder-overlapping-piece.png');
-			background-size: 100%;
-			width: 3.9vw;
-			height: 6.9vw;
-			bottom: 27.75vw;
-			left: 50vw;
-			transform: translateX(-50%);
-			z-index: 10;
-		}
-
-		.spaceship-cockpit {
-			position: relative;
+		.planet-frame-link {
+			flex-grow: 1;
 			width: 100%;
-			margin-top: -2px;
-			z-index: 2;
-		}
-
-		.spaceship-planet-frame {
-			position: absolute;
-			width: 15vw;
-			height: auto;
-			padding-bottom: 15vw;
-			background-size: 100%;
-			background-repeat: no-repeat;
-			z-index: 4;
-
-			&.completed {
-				opacity: 0.35;
-			}
-		}
-
-		.spaceship-gauges {
-			position: absolute;
-			width: 90vw;
-			height: 20vw;
-			bottom: 24vw;
-			left: 50vw;
-			background-image: url('/assets/img/fuel-gauges.png');
-			background-size: 100%;
-			transform: translateX(-50%);
-			z-index: 4;
+			height: 100%;
+			z-index: 15;
 		}
 	}
+}
 
-	.galaxy-sector-changement-container {
-		display: flex;
-		justify-content: space-between;
+.spaceship {
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: "";
 		position: absolute;
-		height: 100%;
+		background-image: url('/assets/img/rudder-overlapping-piece.png');
+		background-size: 100%;
+		width: 3.9vw;
+		height: 6.9vw;
+		bottom: 27.75vw;
+		left: 50vw;
+		transform: translateX(-50%);
+		z-index: 10;
+	}
+
+	.spaceship-cockpit {
+		position: relative;
 		width: 100%;
-		bottom: 0;
-		left: 0;
-		z-index: 3;
+		margin-top: -2px;
+		z-index: 1;
+	}
 
-		.galaxy-sector-changement {
-			width: 10vw;
+	.frame-container {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		opacity: 0;
+		transition: opacity 2.75s ease-in;
+
+		&.frame-container-active {
+			opacity: 1;
+			z-index: 3;
 		}
 	}
 
-	.spaceship-planets-frame-links,
-	.planets-frame-links {
+	.spaceship-planet-frame-container {
 		position: absolute;
-		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 
 		.spaceship-planet-frame {
 			position: absolute;
-			width: 15vw;
+			width: 20vw;
 			height: auto;
-			padding-bottom: 15vw;
-			border-radius: 50%;
-			z-index: 6;
+			padding-bottom: 20vw;
+			background-size: 100%, 75%;
+			background-repeat: no-repeat;
+			background-position:  50% 15%, center;
+			z-index: 4;
+
+			&.completed {
+				opacity: 0.35;
+			}
 		}
 	}
 
 	[data-planet-position="1"] {
 		left: 50vw;
-		bottom: 29vw;
+		bottom: 27vw;
 		transform: translateX(-50%);
 	}
 
 	[data-planet-position="2"] {
-		left: 10vw;
-		bottom: 19vw;
+		left: 8vw;
+		bottom: 17vw;
 		transform: translateX(-25%);
 	}
 
 	[data-planet-position="3"] {
-		right: 10vw;
-		bottom: 19vw;
+		right: 8vw;
+		bottom: 17vw;
 		transform: translateX(25%);
+	}
+
+	.planets-frame-links {
+		position: absolute;
+
+		.planet-frame-link {
+			position: absolute;
+		}
+	}
+}
+
+[data-planet="brown-planet"] {
+	width: 40vw;
+	height: 40vw;
+	left: 50vw;
+	top: 25vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/brown-planet.png');
+	}
+}
+
+[data-planet="yellow-planet"] {
+	width: 17.5vw;
+	height: 17.5vw;
+	left: 10vw;
+	top: 47.5vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/yellow-planet.png');
+	}
+}
+
+[data-planet="violet-planet"] {
+	width: 20vw;
+	height: 20vw;
+	left: 40vw;
+	top: 77.5vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/violet-planet.png');
+	}
+}
+
+[data-planet="albator-planet"] {
+	width: 25vw;
+	height: 25vw;
+	left: 65vw;
+	top: 10vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/albator-planet.png');
+	}
+}
+
+[data-planet="halo-green-planet"] {
+	width: 40vw;
+	height: 40vw;
+	left: 10vw;
+	top: 30vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/halo-green-planet.png');
+	}
+}
+
+[data-planet="teal-planet"] {
+	width: 25vw;
+	height: 25vw;
+	left: 55vw;
+	top: 77.5vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/teal-planet.png');
+	}
+}
+
+[data-planet="blue-orange-planet"] {
+	width: 20vw;
+	height: 20vw;
+	left: 22.5vw;
+	top: 20vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/blue-orange-planet.png');
+	}
+}
+
+[data-planet="cloudy-purple-planet"] {
+	width: 30vw;
+	height: 30vw;
+	left: 65vw;
+	top: 42.5vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/cloudy-purple-planet.png');
+	}
+}
+
+[data-planet="red-planet"] {
+	width: 25vw;
+	height: 25vw;
+	left: 25vw;
+	top: 80vw;
+
+	&.planet-frame {
+		background-image: url('/assets/img/planets/red-planet.png');
 	}
 }

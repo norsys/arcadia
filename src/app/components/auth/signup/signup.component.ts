@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Alien, Agency } from '../../../models/index';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,11 @@ export class SignupComponent implements OnInit {
   public alien: Alien = new Alien();
   public agencies: Array<Agency>;
 
+  @Input() swipeValue: boolean = false;
+
+
+  @Output() onSwipe = new EventEmitter<boolean>();
+
   constructor(private auth: AuthService, private agenciesService: AgenciesService, private router: Router) { }
   onSubmit() {
     this.auth.register(this.alien)
@@ -27,11 +32,14 @@ export class SignupComponent implements OnInit {
       });
   }
 
+  swip() {
+    this.onSwipe.emit(!this.swipeValue);
+  }
+
   ngOnInit() {
     this.agenciesService.findAll().subscribe(
       result => {
         this.agencies = result;
       });
   }
-
 }
