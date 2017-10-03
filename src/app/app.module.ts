@@ -14,6 +14,7 @@ import { LoginRedirect } from './services/login-redirect.service';
 import { HeaderComponent } from './components/game/header/header.component';
 import { ShipComponent } from './components/game/ship/ship.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { PlanetsComponent } from './components/game/planets/planets.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthComponent } from './components/auth/auth.component';
     HeaderComponent,
     ShipComponent,
     AuthComponent,
+    PlanetsComponent,
   ],
   imports: [
     BrowserModule,
