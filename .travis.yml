@@ -1,4 +1,5 @@
 sudo: required
+
 language: node_js
 node_js:
   - "7"
@@ -12,6 +13,6 @@ script:
   - $(npm bin)/ng build --prod --build-optimizer --aot
 
 after_success:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker build -t ymatagne/arcadia .
-  - docker push ymatagne/arcadia
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" hub-docker.norsys.fr
+  - docker build -t hub-docker.norsys.fr/norsys/arcadia .
+  - docker push hub-docker.norsys.fr/norsys/arcadia
