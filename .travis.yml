@@ -1,0 +1,18 @@
+sudo: required
+
+language: node_js
+node_js:
+  - "7"
+services:
+  - docker
+before_script:
+  - npm install -g @angular/cli
+  - npm install
+
+script:
+  - $(npm bin)/ng build --prod --build-optimizer --aot
+
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker build -t ymatagne/arcadia .
+  - docker push ymatagne/arcadia

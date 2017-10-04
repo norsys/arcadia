@@ -1,5 +1,5 @@
 <section class="home" id="home-register">
-  <h1 class="app-title">Arcadia</h1>
+  <h1 class="app-title" (swiperight)="swip()">Arcadia</h1>
 
   <form class="galaxy-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
     <div class="galaxy-form-row">
@@ -48,8 +48,8 @@
         name="city" #name="ngModel">
     </div>
     <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Submit</button>
+    <div (swiperight)="swip()">
+      <h1 class="app-title"><<<  SIGN-IN</h1>
+    </div>
   </form>
-  <div class="home-message-container home-message-left" (swiperight)="swip()">
-    <p class="home-message">SIGN-IN</p>
-  </div>
 </section>

@@ -8,8 +8,11 @@
       "/": {
         "match": "exact"
       },
-      "^/.*$": {
-        "match": "regex"
+      "/home": {
+        "match": "exact"
+      },
+      "/planets/*": {
+        "match": "exact"
       }
     }
   },
@@ -18,20 +21,6 @@
   },
   "dynamic": {
     "group": [
-      {
-        "name": "user",
-        "urls": {
-          ".*/v1/users$": {
-            "match": "regex"
-          }
-        },
-        "cache": {
-          "optimizeFor": "performance",
-          "strategy": "lru",
-          "maxAgeMs": 3600000,
-          "maxEntries": 2
-        }
-      },
       {
         "name": "agency",
         "urls": {
