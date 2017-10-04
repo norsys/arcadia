@@ -18,8 +18,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   logout() {
-    localStorage.removeItem("user_arcadia");
-    this.router.navigate(['/']);
+    this.auth.logout().then((alien) => {
+      localStorage.removeItem("user_arcadia");
+      this.router.navigate(['/']);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 }

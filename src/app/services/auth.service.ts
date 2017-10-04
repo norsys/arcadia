@@ -13,6 +13,10 @@ export class AuthService {
     return this.http.post('/v1/auth', alien).toPromise();
   }
 
+  logout(): Promise<any> {
+    return this.http.delete('/v1/auth',{params: {accessToken: this.getCurrentUser().accessToken}}).toPromise();
+  }
+
   register(alien): Promise<any> {
     return this.http.post('/v1/users', alien).toPromise();
   }
