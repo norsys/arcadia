@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class SigninComponent {
 
   public alien: Alien = new Alien();
-  public submitted: boolean = false;
 
   @Input() swipeValue: boolean = false;
 
@@ -20,10 +19,8 @@ export class SigninComponent {
   constructor(private auth: AuthService, private router: Router) { }
 
   onSubmit() {
-    this.submitted = true;
     this.auth.login(this.alien)
       .then((alien) => {
-        console.log(alien.json());
         localStorage.setItem('user_arcadia', JSON.stringify(alien.json()));
         this.router.navigate(['/home']);
       })
