@@ -10,7 +10,7 @@ import { AuthService } from '../../../services/auth.service'
 })
 export class HeaderComponent implements OnInit {
 
-  private alien: Alien;
+  public alien: Alien;
 
   constructor(private router: Router, private auth: AuthService) {
     this.alien = auth.getCurrentUser();
