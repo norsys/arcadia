@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Alien } from '../../../models'
+import { AuthService } from '../../../services/auth.service'
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  private alien: Alien;
+
+  constructor(private router: Router, private auth: AuthService) {
+    this.alien = auth.getCurrentUser();
+  }
 
   ngOnInit() {
   }
-
+  logout() {
+    localStorage.removeItem("user_arcadia");
+    this.router.navigate(['/']);
+  }
 }

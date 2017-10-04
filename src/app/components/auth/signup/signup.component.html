@@ -47,9 +47,17 @@
       <input type="text" name="galaxy-home-address" placeholder="Home Place" id="city" required autocomplete="off" [(ngModel)]="alien.city"
         name="city" #name="ngModel">
     </div>
+    <div class="galaxy-form-row">
+      <div class="galaxy-avatar-list">
+        <div class="galaxy-avatar" *ngFor="let avatar of avatars" [ngClass]="{'galaxy-avatar-selected': isSelected(avatar) }">
+          <img class="galaxy-avatar-image" src="/assets/img/avatars/{{avatar}}.svg" (click)="selectAvatar(avatar)" alt="An avatar">
+        </div>      
+      </div>
+    </div>
     <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Submit</button>
     <div (swiperight)="swip()">
-      <h1 class="app-title"><<<  SIGN-IN</h1>
+      <h1 class="app-title">
+        <<< SIGN-IN</h1>
     </div>
   </form>
 </section>

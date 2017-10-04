@@ -16,4 +16,7 @@ export class AuthService {
   register(alien): Promise<any> {
     return this.http.post('/v1/users', alien).toPromise();
   }
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user_arcadia')).user;
+  }
 }

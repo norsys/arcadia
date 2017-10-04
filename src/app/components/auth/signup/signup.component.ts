@@ -15,6 +15,14 @@ export class SignupComponent implements OnInit {
   public alien: Alien = new Alien();
   public agencies: Array<Agency>;
 
+  public avatars: Array<String> = [
+    'avatar-1',
+    'avatar-2',
+    'avatar-3',
+    'avatar-5',
+    'avatar-6',
+    'avatar-7',
+  ]
   @Input() swipeValue: boolean = false;
 
 
@@ -37,6 +45,12 @@ export class SignupComponent implements OnInit {
     this.onSwipe.emit(!this.swipeValue);
   }
 
+  selectAvatar(avatar: string) {
+    this.alien.avatar = avatar;
+  }
+  isSelected(avatar: string) {
+    return this.alien.avatar === avatar;
+  }
   ngOnInit() {
     this.agenciesService.findAll().subscribe(
       result => {
