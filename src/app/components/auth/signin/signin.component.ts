@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SigninComponent {
 
   public alien: Alien = new Alien();
-
+  public error: string = '';
   @Input() swipeValue: boolean = false;
 
   @Output() onSwipe = new EventEmitter<boolean>();
@@ -23,9 +23,11 @@ export class SigninComponent {
       .then((alien) => {
         localStorage.setItem('user_arcadia', JSON.stringify(alien.json()));
         this.router.navigate(['/home']);
+        this.error = alien;
       })
       .catch((err) => {
         console.log(err);
+        this.error = err;
       });
   }
   displayLogin() {

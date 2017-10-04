@@ -10,6 +10,6 @@ export class Alien {
   public sex: string;
   public agence_id: string;
   public city: string;
-  public avatar: String;
+  public avatar: string;
   public accessToken: string;
 }
