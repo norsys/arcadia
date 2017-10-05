@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/game/header/header.component';
 import { ShipComponent } from './components/game/ship/ship.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { PlanetsComponent } from './components/game/planets/planets.component';
+import { CameraComponent } from './components/game/input/camera/camera.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PlanetsComponent } from './components/game/planets/planets.component';
     ShipComponent,
     AuthComponent,
     PlanetsComponent,
+    CameraComponent,
   ],
   imports: [
     BrowserModule,

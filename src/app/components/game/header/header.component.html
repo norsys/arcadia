@@ -1,6 +1,6 @@
 <header class="top-header">
-  <img class="header-item" src="/assets/img/avatars/{{alien.avatar}}.svg">
+  <img (click)="home()" class="header-avatar" src="/assets/img/avatars/{{alien.avatar}}.svg">
   <div class="header-item item-completion">
   </div>
-  <img class="header-item" src="/assets/img/logout.png" (click)="logout()">
+  <img class="header-logout" src="/assets/img/logout.png" (click)="logout()">
 </header>

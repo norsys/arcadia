@@ -1,0 +1,12 @@
+<app-header></app-header>
+<div class="planet">
+	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
+		<section class="home" id="home-login">
+			<h1 class="app-title" (swipeleft)="swip()">Take photo with you friend</h1>
+			<form class="galaxy-form" #alienForm="ngForm">
+				<video #videoplayer width="200px" height="200px" autoplay></video>					
+				<button type="submit" class="button button-submit">Submit</button>
+			</form>
+		</section>
+	</main>
+</div>

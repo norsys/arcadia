@@ -13,7 +13,7 @@ export class PlanetsComponent implements OnInit {
 
   public planetName: String;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => {
       this.planetName = params['name'];
     });
@@ -23,6 +23,12 @@ export class PlanetsComponent implements OnInit {
     return "url('/assets/img/planets/zoom/surface-planet-" + this.planetName + ".png')";
   }
 
+  getAlien() {
+    return '/assets/img/planets/zoom/aliens/' + this.planetName + '-alien-1.png';
+  }
+  openDefi() {
+    this.router.navigate(['/input', this.planetName, 1]);
+  }
   ngOnInit() {
 
   }

@@ -8,7 +8,25 @@ body {
 	justify-content: space-around;
 	padding: .5em;
 	background-size: 100%;
-	background-color: #c4b9b7;
+	background-color: black;
+	background-image:url('/assets/img/header.png');
+	padding-bottom: 21vw;
+	.header-avatar{
+		position: absolute;
+		width: 12%;
+		border-radius: 50%;
+		color: white;
+		top: 3%;
+		left: 5%;
+	}
+	.header-logout{
+		position: absolute;
+		width: 12%;
+		border-radius: 50%;
+		color: white;
+		top: 3%;
+		right: 5%;
+	}
 	.header-item {
 		position: relative;
 		width: 20%;

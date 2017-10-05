@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
   
+  home(){
+    this.router.navigate(['/']);
+  }
   logout() {
     this.auth.logout().then((alien) => {
       localStorage.removeItem("user_arcadia");
