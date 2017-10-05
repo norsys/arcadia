@@ -27,7 +27,7 @@ import { CameraComponent } from './components/game/input/camera/camera.component
     ShipComponent,
     AuthComponent,
     PlanetsComponent,
-    CameraComponent,
+    CameraComponent
   ],
   imports: [
     BrowserModule,

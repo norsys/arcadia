@@ -4,7 +4,9 @@
 		<section class="home" id="home-login">
 			<h1 class="app-title" (swipeleft)="swip()">Take photo with you friend</h1>
 			<form class="galaxy-form" #alienForm="ngForm">
-				<video #videoplayer width="200px" height="200px" autoplay></video>					
+				<button (click)="takePhoto()" class="button button-submit">{{takedPhoto?'Retry':'Take'}}</button>
+				<video [hidden]="takedPhoto" #video width="200px" height="200px" autoplay></video>
+				<canvas [hidden]="!takedPhoto" #canvas width="200px" height="200px"></canvas>
 				<button type="submit" class="button button-submit">Submit</button>
 			</form>
 		</section>

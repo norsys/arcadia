@@ -1,4 +1,4 @@
-<section class="home" [ngClass]="{'home-pulled': displayLogin() }" id="1" id="home-login">
+<section class="home auth" [ngClass]="{'home-pulled': displayLogin() }" id="1" id="home-login">
   <h1 class="app-title" (swipeleft)="swip()">Arcadia</h1>
   <h1 class="app-title">{{error}}</h1>
   <form class="galaxy-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
