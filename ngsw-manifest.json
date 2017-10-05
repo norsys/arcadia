@@ -7,6 +7,12 @@
     "routes": {
       "/": {
         "match": "exact"
+      },
+      "/login": {
+        "match": "exact"
+      },
+      "/home": {
+        "match": "exact"
       }
     }
   },
@@ -16,17 +22,45 @@
   "dynamic": {
     "group": [
       {
-        "name": "api",
+        "name": "auth",
         "urls": {
-          "http://arcadia.norsys.fr/v1/": {
-            "match": "prefix"
+          ".*/v1/auth$": {
+            "match": "regex"
           }
         },
         "cache": {
           "optimizeFor": "performance",
+          "strategy": "lru",
           "maxAgeMs": 3600000,
-          "maxEntries": 20,
-          "strategy": "lru"
+          "maxEntries": 20
+        }
+      },
+      {
+        "name": "users",
+        "urls": {
+          ".*/v1/users$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "strategy": "lru",
+          "maxAgeMs": 3600000,
+          "maxEntries": 20
+        }
+      },
+      {
+        "name": "agencies",
+        "urls": {
+          ".*/v1/agencies$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "strategy": "lru",
+          "maxAgeMs": 3600000,
+          "maxEntries": 20
         }
       }
     ]
