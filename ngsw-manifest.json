@@ -16,32 +16,17 @@
   "dynamic": {
     "group": [
       {
-        "name": "agency",
+        "name": "api",
         "urls": {
-          ".*/v1/agencies$": {
-            "match": "regex"
+          "http://arcadia.norsys.fr/v1/": {
+            "match": "prefix"
           }
         },
         "cache": {
           "optimizeFor": "performance",
-          "strategy": "lru",
           "maxAgeMs": 3600000,
-          "maxEntries": 2
-        }
-      },
-      {
-        "name": "auth",
-        "urls": {
-          ".*/v1/auth$": {
-            "match": "regex"
-          }
-        },
-        "cache": {
-          "optimizeFor": "freshness",
-          "strategy": "fifo",
-          "maxAgeMs": 3600000,
-          "maxEntries": 2,
-          "networkTimeoutMs": 1000
+          "maxEntries": 20,
+          "strategy": "lru"
         }
       }
     ]
