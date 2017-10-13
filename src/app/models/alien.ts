@@ -12,4 +12,6 @@ export class Alien {
   public city: string;
   public avatar: string;
   public accessToken: string;
+  public gameIsStarted: boolean;
+  public startedDate: string;
 }

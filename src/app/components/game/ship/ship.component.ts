@@ -1,29 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterContentInit, ViewChild } from '@angular/core';
+import { CategoryService } from '../../../services/category.service'
+import { AuthService } from '../../../services/auth.service'
+import { Category } from '../../../models/category'
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ship',
   templateUrl: './ship.component.html',
-  styleUrls: ['./ship.component.scss']
+  styleUrls: ['./ship.component.scss'],
+  providers: [CategoryService]
+
 })
-export class ShipComponent implements OnInit {
+export class ShipComponent implements AfterContentInit {
 
-  constructor() { }
+  public galaxySelector: String;
 
-  ngOnInit() {
-    var _outer_space;
-    var _screen_sector;
+  public categories: Array<Category>;
 
+  constructor(private sanitizer: DomSanitizer, private categoryService: CategoryService, private router: Router) {
+    this.categoryService.getAll().then((categories) => { this.categories = categories.json() });
     if (localStorage.getItem('galaxy-sector')) {
-      _outer_space = document.querySelector(`.outer-space[data-outer-space="${localStorage.getItem('galaxy-sector')}"]`);
-      _screen_sector = document.querySelector(`[ data-sector="${localStorage.getItem('galaxy-sector')}"]`);
-      localStorage.removeItem('galaxy-sector');
+      this.galaxySelector = localStorage.getItem('galaxy-sector');
     } else {
-      _outer_space = document.querySelector(`.outer-space[data-outer-space="1"]`);
-      _screen_sector = document.querySelector(`.frame-container[ data-sector="1"]`);
+      this.galaxySelector = "1";
     }
+  }
 
-    _outer_space.classList.add('outer-space-approached');
-    _screen_sector.classList.add('frame-container-active');
+  goToPlanet(index) {
+    if (index - 1 < this.categories.length) {
+      this.router.navigate(['/planets', index]);
+    } else {
+      this.router.navigate(['/planets', 'comingsoon']);
+    }
+  }
+
+  ngAfterContentInit() {
+  }
+
+  getPlanetImage(planet, index) {
+    return this.sanitizer.bypassSecurityTrustStyle("url('/assets/img/fuel-gauges-" + index + ".png'), url('/assets/img/planets/planet-" + planet + ".png')");
   }
 
   swip(swipeDirection: string) {

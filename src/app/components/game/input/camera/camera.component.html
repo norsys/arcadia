@@ -1,9 +1,8 @@
-<app-header></app-header>
 <div class="planet">
 	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
 		<section class="home" id="home-login">
-			<h1 class="app-title">Take photo with you friend</h1>
-			<form class="galaxy-form" #alienForm="ngForm">
+			<h1 class="app-title">{{question.question}}</h1>
+			<form class="galaxy-form" #alienForm="ngForm" (ngSubmit)="onSubmit()">
 				<button (click)="takePhoto()" class="button button-submit">{{takedPhoto?'Retry':'Take'}}</button>
 				<video [hidden]="takedPhoto" #video width="200px" height="200px" autoplay></video>
 				<canvas [hidden]="!takedPhoto" #canvas width="200px" height="200px"></canvas>

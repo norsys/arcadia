@@ -4,7 +4,7 @@ import { HomeComponent } from './components/game/home/home.component';
 import { PlanetsComponent } from './components/game/planets/planets.component';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
-import { CameraComponent } from './components/game/input/camera/camera.component';
+import { QuestionsComponent } from './components/game/questions/questions.component'
 
 export const routes: Routes = [
   {
@@ -14,9 +14,9 @@ export const routes: Routes = [
   },
   { path: 'login', component: AuthComponent, canActivate: [LoginRedirect] },
   { path: 'home', component: HomeComponent, canActivate: [EnsureAuthenticated] },
-  { path: 'planets/:name', component: PlanetsComponent, canActivate: [EnsureAuthenticated] },
-  { path: 'input/:name/:id', component: CameraComponent, canActivate: [EnsureAuthenticated] }
-  
+  { path: 'planets/:categoryId', component: PlanetsComponent, canActivate: [EnsureAuthenticated] },
+  { path: 'questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] }
+
 ];
 
 export const Routing = RouterModule.forRoot(routes);

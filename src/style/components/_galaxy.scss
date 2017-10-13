@@ -55,7 +55,7 @@ body {
 	position: absolute;
 	background-size: 100%;
 	background-repeat: no-repeat;
-	top: 23vw;
+	top: 25vw;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -201,101 +201,101 @@ body {
 	}
 }
 
-[data-planet="brown-planet"] {
+[data-planet="planet-1"] {
 	width: 40vw;
 	height: 40vw;
 	left: 50vw;
 	top: 25vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/brown-planet.png');
+		background-image: url('/assets/img/planets/planet-1.png');
 	}
 }
 
-[data-planet="yellow-planet"] {
+[data-planet="planet-2"] {
 	width: 17.5vw;
 	height: 17.5vw;
 	left: 10vw;
 	top: 47.5vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/yellow-planet.png');
+		background-image: url('/assets/img/planets/planet-2.png');
 	}
 }
 
-[data-planet="violet-planet"] {
+[data-planet="planet-3"] {
 	width: 20vw;
 	height: 20vw;
 	left: 40vw;
 	top: 77.5vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/violet-planet.png');
+		background-image: url('/assets/img/planets/planet-3.png');
 	}
 }
 
-[data-planet="albator-planet"] {
+[data-planet="planet-4"] {
 	width: 25vw;
 	height: 25vw;
 	left: 65vw;
 	top: 10vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/albator-planet.png');
+		background-image: url('/assets/img/planets/planet-4.png');
 	}
 }
 
-[data-planet="halo-green-planet"] {
+[data-planet="planet-5"] {
 	width: 40vw;
 	height: 40vw;
 	left: 10vw;
 	top: 30vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/halo-green-planet.png');
+		background-image: url('/assets/img/planets/planet-5.png');
 	}
 }
 
-[data-planet="teal-planet"] {
+[data-planet="planet-6"] {
 	width: 25vw;
 	height: 25vw;
 	left: 55vw;
 	top: 77.5vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/teal-planet.png');
+		background-image: url('/assets/img/planets/planet-6.png');
 	}
 }
 
-[data-planet="blue-orange-planet"] {
+[data-planet="planet-7"] {
 	width: 20vw;
 	height: 20vw;
 	left: 22.5vw;
 	top: 20vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/blue-orange-planet.png');
+		background-image: url('/assets/img/planets/planet-7.png');
 	}
 }
 
-[data-planet="cloudy-purple-planet"] {
+[data-planet="planet-8"] {
 	width: 30vw;
 	height: 30vw;
 	left: 65vw;
 	top: 42.5vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/cloudy-purple-planet.png');
+		background-image: url('/assets/img/planets/planet-8.png');
 	}
 }
 
-[data-planet="red-planet"] {
+[data-planet="planet-9"] {
 	width: 25vw;
 	height: 25vw;
 	left: 25vw;
 	top: 80vw;
 
 	&.planet-frame {
-		background-image: url('/assets/img/planets/red-planet.png');
+		background-image: url('/assets/img/planets/planet-9.png');
 	}
 }

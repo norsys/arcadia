@@ -1,8 +1,9 @@
 <app-header></app-header>
-<div class="planet">
-	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
-		<div class="aliens-frame">
-			<img [src]="getAlien()" class="alien-frame" (click)="openDefi()">
+<div class="planet" *ngIf="questions">
+	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" attr.data-planet="planet-1">
+		<div class="aliens-frame" *ngFor="let question of questions;let i=index">
+			{{question.id}}
+			<img [src]="getAlien()" class="alien-frame" (click)="openDefi(question)">
 		</div>
 	</main>
 </div>

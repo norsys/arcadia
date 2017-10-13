@@ -1,2 +1,4 @@
-export {Alien} from './alien';
-export {Agency} from './agency';
+export { Alien } from './alien';
+export { Agency } from './agency';
+export { Question } from './question';
+export { Response } from './response';
