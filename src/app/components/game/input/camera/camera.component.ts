@@ -1,74 +1,74 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ViewChild, Input, OnInit } from '@angular/core';
 
 import { AuthService } from '../../../../services/auth.service';
-import { ResponsesService } from '../../../../services/responses.service';
+import { ResponseService } from '../../../../services/response.service';
 import { ImagesService } from '../../../../services/images.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Question, Response } from '../../../../models';
 
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
-  styleUrls: ['./camera.component.scss']
+  styleUrls: ['./camera.component.scss'],
+  providers: [ResponseService, ImagesService]
 })
-export class CameraComponent implements AfterViewInit, OnDestroy {
-
-  @ViewChild('video') video: any;
-  @ViewChild('canvas') canvas: any;
+export class CameraComponent implements OnInit {
 
   @Input() question: Question;
+  @Input() response: Response;
 
   public takedPhoto: boolean = false;
   public planetName: String;
+  public url: String;
 
-
-  constructor(private authService: AuthService, private responseService: ResponsesService, private imageService: ImagesService) {
+  constructor(private authService: AuthService,
+    private responseService: ResponseService,
+    private imageService: ImagesService,
+    private router: Router
+  ) {
   }
 
+  ngOnInit() {
+  }
+
+  getUrl() {
+    if (this.response && this.response.response) {
+      this.imageService.getImage(this.response.response).then((r) => {
+        console.log("tata");
+      });
+    }
+    return this.url;
+  }
   getBackgroundImage() {
     return "url('/assets/img/planets/zoom/surface-planet-" + this.question.category_id + ".png')";
   }
 
-  takePhoto() {
-    if (this.takedPhoto) {
-      this.takedPhoto = false;
-    } else {
-      var context = this.canvas.nativeElement.getContext('2d');
-      context.drawImage(this.video.nativeElement, 0, 0, 200, 200);
-      this.takedPhoto = true;
+  readUrl(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
     }
   }
 
-  ngAfterViewInit() {
-    let _video = this.video.nativeElement;
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-          _video.src = window.URL.createObjectURL(stream);
-          _video.play();
-        })
-    }
-  }
-  ngOnDestroy() {
-    let _video = this.video.nativeElement;
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-          var track = stream.getTracks()[0];  // if only one media track
-          track.stop();
-        })
-    }
-
-  }
   onSubmit() {
-    let response: Response = new Response()
-    response.question_id = this.question.id;
-    response.user_id = this.authService.getCurrentUser().id;
-    response.response = 'photo-' + this.question.id + '-' + response.user_id + '.png'
+    let responseTmp: Response = new Response()
+    responseTmp.question_id = this.question.id;
+    responseTmp.user_id = this.authService.getCurrentUser().id;
+    responseTmp.response = 'photo-' + this.question.id + '-' + responseTmp.user_id + '.png'
 
-    var data = this.canvas.nativeElement.getContext('2d').toDataURL("image/png");
-
-    this.imageService.save(data).then(() => this.responseService.save(response))
+    this.imageService.save(responseTmp.response, this.url).then(() => {
+      this.responseService.save(responseTmp).then((body) => {
+        this.router.navigate(['/home']);
+      }).catch((r) => {
+        console.log('errors');
+      });
+    })
 
   }
 }

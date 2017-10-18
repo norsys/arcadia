@@ -8,6 +8,17 @@
 	padding: 1.5vw;
 	width: 100%;
 
+	&.button-action {
+		color: $white;
+		background-color: $blue;
+		border-color: $blue;
+
+		&:focus {
+			background-color: $blue-lighter;
+			border-color: $blue-lighter;
+		}
+	}
+
 	&.button-submit {
 		color: $white;
 		background-color: $purple-red;
