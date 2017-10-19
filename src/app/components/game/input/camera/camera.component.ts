@@ -53,7 +53,7 @@ export class CameraComponent implements OnInit {
       }
 
       this.response.user_id = this.authService.getCurrentUser().id;
-      this.response.response = 'photo-' + this.question.id + '-' + this.response.user_id + event.target.files[0].name.split('.').pop();
+      this.response.response = 'photo-' + this.question.id + '-' + this.response.user_id + '.' + event.target.files[0].name.split('.').pop();
 
       reader.readAsDataURL(event.target.files[0]);
     }
