@@ -9,9 +9,8 @@ export class ImagesService {
 
   constructor(private http: Http, private auth: AuthService) { }
 
-  getImage(name): Promise<any> {
-    return this.http.get('/v1/images/' + name, { params: { accessToken: this.auth.getCurrentUser().accessToken } }).toPromise();
-
+  getImage(name): string {
+    return '/v1/images/' + name+'?accessToken='+this.auth.getCurrentUser().accessToken;
   }
   save(name, image): Promise<any> {
     return this.http.post('/v1/images', { 'name': name, 'image': image }, { params: { accessToken: this.auth.getCurrentUser().accessToken } }).toPromise();

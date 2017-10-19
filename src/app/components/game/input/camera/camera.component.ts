@@ -4,6 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
 import { ImagesService } from '../../../../services/images.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Question, Response } from '../../../../models';
 
@@ -20,25 +21,24 @@ export class CameraComponent implements OnInit {
 
   public takedPhoto: boolean = false;
   public planetName: String;
-  public url: String;
+  public url: string;
 
   constructor(private authService: AuthService,
     private responseService: ResponseService,
     private imageService: ImagesService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {
   }
 
   ngOnInit() {
+    if (!this.url && this.response && this.response.response) {
+      this.url = this.imageService.getImage(this.response.response);
+    }
   }
 
   getUrl() {
-    if (this.response && this.response.response) {
-      this.imageService.getImage(this.response.response).then((r) => {
-        console.log("tata");
-      });
-    }
-    return this.url;
+    return this.sanitizer.bypassSecurityTrustUrl(this.url);
   }
   getBackgroundImage() {
     return "url('/assets/img/planets/zoom/surface-planet-" + this.question.category_id + ".png')";
@@ -52,18 +52,18 @@ export class CameraComponent implements OnInit {
         this.url = event.target.result;
       }
 
+      this.response.user_id = this.authService.getCurrentUser().id;
+      this.response.response = 'photo-' + this.question.id + '-' + this.response.user_id + event.target.files[0].name.split('.').pop();
+
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
   onSubmit() {
-    let responseTmp: Response = new Response()
-    responseTmp.question_id = this.question.id;
-    responseTmp.user_id = this.authService.getCurrentUser().id;
-    responseTmp.response = 'photo-' + this.question.id + '-' + responseTmp.user_id + '.png'
+    this.response.question_id = this.question.id;
 
-    this.imageService.save(responseTmp.response, this.url).then(() => {
-      this.responseService.save(responseTmp).then((body) => {
+    this.imageService.save(this.response.response, this.url).then(() => {
+      this.responseService.save(this.response).then((body) => {
         this.router.navigate(['/home']);
       }).catch((r) => {
         console.log('errors');

@@ -3,10 +3,10 @@
 		<section class="home" id="home-login">
 			<h1 class="app-title">{{question.question}}</h1>
 			<form class="galaxy-form" #alienForm="ngForm">
-				<button [hidden]="!response" class="button button-action" (click)="imgFileInput.click()">Take Picture</button>
+				<button [hidden]="response.id" class="button button-action" (click)="imgFileInput.click()">Take Picture</button>
 				<input hidden type="file" accept="image/*;capture=camera" #imgFileInput (change)="readUrl($event)" />
-				<img *ngIf="url" [src]="getUrl()">
-				<button [hidden]="!response" type="submit"  (click)="onSubmit()"  class="button button-submit">Submit</button>
+				<img  [src]="getUrl()">
+				<button [hidden]="response.id" type="submit"  (click)="onSubmit()"  class="button button-submit">Submit</button>
 			</form>
 		</section>
 	</main>
