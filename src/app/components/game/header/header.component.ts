@@ -25,9 +25,11 @@ export class HeaderComponent implements OnInit {
       this.alien = auth.getCurrentUser();
     }
     this.displayService.showHeader().subscribe(value => {
-      this.alien = auth.getCurrentUser();
-      this.calculatePercentage();
       this.display = value
+      if (this.auth.getCurrentUser()) {
+        this.alien = auth.getCurrentUser();
+        this.calculatePercentage();
+      }
     });
   }
 
