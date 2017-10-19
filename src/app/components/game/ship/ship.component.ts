@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service'
 import { Category } from '../../../models/category'
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { DisplayService } from '../../../services/display.service';
 
 @Component({
   selector: 'app-ship',
@@ -18,13 +19,17 @@ export class ShipComponent implements AfterContentInit {
 
   public categories: Array<Category>;
 
-  constructor(private sanitizer: DomSanitizer, private categoryService: CategoryService, private router: Router) {
+  constructor(private sanitizer: DomSanitizer,
+    private categoryService: CategoryService,
+    private router: Router,
+    private displayService: DisplayService) {
     this.categoryService.getAll().then((categories) => { this.categories = categories.json() });
     if (localStorage.getItem('galaxy-sector')) {
       this.galaxySelector = localStorage.getItem('galaxy-sector');
     } else {
       this.galaxySelector = "1";
     }
+    this.displayService.setShowHeader(true);
   }
 
   goToPlanet(index) {

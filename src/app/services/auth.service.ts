@@ -21,6 +21,9 @@ export class AuthService {
     return this.http.post('/v1/users', alien).toPromise();
   }
   getCurrentUser(): Alien {
-    return JSON.parse(localStorage.getItem('user_arcadia')).user;
+    if (localStorage.getItem('user_arcadia')) {
+      return JSON.parse(localStorage.getItem('user_arcadia')).user;
+    }
+    return null;
   }
 }

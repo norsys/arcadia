@@ -17,6 +17,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { PlanetsComponent } from './components/game/planets/planets.component';
 import { CameraComponent } from './components/game/input/camera/camera.component';
 import { QuestionsComponent } from './components/game/questions/questions.component';
+import { DisplayService } from './services/display.service'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { QuestionsComponent } from './components/game/questions/questions.compon
     HttpModule,
     Routing
   ],
-  providers: [AuthService, LoginRedirect, EnsureAuthenticated],
+  providers: [AuthService, LoginRedirect, EnsureAuthenticated, DisplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

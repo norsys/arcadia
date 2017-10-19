@@ -1,4 +1,4 @@
-<header class="top-header">
+<header *ngIf="display" class="top-header">
   <img (click)="home()" class="header-avatar" src="/assets/img/avatars/{{alien.avatar}}.svg">
   <div class="header-item item-completion">
     <p class="completion">Completion {{percentage}} %</p>

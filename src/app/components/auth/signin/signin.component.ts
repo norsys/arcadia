@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Alien } from '../../../models/index';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { DisplayService } from '../../../services/display.service'
 
 @Component({
   selector: 'app-signin',
@@ -16,12 +17,15 @@ export class SigninComponent {
 
   @Output() onSwipe = new EventEmitter<boolean>();
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService,
+    private router: Router, 
+    private displayService: DisplayService) { }
 
   onSubmit() {
     this.auth.login(this.alien)
       .then((alien) => {
         localStorage.setItem('user_arcadia', JSON.stringify(alien.json()));
+        this.displayService.setShowHeader(true);
         this.router.navigate(['/home']);
         this.error = alien;
       })
