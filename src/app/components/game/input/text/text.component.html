@@ -1,0 +1,14 @@
+<div class="planet">
+  <main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
+    <section class="home" id="home-login">
+      <h1 class="app-title">{{question.question}}</h1>
+      <form class="galaxy-form" #alienForm="ngForm">
+        <div class="galaxy-form-row">
+          <input [disabled]="response.id" type="text" name="galaxy-last-name" placeholder="Response" id="response" required autocomplete="off" [(ngModel)]="this.response.response"
+            name="response" #name="ngModel">
+        </div>
+        <button [hidden]="response.id" type="submit" (click)="onSubmit()" class="button button-submit">Submit</button>
+      </form>
+    </section>
+  </main>
+</div>

@@ -1,0 +1,24 @@
+<main class="outer-space-container">
+
+
+  <section class="outer-space outer-space-approached">
+    <section class="home" id="home-register">
+      <form *ngIf="alien" class="galaxy-form" (ngSubmit)="onSubmit()">
+        <div class="galaxy-form-row">
+
+          <input type="text" name="nickName" id="nickName" autocomplete="off" [(ngModel)]="alien.nickName">
+        </div>
+        <div class="galaxy-form-row">
+          <div class="galaxy-avatar-list">
+            <div class="galaxy-avatar" *ngFor="let avatar of avatars" [ngClass]="{'galaxy-avatar-selected': isSelected(avatar) }">
+              <img class="galaxy-avatar-image" src="/assets/img/avatars/{{avatar}}.svg" (click)="selectAvatar(avatar)" alt="An avatar">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="button button-submit">Save</button>
+        <button type="submit" class="button button-action" (click)="logout()">Logout</button>
+      </form>
+    </section>
+
+  </section>
+</main>

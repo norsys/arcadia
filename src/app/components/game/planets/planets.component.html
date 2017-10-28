@@ -1,7 +1,9 @@
 <div class="planet" *ngIf="questions">
 	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" attr.data-planet="planet-1">
-		<div class="aliens-frame" *ngFor="let question of questions;let i=index">
-			<img [src]="getAlien()" class="alien-frame" (click)="openDefi(question)">
+		<div class="aliens-frame">
+			<a class="alien-frame" *ngFor="let position of positions;let i=index" [style.width]="'20vh'" [style.left]="position.left" [style.top]="position.top" (click)="openDefi(i)" >
+				<img [src]="getAlien(i)">
+			</a>
 		</div>
 	</main>
 </div>

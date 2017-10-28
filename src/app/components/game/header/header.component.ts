@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   calculatePercentage() {
     this.questionsService.getAll().then((questions) => {
       this.responseService.getAll().then((response) => {
-        this.percentage = (response.json().length * 100) / questions.json().length;
+        this.percentage = Math.floor((response.json().length * 100) / questions.json().length);
       })
     });
 
@@ -50,15 +50,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  logout() {
-    this.auth.logout().then((alien) => {
-      localStorage.removeItem("user_arcadia");
-      this.displayService.setShowHeader(false);
-      this.router.navigate(['/']);
-    }).catch((err) => {
-      localStorage.removeItem("user_arcadia");
-      this.router.navigate(['/']);
-      console.log(err);
-    });
+  profil() {
+    this.router.navigate(['/profil']);
   }
 }

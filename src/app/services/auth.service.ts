@@ -16,13 +16,18 @@ export class AuthService {
   logout(): Promise<any> {
     return this.http.delete('/v1/auth', { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
   }
-
+  updateUser(alien): Promise<any> {
+    return this.http.put('/v1/users/' + alien.id, alien, { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
+  }
   register(alien): Promise<any> {
     return this.http.post('/v1/users', alien).toPromise();
   }
+  setAlienInLocalStorage(alien) {
+    localStorage.setItem('user_arcadia', JSON.stringify(alien));
+  }
   getCurrentUser(): Alien {
     if (localStorage.getItem('user_arcadia')) {
-      return JSON.parse(localStorage.getItem('user_arcadia')).user;
+      return JSON.parse(localStorage.getItem('user_arcadia'));
     }
     return null;
   }

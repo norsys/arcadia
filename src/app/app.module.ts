@@ -17,7 +17,10 @@ import { AuthComponent } from './components/auth/auth.component';
 import { PlanetsComponent } from './components/game/planets/planets.component';
 import { CameraComponent } from './components/game/input/camera/camera.component';
 import { QuestionsComponent } from './components/game/questions/questions.component';
-import { DisplayService } from './services/display.service'
+import { DisplayService } from './services/display.service';
+import { TextComponent } from './components/game/input/text/text.component';
+import { BooleanComponent } from './components/game/input/boolean/boolean.component';
+import { ProfilComponent } from './components/game/profil/profil.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { DisplayService } from './services/display.service'
     AuthComponent,
     PlanetsComponent,
     CameraComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    TextComponent,
+    BooleanComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

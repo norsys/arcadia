@@ -24,7 +24,7 @@ export class SigninComponent {
   onSubmit() {
     this.auth.login(this.alien)
       .then((alien) => {
-        localStorage.setItem('user_arcadia', JSON.stringify(alien.json()));
+        this.auth.setAlienInLocalStorage(alien.json().user)      
         this.displayService.setShowHeader(true);
         this.router.navigate(['/home']);
         this.error = alien;

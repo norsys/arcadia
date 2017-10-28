@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 export class LoginRedirect implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
   canActivate(): boolean {
-    if (localStorage.getItem('user_arcadia') && JSON.parse(localStorage.getItem('user_arcadia')).user.accessToken) {
+    if (localStorage.getItem('user_arcadia') && JSON.parse(localStorage.getItem('user_arcadia')).accessToken) {
       this.router.navigateByUrl('/home');
       return false;
     }

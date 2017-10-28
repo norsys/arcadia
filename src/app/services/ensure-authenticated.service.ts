@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 export class EnsureAuthenticated implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
   canActivate(): boolean {
-    if (localStorage.getItem('user_arcadia') && JSON.parse(localStorage.getItem('user_arcadia')).user.accessToken) {
+    if (localStorage.getItem('user_arcadia') && JSON.parse(localStorage.getItem('user_arcadia')).accessToken) {
       return true;
     }
     else {

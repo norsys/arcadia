@@ -13,22 +13,23 @@ import { DisplayService } from '../../../services/display.service';
   providers: [CategoryService]
 
 })
-export class ShipComponent implements AfterContentInit {
+export class ShipComponent {
 
   public galaxySelector: String;
 
   public categories: Array<Category>;
 
+  private nbrOuterSpace: number;
+
   constructor(private sanitizer: DomSanitizer,
     private categoryService: CategoryService,
     private router: Router,
     private displayService: DisplayService) {
-    this.categoryService.getAll().then((categories) => { this.categories = categories.json() });
-    if (localStorage.getItem('galaxy-sector')) {
-      this.galaxySelector = localStorage.getItem('galaxy-sector');
-    } else {
-      this.galaxySelector = "1";
-    }
+    this.categoryService.getAll().then((categories) => {
+      this.categories = categories.json(),
+        this.nbrOuterSpace = Math.ceil(this.categories.length / 3);
+    });
+    this.galaxySelector = "1";
     this.displayService.setShowHeader(true);
   }
 
@@ -40,15 +41,18 @@ export class ShipComponent implements AfterContentInit {
     }
   }
 
-  ngAfterContentInit() {
-  }
-
   getPlanetImage(planet, index) {
     return this.sanitizer.bypassSecurityTrustStyle("url('/assets/img/fuel-gauges-" + index + ".png'), url('/assets/img/planets/planet-" + planet + ".png')");
   }
 
+  getCategoriesBySpace(number) {
+    switch (number) {
+      case 1: return this.categories.slice(0, this.nbrOuterSpace);
+      case 2: return this.categories.slice(this.nbrOuterSpace, this.nbrOuterSpace*2);
+      case 3: return this.categories.slice(this.nbrOuterSpace*2, this.nbrOuterSpace*3);
+    }
+  }
   swip(swipeDirection: string) {
-    var _max_sector = 3;
     var _current_galaxy = document.querySelector('.outer-space-approached');
     var _galaxy_classes = _current_galaxy.classList;
     var _sector_number = parseInt(_current_galaxy.getAttribute('data-outer-space'));
@@ -58,11 +62,11 @@ export class ShipComponent implements AfterContentInit {
       if (swipeDirection == 'left') {
         _sector_number -= 1;
         if (_sector_number < 1) {
-          _sector_number = _max_sector;
+          _sector_number = this.nbrOuterSpace;
         }
       } else if (swipeDirection == 'right') {
         _sector_number += 1;
-        if (_sector_number > _max_sector) {
+        if (_sector_number > this.nbrOuterSpace) {
           _sector_number = 1;
         }
       }

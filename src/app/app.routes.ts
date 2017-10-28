@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/game/home/home.component';
+import { ProfilComponent } from './components/game/profil/profil.component';
 import { PlanetsComponent } from './components/game/planets/planets.component';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
@@ -14,6 +15,7 @@ export const routes: Routes = [
   },
   { path: 'login', component: AuthComponent, canActivate: [LoginRedirect] },
   { path: 'home', component: HomeComponent, canActivate: [EnsureAuthenticated] },
+  { path: 'profil', component: ProfilComponent, canActivate: [EnsureAuthenticated] },
   { path: 'planets/:categoryId', component: PlanetsComponent, canActivate: [EnsureAuthenticated] },
   { path: 'questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] }
 
