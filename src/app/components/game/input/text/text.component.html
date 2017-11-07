@@ -4,8 +4,8 @@
       <h1 class="app-title">{{question.question}}</h1>
       <form class="galaxy-form" #alienForm="ngForm">
         <div class="galaxy-form-row">
-          <input [disabled]="response.id" type="text" name="galaxy-last-name" placeholder="Response" id="response" required autocomplete="off" [(ngModel)]="this.response.response"
-            name="response" #name="ngModel">
+          <textarea [disabled]="response.id" type="text" rows=7 name="galaxy-last-name" placeholder="Response" id="response" required autocomplete="off" [(ngModel)]="this.response.response"
+            name="response" #name="ngModel"></textarea>
         </div>
         <button [hidden]="response.id" type="submit" (click)="onSubmit()" class="button button-submit">Submit</button>
       </form>
