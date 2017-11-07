@@ -3,3 +3,4 @@ export { Agency } from './agency';
 export { Question } from './question';
 export { Response } from './response';
 export { Position } from './position';
+export { Category } from './category';

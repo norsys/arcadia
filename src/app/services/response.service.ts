@@ -17,7 +17,12 @@ export class ResponseService {
     return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses/' + questionId, { params: { accessToken: this.auth.getCurrentUser().accessToken } }).toPromise();
   }
 
+  getAllResponseByUser(): Promise<any> {
+    return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses', { params: { accessToken: this.auth.getCurrentUser().accessToken } }).toPromise();
+  }
+  
   save(response): Promise<any> {
     return this.http.post('/v1/users/' + this.auth.getCurrentUser().id + '/responses', response, { params: { accessToken: this.auth.getCurrentUser().accessToken } }).toPromise();
   }
+
 }

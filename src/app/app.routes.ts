@@ -6,6 +6,7 @@ import { PlanetsComponent } from './components/game/planets/planets.component';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
 import { QuestionsComponent } from './components/game/questions/questions.component'
+import {ResumeComponent} from './components/game/resume/resume.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'login', component: AuthComponent, canActivate: [LoginRedirect] },
   { path: 'home', component: HomeComponent, canActivate: [EnsureAuthenticated] },
   { path: 'profil', component: ProfilComponent, canActivate: [EnsureAuthenticated] },
+  { path: 'resume', component: ResumeComponent, canActivate: [EnsureAuthenticated] },
   { path: 'planets/:categoryId', component: PlanetsComponent, canActivate: [EnsureAuthenticated] },
   { path: 'questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] }
 

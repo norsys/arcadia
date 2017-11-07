@@ -53,4 +53,8 @@ export class HeaderComponent implements OnInit {
   profil() {
     this.router.navigate(['/profil']);
   }
+
+  resume() {
+    this.router.navigate(['/resume']);
+  }
 }

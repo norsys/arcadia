@@ -1,0 +1,18 @@
+<main class="outer-space-container">
+  <section class="outer-space outer-space-approached">
+    <section class="home" id="home-register">
+      <form *ngIf="isUp()" class="galaxy-form">
+        <div class="category" *ngFor="let category of categories">
+          <div class="title">
+            <img class="planet" [src]="getCategoryImage(category)">
+            <span>{{category.name}}</span>
+          </div>
+          <div class="images">
+            <img class="question" *ngFor="let question of getQuestions(category)" [src]="getImage(question)">
+          </div>
+        </div>
+      </form>
+    </section>
+
+  </section>
+</main>

@@ -20,7 +20,8 @@ import { QuestionsComponent } from './components/game/questions/questions.compon
 import { DisplayService } from './services/display.service';
 import { TextComponent } from './components/game/input/text/text.component';
 import { BooleanComponent } from './components/game/input/boolean/boolean.component';
-import { ProfilComponent } from './components/game/profil/profil.component'
+import { ProfilComponent } from './components/game/profil/profil.component';
+import { ResumeComponent } from './components/game/resume/resume.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ProfilComponent } from './components/game/profil/profil.component'
     QuestionsComponent,
     TextComponent,
     BooleanComponent,
-    ProfilComponent
+    ProfilComponent,
+    ResumeComponent
   ],
   imports: [
     BrowserModule,
