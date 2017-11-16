@@ -31,8 +31,36 @@
         "cache": {
           "optimizeFor": "performance",
           "strategy": "lru",
-          "maxAgeMs": 3600000,
-          "maxEntries": 20
+          "maxAgeMs": 86400000,
+          "maxEntries": 100
+        }
+      },
+      {
+        "name": "categories",
+        "urls": {
+          ".*/v1/categories$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "strategy": "lru",
+          "maxAgeMs": 86400000,
+          "maxEntries": 100
+        }
+      },
+      {
+        "name": "questions",
+        "urls": {
+          ".*/v1/questions$": {
+            "match": "regex"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "strategy": "lru",
+          "maxAgeMs": 86400000,
+          "maxEntries": 100
         }
       }
     ]
