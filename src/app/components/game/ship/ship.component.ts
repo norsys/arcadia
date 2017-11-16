@@ -29,7 +29,10 @@ export class ShipComponent {
       this.categories = categories.json(),
         this.nbrOuterSpace = Math.ceil(this.categories.length / 3);
     });
-    this.galaxySelector = "1";
+    if(localStorage.getItem("galaxy_arcadia") ===null){
+      localStorage.setItem("galaxy_arcadia","1")
+    }
+    this.galaxySelector = localStorage.getItem("galaxy_arcadia");
     this.displayService.setShowHeader(true);
   }
 
@@ -55,7 +58,9 @@ export class ShipComponent {
   swip(swipeDirection: string) {
     var _current_galaxy = document.querySelector('.outer-space-approached');
     var _galaxy_classes = _current_galaxy.classList;
-    var _sector_number = parseInt(_current_galaxy.getAttribute('data-outer-space'));
+    //var _sector_number = parseInt(_current_galaxy.getAttribute('data-outer-space'));
+    var _sector_number= parseInt(localStorage.getItem("galaxy_arcadia"));
+    
     var _current_screen_planets = document.querySelector('.frame-container-active');
 
     if (swipeDirection == 'left' || swipeDirection == 'right') {
@@ -97,7 +102,10 @@ export class ShipComponent {
       _next_galaxy.classList.add('outer-space-approaching');
       _next_galaxy.classList.remove('outer-space-faraway');
       _screen_planets.classList.add('frame-container-active');
-
+      
+      
+      localStorage.setItem("galaxy_arcadia",_sector_number.toString())
+      
       setTimeout(() => {
         _next_galaxy.classList.add('outer-space-approached');
         _next_galaxy.classList.remove('outer-space-approaching');
