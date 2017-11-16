@@ -25,9 +25,8 @@ export class SigninComponent {
     this.auth.login(this.alien)
       .then((alien) => {
         this.auth.setAlienInLocalStorage(alien.json().user)      
-        this.displayService.setShowHeader(true);
-        this.router.navigate(['/home']);
-        this.error = alien;
+        this.router.navigate(['/home']);      
+        this.error = 'Hello '.concat(alien.json().nickname).concat(' !');
       })
       .catch((err) => {
         this.error = 'Problem during authentication. Check your connection';
