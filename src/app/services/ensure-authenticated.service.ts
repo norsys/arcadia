@@ -5,13 +5,14 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class EnsureAuthenticated implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
-  canActivate(): boolean {
-    if (localStorage.getItem('user_arcadia') && JSON.parse(localStorage.getItem('user_arcadia')).accessToken) {
-      return true;
-    }
-    else {
-      this.router.navigateByUrl('/');
-      return false;
-    }
+  canActivate(): Promise<boolean> {
+    return new Promise((resolve) => {
+      return this.auth.isAuth().then(() => { resolve(true) }).catch(() => {
+        localStorage.removeItem('user_arcadia')
+        this.router.navigateByUrl('/');
+        resolve(false);
+      });
+    });
+
   }
 }

@@ -31,4 +31,8 @@ export class AuthService {
     }
     return null;
   }
+
+  isAuth(){
+    return this.http.get('/v1/users',{ params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
+  }
 }

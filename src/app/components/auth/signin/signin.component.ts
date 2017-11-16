@@ -30,8 +30,7 @@ export class SigninComponent {
         this.error = alien;
       })
       .catch((err) => {
-        console.log(err);
-        this.error = err;
+        this.error = 'Problem during authentication. Check your connection';
       });
   }
   displayLogin() {
