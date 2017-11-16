@@ -1,4 +1,4 @@
-<div class="planet" *ngIf="isUp()">
+<div class="planet" *ngIf="isUp()" (swipedown)="swip()" >
 	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" attr.data-planet="planet-1">
 		<h1 class="app-title">{{categoryName}}</h1>					
 		<div class="aliens-frame">

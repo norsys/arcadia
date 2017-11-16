@@ -79,4 +79,8 @@ export class PlanetsComponent implements OnInit {
     });
   }
 
+  swip() {
+    this.router.navigate(['/home']);    
+  }
+
 }

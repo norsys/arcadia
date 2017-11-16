@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import * as Hammer from 'hammerjs';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SigninComponent } from './components/auth/signin/signin.component';
@@ -22,6 +24,12 @@ import { TextComponent } from './components/game/input/text/text.component';
 import { BooleanComponent } from './components/game/input/boolean/boolean.component';
 import { ProfilComponent } from './components/game/profil/profil.component';
 import { ResumeComponent } from './components/game/resume/resume.component'
+
+export class HammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    'swipe': { direction: Hammer.DIRECTION_ALL }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -46,7 +54,10 @@ import { ResumeComponent } from './components/game/resume/resume.component'
     HttpModule,
     Routing
   ],
-  providers: [AuthService, LoginRedirect, EnsureAuthenticated, DisplayService],
+  providers: [AuthService, LoginRedirect, EnsureAuthenticated, DisplayService,      {
+    provide: HAMMER_GESTURE_CONFIG,
+    useClass: HammerConfig
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
