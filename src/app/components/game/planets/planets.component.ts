@@ -34,13 +34,13 @@ export class PlanetsComponent implements OnInit {
     for (var i = 0, len = this.questions.length; i < len; i++) {
       let position = new Position();
       if (i == 0) {
-        position.top = (Math.floor(Math.random() * 15) + 20) + "%"
+        position.top = (Math.floor(Math.random() * 15)+10) + "%"
         position.left = (Math.floor(Math.random() * 60)) + "%"
       } else if (i == 1) {
-        position.top = (Math.floor(Math.random() * 20) + 40) + "%"
+        position.top = (Math.floor(Math.random() * 20) + 30) + "%"
         position.left = (Math.floor(Math.random() * 60)) + "%"
       } else if (i == 2) {
-        position.top = (Math.floor(Math.random() * 20) + 60) + "%"
+        position.top = (Math.floor(Math.random() * 20) + 50) + "%"
         position.left = (Math.floor(Math.random() * 60)) + "%"
       }
       this.positions.push(position);
