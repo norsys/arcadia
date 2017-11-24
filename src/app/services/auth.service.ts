@@ -10,11 +10,11 @@ export class AuthService {
 
 
   login(alien): Promise<any> {
-    return this.http.post('/v1/auth', alien).toPromise();
+    return this.http.post('/v1/auth', alien, { params: { apiKey: environment.apiKey } }).toPromise();
   }
 
   logout(): Promise<any> {
-    return this.http.delete('/v1/auth', { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
+    return this.http.delete('/v1/auth', { params: { accessToken: this.getCurrentUser().accessToken, apiKey: environment.apiKey } }).toPromise();
   }
   updateUser(alien): Promise<any> {
     return this.http.put('/v1/users/' + alien.id, alien, { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
@@ -32,7 +32,7 @@ export class AuthService {
     return null;
   }
 
-  isAuth(){
-    return this.http.get('/v1/users',{ params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
+  isAuth() {
+    return this.http.get('/v1/users', { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
   }
 }
