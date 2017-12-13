@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
 
+## What is Arcadia ?
+
+Arcadia is an application to help newcomers to a society to better integrate into society.
+This is a PWA based on the game.
+
+In this GIT repository, this is the FRONT part of the application. This is an PWA made in Angular 4
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -26,3 +34,14 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+## Where is the continuous integration?
+
+On Travis : https://travis-ci.org/norsys/arcadia
+
+
+## Where is the application deployed?
+
+On Norsys plateform.
