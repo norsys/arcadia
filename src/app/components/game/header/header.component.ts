@@ -5,6 +5,8 @@ import { AuthService } from '../../../services/auth.service';
 import { QuestionsService } from '../../../services/questions.service';
 import { ResponseService } from '../../../services/response.service';
 import { DisplayService } from '../../../services/display.service';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private auth: AuthService,
     private questionsService: QuestionsService,
     private responseService: ResponseService,
-    private displayService: DisplayService) {
+    private displayService: DisplayService,
+              private location: Location) {
     if (this.auth.getCurrentUser()) {
       this.alien = auth.getCurrentUser();
     }
@@ -47,7 +50,12 @@ export class HeaderComponent implements OnInit {
   }
 
   home() {
-    this.router.navigate(['/']);
+    const currentUrl: String = this.router.url;
+    if (currentUrl.indexOf('questions') > 0) {
+      this.location.back();
+    }else {
+      this.router.navigate(['/home']);
+    }
   }
 
   profil() {

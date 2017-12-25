@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: 'profil', component: ProfilComponent, canActivate: [EnsureAuthenticated] },
   { path: 'resume', component: ResumeComponent, canActivate: [EnsureAuthenticated] },
   { path: 'planets/:categoryId', component: PlanetsComponent, canActivate: [EnsureAuthenticated] },
-  { path: 'questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] }
+  { path: 'planets/:categoryId/questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] }
 
 ];
 

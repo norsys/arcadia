@@ -27,7 +27,7 @@ export class PlanetsComponent implements OnInit {
     private router: Router,
     private questionsService: QuestionsService,
     private categoriesService: CategoryService,
-    private responsesService: ResponseService) {   
+    private responsesService: ResponseService) {
   }
 
   writeAlienPosition() {
@@ -59,7 +59,7 @@ export class PlanetsComponent implements OnInit {
   }
 
   openDefi(id) {
-    this.router.navigate(['/questions', this.questions[id].id]);
+    this.router.navigate(['planets/' + this.questions[id].category_id + '/questions', this.questions[id].id]);
   }
 
   isUp() {
@@ -68,7 +68,7 @@ export class PlanetsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.categoryId = params['categoryId'];  
+      this.categoryId = params['categoryId'];
       this.categoriesService.getById(this.categoryId).then((response)=> this.categoryName=response.json().name);
       this.questionsService.getAll().then((response) => {
         this.questions = response.json().filter(question => question.category_id.toString() === this.categoryId)
@@ -80,7 +80,7 @@ export class PlanetsComponent implements OnInit {
   }
 
   swip() {
-    this.router.navigate(['/home']);    
+    this.router.navigate(['/home']);
   }
 
 }
