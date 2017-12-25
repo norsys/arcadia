@@ -36,7 +36,7 @@ export class TextComponent implements OnInit {
     this.response.question_id = this.question.id;
     this.response.user_id = this.authService.getCurrentUser().id;
     this.responseService.save(this.response).then((body) => {
-      this.router.navigate(['/home']);
+    window.history.back();
     }).catch((r) => {
       console.log('errors');
     });

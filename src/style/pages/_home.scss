@@ -99,12 +99,20 @@
 					clip: rect(0, 0, 0, 0);
 					position: absolute;
 
-					&:checked ~ .galaxy-gender {
+					&:checked ~ .galaxy-gender, &:checked ~ .galaxy-response {
 						box-shadow: 0 0 3vw 1vw $purple-red;
+					}
+					&:checked ~ .galaxy-response-no {
+						box-shadow: 0 0 3vw 1vw red;
+					}
+					&:checked ~ .galaxy-response-yes {
+						box-shadow: 0 0 3vw 1vw green;
 					}
 				}
 
-				.galaxy-gender {
+			
+
+				.galaxy-gender , .galaxy-response {
 					margin: auto;
 					position: relative;
 					width: 5vw;

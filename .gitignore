@@ -58,3 +58,29 @@ typings/
 # dotenv environment variables file
 .env
 
+
+\.idea/inspectionProfiles/
+
+documentation/classes/
+
+documentation/components/
+
+documentation/fonts/
+
+documentation/images/
+
+documentation/injectables/
+
+documentation/js/libs/
+
+documentation/js/search/
+
+documentation/styles/
+
+documentation/modules/
+
+documentation/js/
+
+documentation/
+
+\.idea/
