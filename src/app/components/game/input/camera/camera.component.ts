@@ -64,7 +64,7 @@ export class CameraComponent implements OnInit {
 
     this.imageService.save(this.response.response, this.url).then(() => {
       this.responseService.save(this.response).then((body) => {
-        this.router.navigate(['/home']);
+      window.history.back();
       }).catch((r) => {
         console.log('errors');
       });
