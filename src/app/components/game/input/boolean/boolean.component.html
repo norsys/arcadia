@@ -1,3 +1,24 @@
-<p>
-  boolean works!
-</p>
+<div class="planet">
+  <main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
+    <section class="home" id="home-login">
+      <h1 class="app-title">{{question.question}}</h1>
+      <form class="galaxy-form" #alienForm="ngForm">
+
+        <div class="galaxy-form-row">
+          <div class="galaxy-radio-group">
+            <div class="galaxy-radio-container">
+              <input type="radio" name="response" id="galaxy-response-yes" value="OUI" [(ngModel)]="this.response.response">
+              <label for="galaxy-response-yes" class="galaxy-response galaxy-response-yes">
+              </label>
+            </div>
+            <div class="galaxy-radio-container">
+              <input type="radio" name="response" id="galaxy-response-no" value="NON" [(ngModel)]="this.response.response">
+              <label for="galaxy-response-no" class="galaxy-response galaxy-response-no"></label>
+            </div>
+          </div>
+        </div>
+        <button [hidden]="response.id" type="submit" (click)="onSubmit()" class="button button-submit">Submit</button>
+      </form>
+    </section>
+  </main>
+</div>
