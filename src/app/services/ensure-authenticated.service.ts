@@ -7,8 +7,13 @@ export class EnsureAuthenticated implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
   canActivate(): Promise<boolean> {
     return new Promise((resolve) => {
-      return this.auth.isAuth().then(() => { resolve(true) }).catch(() => {
-        localStorage.removeItem('user_arcadia')
+      const currentUser = JSON.parse(localStorage.getItem('user_arcadia'));
+      if (currentUser === null) {
+         this.router.navigateByUrl('/');
+         resolve(false);
+       }
+      return this.auth.isAuth(currentUser['id']).then(() => { resolve(true); }).catch(() => {
+        localStorage.removeItem('user_arcadia');
         this.router.navigateByUrl('/');
         resolve(false);
       });

@@ -32,7 +32,7 @@ export class AuthService {
     return null;
   }
 
-  isAuth() {
-    return this.http.get('/v1/users', { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
+  isAuth(idAlien) {
+    return this.http.get('/v1/users/'+idAlien, { params: { accessToken: this.getCurrentUser().accessToken } }).toPromise();
   }
 }
