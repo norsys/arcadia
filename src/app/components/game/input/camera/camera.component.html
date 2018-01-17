@@ -5,7 +5,7 @@
 			<form class="galaxy-form" #alienForm="ngForm">
 				<button [hidden]="response.id" class="button button-action" (click)="imgFileInput.click()">Take Picture</button>
 				<input hidden type="file" accept="image/*;capture=camera" #imgFileInput (change)="readUrl($event)" />
-				<img  [src]="getUrl()">
+				<img  [src]="imageData" *ngIf="imageData"/>
 				<button [hidden]="response.id" type="submit"  (click)="onSubmit()"  class="button button-submit">Submit</button>
 			</form>
 		</section>

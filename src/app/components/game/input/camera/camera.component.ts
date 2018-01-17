@@ -1,9 +1,8 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
 import { ImagesService } from '../../../../services/images.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Question, Response } from '../../../../models';
@@ -19,37 +18,39 @@ export class CameraComponent implements OnInit {
   @Input() question: Question;
   @Input() response: Response;
 
-  public takedPhoto: boolean = false;
-  public planetName: String;
-  public url: string;
+
+  imageData: any;
 
   constructor(private authService: AuthService,
     private responseService: ResponseService,
     private imageService: ImagesService,
-    private router: Router,
     private sanitizer: DomSanitizer
   ) {
   }
 
   ngOnInit() {
-    if (!this.url && this.response && this.response.response) {
-      this.url = this.imageService.getImage(this.response.response);
+    if (!this.imageData && this.response && this.response.response) {
+       this.imageService.getImage(this.response.response).then((res: any) => {
+         const blob = new Blob([res._body], {
+           type: res.headers.get('Content-Type')
+         });
+         const urlCreator = window.URL;
+         this.imageData = this.sanitizer.bypassSecurityTrustUrl(
+           urlCreator.createObjectURL(blob));
+       });
     }
   }
 
-  getUrl() {
-    return this.sanitizer.bypassSecurityTrustUrl(this.url);
-  }
   getBackgroundImage() {
     return "url('/assets/img/planets/zoom/surface-planet-" + this.question.category_id + ".png')";
   }
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.onload = (event: any) => {
-        this.url = event.target.result;
+        this.imageData = event.target.result;
       }
 
       this.response.user_id = this.authService.getCurrentUser().id;
@@ -62,13 +63,13 @@ export class CameraComponent implements OnInit {
   onSubmit() {
     this.response.question_id = this.question.id;
 
-    this.imageService.save(this.response.response, this.url).then(() => {
+    this.imageService.save(this.response.response, this.imageData).then(() => {
       this.responseService.save(this.response).then((body) => {
       window.history.back();
       }).catch((r) => {
         console.log('errors');
       });
-    })
+    });
 
   }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Question, Response } from '../../../models'
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Question, Response } from '../../../models';
 import { QuestionsService } from '../../../services/questions.service';
 import { ResponseService } from '../../../services/response.service';
 
@@ -19,14 +19,14 @@ export class QuestionsComponent {
     this.route.params.subscribe(params => {
       this.questionsService.find(params['questionId'])
         .then((response) => {
-          this.question = response.json()
+          this.question = response.json();
           this.inputType = this.question.inputType;
         });
       this.responseService.getResponseByUserByQuestion(params['questionId'])
         .then((body) => {
-          this.response = body.json()
+          this.response = body.json();
         }).catch((body) => {
-          if (body.status == 404) {
+          if (body.status === 404) {
             this.response = new Response();
           }
         });

@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChange,OnInit } from '@angular/core';
+import { Component, OnChanges, SimpleChange, OnInit } from '@angular/core';
 import { DisplayService } from '../../services/display.service';
 
 @Component({
