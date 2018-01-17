@@ -1,11 +1,12 @@
-import { Component, Input ,OnInit} from '@angular/core';
+import { Component, Input , OnInit} from '@angular/core';
 import { Question, Response } from '../../../../models';
 
 
 import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import {PercentageService} from '../../../../services/percentage.service';
 
 @Component({
   selector: 'app-text',
@@ -20,6 +21,7 @@ export class TextComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private responseService: ResponseService,
+    private percentageService: PercentageService,
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
@@ -35,6 +37,7 @@ export class TextComponent implements OnInit {
   onSubmit() {
     this.response.question_id = this.question.id;
     this.response.user_id = this.authService.getCurrentUser().id;
+    this.percentageService.calculatePercentage();
     this.responseService.save(this.response).then((body) => {
     window.history.back();
     }).catch((r) => {

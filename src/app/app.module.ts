@@ -25,6 +25,9 @@ import { BooleanComponent } from './components/game/input/boolean/boolean.compon
 import { ProfilComponent } from './components/game/profil/profil.component';
 import { ResumeComponent } from './components/game/resume/resume.component';
 import { HttpClientModule} from '@angular/common/http';
+import {QuestionsService} from './services/questions.service';
+import {ResponseService} from './services/response.service';
+import {PercentageService} from './services/percentage.service';
 
 export class HammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -56,7 +59,7 @@ export class HammerConfig extends HammerGestureConfig {
     HttpClientModule,
     Routing
   ],
-  providers: [AuthService, LoginRedirect, EnsureAuthenticated, DisplayService,
+  providers: [AuthService, PercentageService, QuestionsService, ResponseService, LoginRedirect, EnsureAuthenticated, DisplayService,
     {
     provide: HAMMER_GESTURE_CONFIG,
     useClass: HammerConfig

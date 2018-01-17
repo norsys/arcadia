@@ -6,6 +6,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import {PercentageService} from '../../../../services/percentage.service';
 
 @Component({
   selector: 'app-boolean',
@@ -19,6 +20,7 @@ export class BooleanComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private responseService: ResponseService,
+    private percentageService: PercentageService,
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
@@ -34,6 +36,7 @@ export class BooleanComponent implements OnInit {
   onSubmit() {
     this.response.question_id = this.question.id;
     this.response.user_id = this.authService.getCurrentUser().id;
+    this.percentageService.calculatePercentage();
     this.responseService.save(this.response).then((body) => {
     window.history.back();
     }).catch((r) => {
