@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-
+/*update percentage*/
   calculatePercentage() {
     this.questionsService.getAll().then((questions) => {
       this.responseService.getAll().then((response) => {
