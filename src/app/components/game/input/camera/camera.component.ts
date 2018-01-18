@@ -6,6 +6,7 @@ import { ImagesService } from '../../../../services/images.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Question, Response } from '../../../../models';
+import {PercentageService} from '../../../../services/percentage.service';
 
 @Component({
   selector: 'app-camera',
@@ -24,6 +25,7 @@ export class CameraComponent implements OnInit {
   constructor(private authService: AuthService,
     private responseService: ResponseService,
     private imageService: ImagesService,
+    private percentageService: PercentageService,
     private sanitizer: DomSanitizer
   ) {
   }
@@ -62,8 +64,8 @@ export class CameraComponent implements OnInit {
 
   onSubmit() {
     this.response.question_id = this.question.id;
-
     this.imageService.save(this.response.response, this.imageData).then(() => {
+      this.percentageService.calculatePercentage();
       this.responseService.save(this.response).then((body) => {
       window.history.back();
       }).catch((r) => {
