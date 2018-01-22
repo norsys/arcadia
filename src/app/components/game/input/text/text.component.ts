@@ -18,12 +18,14 @@ export class TextComponent implements OnInit {
 
   @Input() question: Question;
   @Input() response: Response;
+  errorSubmission;
+  isErrorSubmissionHidden = true;
 
   constructor(private authService: AuthService,
-    private responseService: ResponseService,
-    private percentageService: PercentageService,
-    private router: Router,
-    private sanitizer: DomSanitizer
+              private responseService: ResponseService,
+              private percentageService: PercentageService,
+              private router: Router,
+              private sanitizer: DomSanitizer
   ) {
   }
 
@@ -31,17 +33,38 @@ export class TextComponent implements OnInit {
   }
 
   getBackgroundImage() {
-    return "url('/assets/img/planets/zoom/surface-planet-" + this.question.category_id + ".png')";
+    return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
   }
 
   onSubmit() {
     this.response.question_id = this.question.id;
     this.response.user_id = this.authService.getCurrentUser().id;
     this.percentageService.calculatePercentage();
-    this.responseService.save(this.response).then((body) => {
-    window.history.back();
-    }).catch((r) => {
-      console.log('errors');
+    this.isErrorSubmissionHidden = true;
+    if (this.response.id == null) {
+      this.saveResponse(this.response);
+    }else {
+      this.updateResponse(this.response, this.question.id);
+    }
+  }
+
+  private updateResponse(response: Response, questionId) {
+    this.responseService.update(response, questionId).then((body) => {
+      window.history.back();
+    }).catch((error) => {
+      const errors = JSON.parse(error._body);
+      this.errorSubmission = '!!! ' + errors[0]['message']['en'];
+      this.isErrorSubmissionHidden = false;
+    });
+  }
+
+  private saveResponse(response: Response) {
+    this.responseService.save(response).then((body) => {
+      window.history.back();
+    }).catch((error) => {
+      const errors = JSON.parse(error._body);
+      this.errorSubmission = '!!! ' + errors[0]['message']['en'];
+      this.isErrorSubmissionHidden = false;
     });
   }
 }
