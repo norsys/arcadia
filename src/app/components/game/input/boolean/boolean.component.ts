@@ -37,10 +37,26 @@ export class BooleanComponent implements OnInit {
     this.response.question_id = this.question.id;
     this.response.user_id = this.authService.getCurrentUser().id;
     this.percentageService.calculatePercentage();
-    this.responseService.save(this.response).then((body) => {
-    window.history.back();
+    if (this.response.id == null) {
+      this.saveResponse(this.response);
+    }else {
+      this.updateResponse(this.response, this.question.id);
+    }
+  }
+
+  private saveResponse(response: Response) {
+    this.responseService.save(response).then((body) => {
+      window.history.back();
     }).catch((r) => {
-      console.log('errors'+r);
+      console.log('errors' + r);
+    });
+  }
+
+  private updateResponse(response: Response, questionId) {
+    this.responseService.update(response, questionId).then((body) => {
+      window.history.back();
+    }).catch((r) => {
+      console.log('errors' + r);
     });
   }
 }
