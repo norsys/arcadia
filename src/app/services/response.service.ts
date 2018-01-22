@@ -24,4 +24,12 @@ export class ResponseService {
   save(response): Promise<any> {
     return this.http.post('/v1/users/' + this.auth.getCurrentUser().id + '/responses', response, this.auth.getOptions()).toPromise();
   }
+
+  update(response, questionId): Promise<any> {
+    return this.http.put('/v1/users/' + this.auth.getCurrentUser().id + '/responses/' + questionId, response, this.auth.getOptions()).toPromise();
+  }
+
+  delete(questionId): Promise<any> {
+    return this.http.delete('/v1/users/' + this.auth.getCurrentUser().id + '/responses/' + questionId, this.auth.getOptions()).toPromise();
+  }
 }

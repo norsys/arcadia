@@ -21,6 +21,7 @@ export class CameraComponent implements OnInit {
 
 
   imageData: any;
+  isImageTaken = false;
 
   constructor(private authService: AuthService,
     private responseService: ResponseService,
@@ -44,16 +45,17 @@ export class CameraComponent implements OnInit {
   }
 
   getBackgroundImage() {
-    return "url('/assets/img/planets/zoom/surface-planet-" + this.question.category_id + ".png')";
+    return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
   }
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
+      this.isImageTaken =true;
       const reader = new FileReader();
 
       reader.onload = (event: any) => {
         this.imageData = event.target.result;
-      }
+      };
 
       this.response.user_id = this.authService.getCurrentUser().id;
       this.response.response = 'photo-' + this.question.id + '-' + this.response.user_id + '.' + event.target.files[0].name.split('.').pop();
@@ -65,13 +67,29 @@ export class CameraComponent implements OnInit {
   onSubmit() {
     this.response.question_id = this.question.id;
     this.imageService.save(this.response.response, this.imageData).then(() => {
-      this.percentageService.calculatePercentage();
-      this.responseService.save(this.response).then((body) => {
-      window.history.back();
-      }).catch((r) => {
-        console.log('errors');
-      });
+      if (this.response.id == null) {
+        this.saveResponse(this.response);
+      }else {
+        this.updateResponse(this.response);
+      }
     });
 
+  }
+
+  private saveResponse(response: Response) {
+    this.responseService.save(response).then(() => {
+      this.percentageService.calculatePercentage();
+      window.history.back();
+    }).catch((r) => {
+      console.log('errors');
+    });
+  }
+
+  private updateResponse(response: Response) {
+    this.responseService.delete(this.question.id).then(() => {
+      this.saveResponse(response);
+    }).catch((r) => {
+      console.log('errors');
+    });
   }
 }
