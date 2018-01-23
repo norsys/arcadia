@@ -12,20 +12,19 @@ import { DisplayService } from '../../../services/display.service'
 export class SigninComponent {
 
   public alien: Alien = new Alien();
-  public error: string = '';
-  @Input() swipeValue: boolean = false;
+  public error = '';
+  @Input() swipeValue = false;
 
   @Output() onSwipe = new EventEmitter<boolean>();
 
   constructor(private auth: AuthService,
-    private router: Router, 
-    private displayService: DisplayService) { }
+    private router: Router) { }
 
   onSubmit() {
     this.auth.login(this.alien)
       .then((alien) => {
-        this.auth.setAlienInLocalStorage(alien.json().user)      
-        this.router.navigate(['/home']);      
+        this.auth.setAlienInLocalStorage(alien.json().user);
+        this.router.navigate(['/home']);
         this.error = 'Hello '.concat(alien.json().nickname).concat(' !');
       })
       .catch((err) => {

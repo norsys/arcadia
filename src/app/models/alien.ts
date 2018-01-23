@@ -1,4 +1,3 @@
-import { Agency } from './agency';
 
 export class Alien {
   public id: number;
@@ -9,7 +8,6 @@ export class Alien {
   public nickName: string;
   public sex: string;
   public agence_id: string;
-  public city: string;
   public avatar: string;
   public accessToken: string;
   public gameIsStarted: boolean;

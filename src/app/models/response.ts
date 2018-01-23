@@ -3,5 +3,5 @@ export class Response {
     public user_id: number;
     public response: string;
     public id: number;
-    
+
 }

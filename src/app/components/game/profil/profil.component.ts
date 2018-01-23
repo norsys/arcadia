@@ -46,11 +46,11 @@ export class ProfilComponent implements OnInit {
 
   logout() {
     this.auth.logout().then((alien) => {
-      localStorage.removeItem("user_arcadia");
+      localStorage.removeItem('user_arcadia');
       this.displayService.setShowHeader(false);
       this.router.navigate(['/']);
     }).catch((err) => {
-      localStorage.removeItem("user_arcadia");
+      localStorage.removeItem('user_arcadia');
       this.router.navigate(['/']);
       console.log(err);
     });

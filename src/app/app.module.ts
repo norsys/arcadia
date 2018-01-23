@@ -50,7 +50,7 @@ export class HammerConfig extends HammerGestureConfig {
     TextComponent,
     BooleanComponent,
     ProfilComponent,
-    ResumeComponent
+    ResumeComponent,
   ],
   imports: [
     BrowserModule,

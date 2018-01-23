@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { QuestionsService } from '../../../services/questions.service'
-import { ResponseService } from '../../../services/response.service'
-import { CategoryService } from '../../../services/category.service'
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { QuestionsService } from '../../../services/questions.service';
+import { ResponseService } from '../../../services/response.service';
+import { CategoryService } from '../../../services/category.service';
 
-import { Question, Position, Response } from '../../../models'
+import { Question, Position, Response } from '../../../models';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -13,7 +13,7 @@ import 'rxjs/add/operator/switchMap';
   selector: 'app-planets',
   templateUrl: './planets.component.html',
   styleUrls: ['./planets.component.scss'],
-  providers: [QuestionsService, ResponseService,CategoryService]
+  providers: [QuestionsService, ResponseService, CategoryService]
 })
 export class PlanetsComponent implements OnInit {
 
@@ -31,28 +31,28 @@ export class PlanetsComponent implements OnInit {
   }
 
   writeAlienPosition() {
-    for (var i = 0, len = this.questions.length; i < len; i++) {
-      let position = new Position();
-      if (i == 0) {
-        position.top = (Math.floor(Math.random() * 15)+10) + "%"
-        position.left = (Math.floor(Math.random() * 60)) + "%"
-      } else if (i == 1) {
-        position.top = (Math.floor(Math.random() * 20) + 30) + "%"
-        position.left = (Math.floor(Math.random() * 60)) + "%"
-      } else if (i == 2) {
-        position.top = (Math.floor(Math.random() * 20) + 50) + "%"
-        position.left = (Math.floor(Math.random() * 60)) + "%"
+    for (let i = 0, len = this.questions.length; i < len; i++) {
+      const position = new Position();
+      if (i === 0) {
+        position.top = (Math.floor(Math.random() * 15) + 10) + '%';
+        position.left = (Math.floor(Math.random() * 60)) + '%';
+      } else if (i === 1) {
+        position.top = (Math.floor(Math.random() * 20) + 30) + '%';
+        position.left = (Math.floor(Math.random() * 60)) + '%';
+      } else if (i === 2) {
+        position.top = (Math.floor(Math.random() * 20) + 50) + '%';
+        position.left = (Math.floor(Math.random() * 60)) + '%';
       }
       this.positions.push(position);
-    };
+    }
   }
   getBackgroundImage() {
-    return "url('/assets/img/planets/zoom/surface-planet-" + this.categoryId + ".png')";
+    return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.categoryId + '.png\')';
   }
 
   getAlien(index) {
     if (this.responses.filter(response => response.question_id == this.questions[index].id).length > 0) {
-      return '/assets/img/rum.png'
+      return '/assets/img/rum.png';
     } else {
       return '/assets/img/planets/zoom/aliens/planet-' + this.categoryId + '-alien-' + ++index + '.png';
     }
@@ -69,9 +69,9 @@ export class PlanetsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
-      this.categoriesService.getById(this.categoryId).then((response)=> this.categoryName=response.json().name);
+      this.categoriesService.getById(this.categoryId).then((response) => this.categoryName = response.json().name);
       this.questionsService.getAll().then((response) => {
-        this.questions = response.json().filter(question => question.category_id.toString() === this.categoryId)
+        this.questions = response.json().filter(question => question.category_id.toString() === this.categoryId);
         this.responsesService.getAllResponseByUser().then(response => this.responses = response.json());
         this.writeAlienPosition();
 
