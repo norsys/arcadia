@@ -14,11 +14,11 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private gameSerivce: GameService,private displayService: DisplayService) { }
 
   ngOnInit() {
-    this.displayService.setShowHeader(true);        
+    this.displayService.setShowHeader(true);
     if (!this.authService.getCurrentUser().gameIsStarted) {
       this.gameSerivce.startGame(this.authService.getCurrentUser())
-        .then(() => console.log("Game is started"))
-        .catch(() => console.log("Error in update"))
+        .then(() => console.log('Game is started'))
+        .catch(() => console.log('Error in update'));
     }
 
   }

@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
 import { ImagesService } from '../../../../services/images.service';
 import { DomSanitizer } from '@angular/platform-browser';
-
 import { Question, Response } from '../../../../models';
 import {PercentageService} from '../../../../services/percentage.service';
+import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
 
 @Component({
   selector: 'app-camera',
@@ -14,21 +13,20 @@ import {PercentageService} from '../../../../services/percentage.service';
   styleUrls: ['./camera.component.scss'],
   providers: [ResponseService, ImagesService]
 })
-export class CameraComponent implements OnInit {
+export class CameraComponent extends AbstractInputComponent implements OnInit {
 
   @Input() question: Question;
   @Input() response: Response;
 
 
   imageData: any;
-  isImageTaken = false;
+  isImageSelected = false;
 
-  constructor(private authService: AuthService,
-    private responseService: ResponseService,
-    private imageService: ImagesService,
-    private percentageService: PercentageService,
+  constructor(private authService: AuthService, responseService: ResponseService,
+    private imageService: ImagesService, percentageService: PercentageService,
     private sanitizer: DomSanitizer
   ) {
+    super(responseService, percentageService);
   }
 
   ngOnInit() {
@@ -50,7 +48,7 @@ export class CameraComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      this.isImageTaken =true;
+      this.isImageSelected = true;
       const reader = new FileReader();
 
       reader.onload = (event: any) => {
@@ -67,29 +65,14 @@ export class CameraComponent implements OnInit {
   onSubmit() {
     this.response.question_id = this.question.id;
     this.imageService.save(this.response.response, this.imageData).then(() => {
-      if (this.response.id == null) {
-        this.saveResponse(this.response);
+      if (!this.response.id) {
+        this.saveResponse(this.response, false);
       }else {
-        this.updateResponse(this.response);
+        this.updateImageResponse(this.response, this.question.id);
       }
     });
 
   }
 
-  private saveResponse(response: Response) {
-    this.responseService.save(response).then(() => {
-      this.percentageService.calculatePercentage();
-      window.history.back();
-    }).catch((r) => {
-      console.log('errors');
-    });
-  }
 
-  private updateResponse(response: Response) {
-    this.responseService.delete(this.question.id).then(() => {
-      this.saveResponse(response);
-    }).catch((r) => {
-      console.log('errors');
-    });
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChange, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DisplayService } from '../../services/display.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { DisplayService } from '../../services/display.service';
 })
 export class AuthComponent implements OnInit {
 
-  public swipe: boolean = false;
+  public swipe = false;
 
   constructor(private displayService: DisplayService) { }
 

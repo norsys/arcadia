@@ -1,32 +1,27 @@
 import { Component, Input , OnInit} from '@angular/core';
 import { Question, Response } from '../../../../models';
-
-
 import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
-import { Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
 import {PercentageService} from '../../../../services/percentage.service';
+import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
 
 @Component({
   selector: 'app-text',
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.scss']
 })
-export class TextComponent implements OnInit {
+export class TextComponent extends AbstractInputComponent implements OnInit {
 
 
   @Input() question: Question;
   @Input() response: Response;
-  errorSubmission;
-  isErrorSubmissionHidden = true;
+
 
   constructor(private authService: AuthService,
-              private responseService: ResponseService,
-              private percentageService: PercentageService,
-              private router: Router,
-              private sanitizer: DomSanitizer
+               responseService: ResponseService,
+               percentageService: PercentageService
   ) {
+    super(responseService, percentageService);
   }
 
   ngOnInit() {
@@ -40,31 +35,13 @@ export class TextComponent implements OnInit {
     this.response.question_id = this.question.id;
     this.response.user_id = this.authService.getCurrentUser().id;
     this.percentageService.calculatePercentage();
-    this.isErrorSubmissionHidden = true;
-    if (this.response.id == null) {
-      this.saveResponse(this.response);
+    this.isTextErrorSubmissionHidden = true;
+    if (!this.response.id) {
+      this.saveResponse(this.response, true);
     }else {
-      this.updateResponse(this.response, this.question.id);
+      this.updateResponse(this.response, this.question.id, true);
     }
   }
 
-  private updateResponse(response: Response, questionId) {
-    this.responseService.update(response, questionId).then((body) => {
-      window.history.back();
-    }).catch((error) => {
-      const errors = JSON.parse(error._body);
-      this.errorSubmission = '!!! ' + errors[0]['message']['en'];
-      this.isErrorSubmissionHidden = false;
-    });
-  }
 
-  private saveResponse(response: Response) {
-    this.responseService.save(response).then((body) => {
-      window.history.back();
-    }).catch((error) => {
-      const errors = JSON.parse(error._body);
-      this.errorSubmission = '!!! ' + errors[0]['message']['en'];
-      this.isErrorSubmissionHidden = false;
-    });
-  }
 }

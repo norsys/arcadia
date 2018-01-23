@@ -31,14 +31,14 @@ export class ResumeComponent implements OnInit {
 
   getImage(question) {
     if (this.responses.filter(response => response.question_id == question.id).length > 0) {
-      return "/assets/img/rum.png"
+      return '/assets/img/rum.png';
     } else {
       return '/assets/img/planets/zoom/aliens/planet-' + question.category_id + '-alien-1.png';
     }
   }
 
   getCategoryImage(category) {
-    return "/assets/img/planets/planet-" + category.id + '.png';
+    return '/assets/img/planets/planet-' + category.id + '.png';
   }
   getQuestions(category) {
     return this.questions.filter(question => question.category_id == category.id);
