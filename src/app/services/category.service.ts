@@ -8,13 +8,14 @@ export class CategoryService {
 
   constructor(private http: Http, private auth: AuthService) { }
 
-  getById(categoryId): Promise<any> {
-    return this.http.get('/v1/categories/' + categoryId, this.auth.getOptions()).toPromise();
-  }
-
+  /* CRUD */
   getAll(): Promise<any> {
     return this.http.get('/v1/categories', this.auth.getOptions()).toPromise();
   }
 
+  /*others*/
+  getById(categoryId): Promise<any> {
+    return this.http.get('/v1/categories/' + categoryId, this.auth.getOptions()).toPromise();
+  }
 
 }

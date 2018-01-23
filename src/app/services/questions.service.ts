@@ -8,12 +8,13 @@ export class QuestionsService {
 
   constructor(private http: Http, private auth: AuthService) { }
 
-  find(questionId): Promise<any> {
-    return this.http.get('/v1/questions/' + questionId, this.auth.getOptions()).toPromise();
-  }
-
+  /* CRUD */
   getAll(): Promise<any> {
     return this.http.get('/v1/questions', this.auth.getOptions()).toPromise();
   }
 
+  /*others*/
+  find(questionId): Promise<any> {
+    return this.http.get('/v1/questions/' + questionId, this.auth.getOptions()).toPromise();
+  }
 }

@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  /*Routes*/
   home() {
     const currentUrl: String = this.router.url;
     if (currentUrl.indexOf('questions') > 0) {

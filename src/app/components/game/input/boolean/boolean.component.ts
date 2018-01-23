@@ -24,6 +24,7 @@ export class BooleanComponent extends AbstractInputComponent implements OnInit {
   ngOnInit() {
   }
 
+  /* DOM events */
   getBackgroundImage() {
     return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
   }

@@ -9,15 +9,8 @@ export class ResponseService {
   constructor(private http: Http, private auth: AuthService) { }
 
 
+  /* CRUD */
   getAll(): Promise<any> {
-    return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses', this.auth.getOptions()).toPromise();
-  }
-
-  getResponseByUserByQuestion(questionId): Promise<any> {
-    return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses/' + questionId, this.auth.getOptions()).toPromise();
-  }
-
-  getAllResponseByUser(): Promise<any> {
     return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses', this.auth.getOptions()).toPromise();
   }
 
@@ -32,4 +25,15 @@ export class ResponseService {
   delete(questionId): Promise<any> {
     return this.http.delete('/v1/users/' + this.auth.getCurrentUser().id + '/responses/' + questionId, this.auth.getOptions()).toPromise();
   }
+
+  /*others*/
+  getResponseByUserByQuestion(questionId): Promise<any> {
+    return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses/' + questionId, this.auth.getOptions()).toPromise();
+  }
+
+  getAllResponseByUser(): Promise<any> {
+    return this.http.get('/v1/users/' + this.auth.getCurrentUser().id + '/responses', this.auth.getOptions()).toPromise();
+  }
+
+
 }

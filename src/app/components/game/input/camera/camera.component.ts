@@ -24,8 +24,7 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
 
   constructor(private authService: AuthService, responseService: ResponseService,
     private imageService: ImagesService, percentageService: PercentageService,
-    private sanitizer: DomSanitizer
-  ) {
+    private sanitizer: DomSanitizer) {
     super(responseService, percentageService);
   }
 
@@ -42,6 +41,7 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
     }
   }
 
+  /*DOM events*/
   getBackgroundImage() {
     return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
   }
@@ -71,7 +71,6 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
         this.updateImageResponse(this.response, this.question.id);
       }
     });
-
   }
 
 

@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Alien } from '../../../models/index';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { DisplayService } from '../../../services/display.service'
 
 @Component({
   selector: 'app-signin',
@@ -20,6 +19,7 @@ export class SigninComponent {
   constructor(private auth: AuthService,
     private router: Router) { }
 
+    /*DOM events*/
   onSubmit() {
     this.auth.login(this.alien)
       .then((alien) => {
@@ -31,9 +31,11 @@ export class SigninComponent {
         this.error = 'Problem during authentication. Check your connection';
       });
   }
+
   displayLogin() {
     return this.swipeValue;
   }
+
   swip() {
     this.onSwipe.emit(!this.swipeValue);
   }

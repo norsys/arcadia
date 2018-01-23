@@ -19,14 +19,14 @@ export class TextComponent extends AbstractInputComponent implements OnInit {
 
   constructor(private authService: AuthService,
                responseService: ResponseService,
-               percentageService: PercentageService
-  ) {
+               percentageService: PercentageService) {
     super(responseService, percentageService);
   }
 
   ngOnInit() {
   }
 
+  /* DOM events*/
   getBackgroundImage() {
     return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
   }

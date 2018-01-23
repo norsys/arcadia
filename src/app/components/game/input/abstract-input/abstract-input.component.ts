@@ -42,6 +42,7 @@ export abstract class AbstractInputComponent {
     });
   }
 
+  /*private methods*/
   private handleTextResponseError(error) {
     const errors = JSON.parse(error._body);
     this.textErrorSubmission = '!!! ' + errors[0]['message']['en'];
