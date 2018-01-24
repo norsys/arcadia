@@ -22,21 +22,34 @@ export class SignupComponent implements OnInit {
     'avatar-5',
     'avatar-6',
     'avatar-7',
-  ]
-  @Input() swipeValue: boolean = false;
+  ];
 
-
+  @Input() swipeValue = false;
   @Output() onSwipe = new EventEmitter<boolean>();
 
+  public isUserAlreadyRegistred = false;
+
   constructor(private auth: AuthService, private agenciesService: AgenciesService, private router: Router) { }
-  onSubmit() {
+
+  ngOnInit() {
+    this.agenciesService.findAll().subscribe(
+      result => {
+        this.agencies = result;
+      });
+  }
+
+  /*DOM events*/
+  onSubmit(form) {
+    this.setDefaultAvatar();
+    this.alien.email = this.alien.email.toLowerCase();
     this.auth.register(this.alien)
       .then((user) => {
         this.onSwipe.emit(!this.swipeValue);
         this.router.navigate(['/']);
+        this.resetSignUpForm(form);
       })
       .catch((err) => {
-        console.log(err);
+        this.handleRegistrationError(err);
       });
   }
 
@@ -47,13 +60,34 @@ export class SignupComponent implements OnInit {
   selectAvatar(avatar: string) {
     this.alien.avatar = avatar;
   }
+
+  /* booleans */
   isSelected(avatar: string) {
     return this.alien.avatar === avatar;
   }
-  ngOnInit() {
-    this.agenciesService.findAll().subscribe(
-      result => {
-        this.agencies = result;
-      });
+
+  isSignUpFormValid(form) {
+
+    return form.form.valid;
+  }
+
+
+  /* private methods */
+  private handleRegistrationError(err) {
+    this.isUserAlreadyRegistred = true;
+    setTimeout(() => {
+      this.isUserAlreadyRegistred = false;
+    }, 2000);
+  }
+
+  private resetSignUpForm(form) {
+    form.reset();
+    this.alien.avatar = null;
+  }
+
+  private setDefaultAvatar() {
+    if (!this.alien.avatar) {
+      this.alien.avatar = 'avatar-1';
+    }
   }
 }
