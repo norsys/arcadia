@@ -11,6 +11,7 @@ export class AuthService {
 
   constructor(private http: Http) {}
 
+  /*login logout methods*/
   login(alien): Promise<any> {
     return this.http.post('/v1/auth', alien, { params: { apiKey: environment.apiKey } }).toPromise();
   }
@@ -18,10 +19,17 @@ export class AuthService {
   logout(): Promise<any> {
     return this.http.delete('/v1/auth', { params: { accessToken: this.getCurrentUser().accessToken, apiKey: environment.apiKey } }).toPromise();
   }
+
+  /* CRUD */
+  register(alien): Promise<any> {
+    return this.http.post('/v1/users', alien).toPromise();
+  }
+
   updateUser(alien): Promise<any> {
     return this.http.put('/v1/users/' + alien.id, alien, this.getOptions()).toPromise();
   }
 
+  /* functions to add options to header requests */
    getOptions() {
     const headers = new Headers({'Authorization': 'Bearer ' + this.getCurrentUser().accessToken});
     const options = new RequestOptions({
@@ -39,9 +47,7 @@ export class AuthService {
     return options;
   }
 
-  register(alien): Promise<any> {
-    return this.http.post('/v1/users', alien).toPromise();
-  }
+  /*others*/
   setAlienInLocalStorage(alien) {
     localStorage.setItem('user_arcadia', JSON.stringify(alien));
   }

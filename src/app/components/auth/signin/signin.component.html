@@ -2,16 +2,18 @@
   <h1 class="app-title" (swipeleft)="swip()">Arcadia</h1>
   <h1 class="app-error">{{error}}</h1>
   <form class="galaxy-form" (ngSubmit)="onSubmit()" #alienForm="ngForm">
+    <!--email-->
     <div class="galaxy-form-row">
-      <input type="text" name="galaxy-nickname" placeholder="Mail" required [(ngModel)]="alien.email" name="email" #name="ngModel"
-        autocomplete="off">
+      <input type="text" name="galaxy-nickname" placeholder="username@norsys.fr" id="mail" required [(ngModel)]="alien.email" #email="ngModel" autocomplete="off">
     </div>
+    <!--password-->
     <div class="galaxy-form-row">
-      <input type="password" name="galaxy-password" placeholder="Password" id="password" required [(ngModel)]="alien.password"
-        name="password" autocomplete="off">
+      <input type="password" name="galaxy-password" placeholder="Password" id="password" required [(ngModel)]="alien.password" autocomplete="off">
     </div>
+    <!--submit-->
     <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Login</button>
   </form>
+
   <h1 class="app-title" (swipeleft)="swip()">
     SIGN-UP >>></h1>
 </section>

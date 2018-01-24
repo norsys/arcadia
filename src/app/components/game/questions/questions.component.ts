@@ -15,6 +15,7 @@ export class QuestionsComponent {
   public question: Question;
   public response: Response;
   public inputType: string;
+
   constructor(private route: ActivatedRoute, private questionsService: QuestionsService, private responseService: ResponseService) {
     this.route.params.subscribe(params => {
       this.questionsService.find(params['questionId'])

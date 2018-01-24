@@ -1,0 +1,22 @@
+#email{
+  text-transform: lowercase;
+}
+.field-error{
+  float: left;
+  margin-top: 8px;
+  color: white;
+  font-size: 6vw;
+}
+.user-exist-error{
+  float: left;
+  margin-top: 8px;
+  color: #c01155;
+  font-size: 7vw;
+  font-weight: bold;
+}
+
+.box-genders{
+  float: left;
+  width: 100%;
+  margin-bottom:8px;
+}

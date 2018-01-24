@@ -9,7 +9,7 @@ export class AgenciesService {
 
   constructor(private http: Http) { }
 
-
+  /* CRUD */
   findAll(): Observable<Array<Agency>> {
     return this.http.get('/v1/agencies').map((response: Response) => response.json());
   }
