@@ -10,7 +10,7 @@ before_script:
   - npm install
 
 script:
-  - $(npm bin)/ng build --env=prod --build-optimizer --aot
+  - $(npm bin)/ng build --prod --build-optimizer --aot=false
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" hub-docker.norsys.fr
