@@ -10,6 +10,7 @@ before_script:
   - npm install
 
 script:
+#change command
   - $(npm bin)/ng build --prod --build-optimizer --aot=false
 
 after_success:
