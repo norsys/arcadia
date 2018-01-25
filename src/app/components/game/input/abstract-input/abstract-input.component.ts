@@ -4,8 +4,8 @@ import {PercentageService} from '../../../../services/percentage.service';
 
 export abstract class AbstractInputComponent {
 
-  protected textErrorSubmission;
-  protected isTextErrorSubmissionHidden = true;
+  public textErrorSubmission;
+  public isTextErrorSubmissionHidden = true;
 
   constructor(protected responseService: ResponseService,
               protected percentageService: PercentageService) { }

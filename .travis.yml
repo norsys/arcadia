@@ -11,7 +11,7 @@ before_script:
 
 script:
 #change command
-  - $(npm bin)/ng build --prod --build-optimizer --aot=false
+  - $(npm bin)/ng build --prod --build-optimizer --aot
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" hub-docker.norsys.fr
