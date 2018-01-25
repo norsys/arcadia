@@ -12,6 +12,7 @@ import { AgenciesService } from '../../../services/agencies.service';
 })
 export class SignupComponent implements OnInit {
 
+  /*add comment*/
   public alien: Alien = new Alien();
   public agencies: Array<Agency>;
 
