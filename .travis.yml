@@ -5,6 +5,8 @@ node_js:
   - "7"
 services:
   - docker
+git:
+    depth: 9000
 branches:
     only:
     - master
