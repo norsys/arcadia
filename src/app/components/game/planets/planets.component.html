@@ -1,10 +1,10 @@
 <div class="planet" *ngIf="isUp()" (swipedown)="swip()" >
-	<main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" attr.data-planet="planet-1">
-		<h1 class="app-title">{{categoryName}}</h1>					
-		<div class="aliens-frame">
-			<a class="alien-frame" *ngFor="let position of positions;let i=index" [style.width]="'20vh'" [style.left]="position.left" [style.top]="position.top" (click)="openDefi(i)" >
-				<img [src]="getAlien(i)">
-			</a>
-		</div>
-	</main>
+  <main class="outer-space outer-space-planet-zoom" attr.data-planet="planet-1">
+    <h1 class="app-title">{{categoryName}}</h1>
+    <div class="aliens-frame">
+      <a class="alien-frame" *ngFor="let position of positions;let i=index" [style.width]="'20vh'" [style.left]="position.left" [style.top]="position.top" (click)="openDefi(i)" >
+        <img [src]="getAlien(i)" height="80px" width="80px"/>
+      </a>
+    </div>
+  </main>
 </div>

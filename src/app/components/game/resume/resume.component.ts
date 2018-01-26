@@ -4,6 +4,7 @@ import { ResponseService } from '../../../services/response.service';
 import { CategoryService } from '../../../services/category.service';
 
 import { Question, Response, Category } from '../../../models'
+import {AuthService} from '../../../services/auth.service';
 @Component({
   selector: 'app-resume',
   templateUrl: './resume.component.html',
@@ -19,6 +20,7 @@ export class ResumeComponent implements OnInit {
   constructor(
     private questionsService: QuestionsService,
     private responseService: ResponseService,
+    private authService: AuthService,
     private categoryService: CategoryService) {
 
   }
@@ -31,7 +33,7 @@ export class ResumeComponent implements OnInit {
 
   getImage(question) {
     if (this.responses.filter(response => response.question_id == question.id).length > 0) {
-      return '/assets/img/rum.png';
+      return '/assets/img/avatars/' + this.authService.getCurrentUser().avatar + '.svg';
     } else {
       return '/assets/img/planets/zoom/aliens/planet-' + question.category_id + '-alien-1.png';
     }

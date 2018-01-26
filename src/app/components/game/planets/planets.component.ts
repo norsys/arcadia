@@ -8,6 +8,7 @@ import { Question, Position, Response } from '../../../models';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-planets',
@@ -25,6 +26,7 @@ export class PlanetsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private authService: AuthService,
     private questionsService: QuestionsService,
     private categoriesService: CategoryService,
     private responsesService: ResponseService) {
@@ -52,7 +54,7 @@ export class PlanetsComponent implements OnInit {
 
   getAlien(index) {
     if (this.responses.filter(response => response.question_id == this.questions[index].id).length > 0) {
-      return '/assets/img/rum.png';
+      return '/assets/img/avatars/' + this.authService.getCurrentUser().avatar + '.svg'
     } else {
       return '/assets/img/planets/zoom/aliens/planet-' + this.categoryId + '-alien-' + ++index + '.png';
     }
