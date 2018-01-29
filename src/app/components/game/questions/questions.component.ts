@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Question, Response } from '../../../models';
 import { QuestionsService } from '../../../services/questions.service';
 import { ResponseService } from '../../../services/response.service';
+import {DisplayService} from "../../../services/display.service";
 
 @Component({
   selector: 'app-questions',
@@ -16,7 +17,11 @@ export class QuestionsComponent {
   public response: Response;
   public inputType: string;
 
-  constructor(private route: ActivatedRoute, private questionsService: QuestionsService, private responseService: ResponseService) {
+  constructor(private route: ActivatedRoute,
+              private questionsService: QuestionsService,
+              private displayService: DisplayService,
+              private responseService: ResponseService) {
+    this.displayService.setShowHeader(true);
     this.route.params.subscribe(params => {
       this.questionsService.find(params['questionId'])
         .then((response) => {

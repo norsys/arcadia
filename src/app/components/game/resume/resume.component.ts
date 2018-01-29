@@ -5,6 +5,8 @@ import { CategoryService } from '../../../services/category.service';
 
 import { Question, Response, Category } from '../../../models'
 import {AuthService} from '../../../services/auth.service';
+import {DisplayService} from '../../../services/display.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-resume',
   templateUrl: './resume.component.html',
@@ -21,11 +23,14 @@ export class ResumeComponent implements OnInit {
     private questionsService: QuestionsService,
     private responseService: ResponseService,
     private authService: AuthService,
+    private router: Router,
+    private displayService: DisplayService,
     private categoryService: CategoryService) {
 
   }
 
   ngOnInit() {
+    this.displayService.setShowHeader(true);
     this.categoryService.getAll().then(categories => this.categories = categories.json())
     this.questionsService.getAll().then(questions => this.questions = questions.json());
     this.responseService.getAllResponseByUser().then(responses => this.responses = responses.json());
@@ -49,4 +54,5 @@ export class ResumeComponent implements OnInit {
   isUp() {
     return this.questions && this.responses && this.categories;
   }
+
 }

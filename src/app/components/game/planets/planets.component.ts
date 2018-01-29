@@ -9,6 +9,7 @@ import { Question, Position, Response } from '../../../models';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import {AuthService} from '../../../services/auth.service';
+import {DisplayService} from "../../../services/display.service";
 
 @Component({
   selector: 'app-planets',
@@ -29,7 +30,9 @@ export class PlanetsComponent implements OnInit {
     private authService: AuthService,
     private questionsService: QuestionsService,
     private categoriesService: CategoryService,
+    private displayService: DisplayService,
     private responsesService: ResponseService) {
+    this.displayService.setShowHeader(true);
   }
 
   writeAlienPosition() {

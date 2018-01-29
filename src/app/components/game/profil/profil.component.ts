@@ -25,6 +25,7 @@ export class ProfilComponent implements OnInit {
   constructor(private router: Router,
     private auth: AuthService,
     private displayService: DisplayService) {
+    this.displayService.setShowHeader(true);
   }
   ngOnInit() {
     this.alien = this.auth.getCurrentUser();
