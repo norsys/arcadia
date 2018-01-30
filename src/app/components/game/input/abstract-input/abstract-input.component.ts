@@ -1,5 +1,7 @@
 import {ResponseService} from '../../../../services/response.service';
 import {PercentageService} from '../../../../services/percentage.service';
+import {Config} from '../../../../config/config';
+import {ErrorsLanguage} from '../../../../config/errors-language.enum';
 
 
 export abstract class AbstractInputComponent {
@@ -45,11 +47,15 @@ export abstract class AbstractInputComponent {
   /*private methods*/
   private handleTextResponseError(error) {
     const errors = JSON.parse(error._body);
-    this.textErrorSubmission = '!!! ' + errors[0]['message']['en'];
     this.isTextErrorSubmissionHidden = false;
+    this.textErrorSubmission = errors[0]['message'][Config.getSelectedErrorsLanguage()];
+    setTimeout(() =>  {
+      this.isTextErrorSubmissionHidden = true;
+    }, 3000);
+
   }
 
   private handleResponseError(error) {
-    console.log('error' + error);
+    console.log('error: ' + error);
   }
 }

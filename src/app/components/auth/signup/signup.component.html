@@ -1,20 +1,20 @@
 <!--add comment-->
 <section class="home auth" id="home-register">
-  <h1 class="app-title" (swiperight)="swip()" style="color: blue">Arcadia</h1>
+  <h1 class="app-title" (swiperight)="swip()">Arcadia</h1>
 
   <form class="galaxy-form" (ngSubmit)="onSubmit(alienForm)" #alienForm="ngForm">
     <!--email-->
     <div class="galaxy-form-row">
-      <input type="text" name="galaxy-last-name" placeholder="username@norsys.fr" id="email" required autocomplete="off" [(ngModel)]="alien.email"
+      <input type="text" name="galaxy-last-name" placeholder="utilisateur@norsys.fr" id="email" required autocomplete="off" [(ngModel)]="alien.email"
         name="email" #email="ngModel" pattern="^[A-Za-z]+@norsys.fr$">
       <div  [hidden]="email.valid || email.pristine">
         <p [hidden]="!email.hasError('required')" class="field-error">champ obligatoire</p>
-        <p [hidden]="!email.hasError('pattern')" class="field-error">username@norsys.fr</p>
+        <p [hidden]="!email.hasError('pattern')" class="field-error">Ex: utilisateur@norsys.fr</p>
       </div>
     </div>
     <!--password-->
     <div class="galaxy-form-row">
-      <input type="password" name="galaxy-last-name" placeholder="password" id="passwd" required autocomplete="off" [(ngModel)]="alien.password"
+      <input type="password" name="galaxy-last-name" placeholder="mot de passe" id="passwd" required autocomplete="off" [(ngModel)]="alien.password"
         name="password" #password="ngModel">
       <div  [hidden]="password.valid || password.pristine">
         <p [hidden]="!password.hasError('required')" class="field-error">champ obligatoire</p>
@@ -83,14 +83,14 @@
       </div>
     </div>
     <!--submit-->
-    <button type="submit" class="button button-submit" [disabled]="!isSignUpFormValid(alienForm)">Submit</button>
+    <button type="submit" class="button button-submit" [disabled]="!isSignUpFormValid(alienForm)">S'inscrire</button>
     <!--errors-->
     <span *ngIf="isUserAlreadyRegistred" class="user-exist-error"> Cet Utilisateur existe dèjà</span>
     <span *ngIf="!isSignUpFormValid(alienForm)" class="user-exist-error"> Veuillez saisir tous les champs</span>
 
     <div (swiperight)="swip()">
       <h1 class="app-title">
-        <<< SIGN-IN</h1>
+        <<< SE CONNECTER</h1>
     </div>
   </form>
 </section>

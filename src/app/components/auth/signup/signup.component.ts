@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Alien, Agency } from '../../../models/index';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -78,7 +78,7 @@ export class SignupComponent implements OnInit {
     this.isUserAlreadyRegistred = true;
     setTimeout(() => {
       this.isUserAlreadyRegistred = false;
-    }, 2000);
+    }, 5000);
   }
 
   private resetSignUpForm(form) {

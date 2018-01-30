@@ -2,14 +2,14 @@
   <main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
     <section class="home" id="home-login">
       <h1 class="app-title">{{question.question}}</h1>
+      <p *ngIf="textErrorSubmission" [hidden]="isTextErrorSubmissionHidden" class="error-submit">{{textErrorSubmission}}</p>
       <form class="galaxy-form" #alienForm="ngForm">
         <div class="galaxy-form-row">
           <textarea type="text" autocomplete="off" rows=7 name="galaxy-last-name" placeholder="Response" id="response" required [(ngModel)]="this.response.response"
                     name="response" #name="ngModel"></textarea>
         </div>
-        <button type="submit" (click)="onSubmit()" class="button button-submit">Submit</button>
+        <button type="submit" (click)="onSubmit()" class="button button-submit">Enregistrer</button>
       </form>
-      <p *ngIf="textErrorSubmission" [hidden]="isTextErrorSubmissionHidden" class="error-submit">{{textErrorSubmission}}</p>
     </section>
   </main>
 </div>

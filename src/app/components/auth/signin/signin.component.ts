@@ -1,13 +1,14 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import { Alien } from '../../../models/index';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import {DisplayService} from '../../../services/display.service';
+import {Config} from '../../../config/config';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent {
 
@@ -29,7 +30,7 @@ export class SigninComponent {
         this.auth.setAlienInLocalStorage(alien.json().user);
         this.displayService.setShowHeader(true);
         this.router.navigate(['/home']);
-        this.error = 'Hello '.concat(alien.json().nickname).concat(' !');
+        this.error = 'Bienvenue '.concat(alien.json().nickname).concat(' !');
       })
       .catch((err) => {
         this.handleErrorLogin(err);
@@ -40,9 +41,11 @@ export class SigninComponent {
     const errorCode = err.json()[0].errorCode;
     if (errorCode === 'Unauthorized') {
       this.error = 'Les données que vous avez entré sont incorrects';
-      setTimeout(() => {this.error = ''}, 2000);
+      setTimeout(() => {this.error = '';}, 4000);
     } else {
-      this.error = 'Problem during authentication. Check your connection';
+      const errors = JSON.parse(err._body);
+      this.error = errors[0]['message'][Config.getSelectedErrorsLanguage()];
+      setTimeout(() => {this.error = '';}, 4000);
     }
   }
 
