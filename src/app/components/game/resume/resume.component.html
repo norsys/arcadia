@@ -8,7 +8,7 @@
             <span>{{category.name}}</span>
           </div>
           <div class="images">
-            <img class="question" *ngFor="let question of getQuestions(category)" [src]="getImage(question)">
+            <img class="question" *ngFor="let question of getQuestions(category)" (click)="goToQuestion(question, category)" [src]="getImage(question)">
           </div>
         </div>
       </form>

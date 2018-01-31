@@ -55,4 +55,7 @@ export class ResumeComponent implements OnInit {
     return this.questions && this.responses && this.categories;
   }
 
+  goToQuestion(question: Question, category) {
+    this.router.navigate(['/planets/' + category.id + '/questions/' + question.id]);
+  }
 }
