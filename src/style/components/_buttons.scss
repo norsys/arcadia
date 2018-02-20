@@ -6,16 +6,19 @@
 	font-family: 'VT323-Regular', sans-serif;
 	font-size: 6vw;
 	padding: 1.5vw;
-	width: 100%;
+  width: 100%;
+  position: center;
 
 	&.button-action {
 		color: $white;
 		background-color: $blue;
 		border-color: $blue;
+    width: 70%;
 
 		&:focus {
 			background-color: $blue-lighter;
 			border-color: $blue-lighter;
+      position: center;
 		}
 	}
 
@@ -24,10 +27,13 @@
 		color: $white;
 		background-color: $purple-red;
 		border-color: $purple-red;
+    width: 70%;
+
 
 		&:focus {
 			background-color: $purple-red-lighter;
 			border-color: $purple-red-lighter;
+      position: center;
 		}
 	}
 }
