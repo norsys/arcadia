@@ -88,7 +88,7 @@
     <span *ngIf="isUserAlreadyRegistred" class="user-exist-error"> Cet Utilisateur existe dèjà</span>
     <span *ngIf="!isSignUpFormValid(alienForm)" class="user-exist-error"> Veuillez saisir tous les champs</span>
 
-    <div (swiperight)="swip()">
+    <div (swiperight)="swip()" (click)="swip()">
       <h1 class="app-title">
         <<< SE CONNECTER</h1>
     </div>
