@@ -7,7 +7,6 @@
 	font-size: 6vw;
 	padding: 1.5vw;
   width: 100%;
-  position: center;
 
 	&.button-action {
 		color: $white;
@@ -18,7 +17,6 @@
 		&:focus {
 			background-color: $blue-lighter;
 			border-color: $blue-lighter;
-      position: center;
 		}
 	}
 
@@ -29,11 +27,9 @@
 		border-color: $purple-red;
     width: 70%;
 
-
 		&:focus {
 			background-color: $purple-red-lighter;
 			border-color: $purple-red-lighter;
-      position: center;
 		}
 	}
 }
