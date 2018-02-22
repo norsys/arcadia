@@ -36,42 +36,19 @@
         <p [hidden]="!lastname.hasError('required')" class="field-error">champ obligatoire</p>
       </div>
     </div>
-    <!--nickname-->
-    <div class="galaxy-form-row">
-      <input type="text" name="galaxy-nickname" placeholder="surnom" id="nickname" required autocomplete="off" [(ngModel)]="alien.nickName"
-        name="nickname" #nickname="ngModel">
-      <div [hidden]="nickname.valid || nickname.pristine">
-        <p [hidden]="!nickname.hasError('required')" class="field-error">champ obligatoire</p>
-      </div>
-    </div>
-    <!--gender-->
-    <div class="galaxy-form-row">
-      <div class="galaxy-radio-group box-genders">
-        <div class="galaxy-radio-container">
-          <input type="radio" name="galaxy-gender" id="galaxy-gender-female" required value="F" #gender="ngModel" [(ngModel)]="alien.sex">
-          <label for="galaxy-gender-female" class="galaxy-gender gender-female"></label>
-        </div>
-        <div class="galaxy-radio-container">
-          <input type="radio" name="galaxy-gender" id="galaxy-gender-male" required value="M" #gender="ngModel" [(ngModel)]="alien.sex">
-          <label for="galaxy-gender-male" class="galaxy-gender gender-male"></label>
-        </div>
-        <div class="galaxy-radio-container">
-          <input type="radio" name="galaxy-gender" id="galaxy-gender-neutral" required value="N" #gender="ngModel" [(ngModel)]="alien.sex">
-          <label for="galaxy-gender-neutral" class="galaxy-gender"></label>
-        </div>
-        <div  [hidden]="gender.valid || gender.pristine">
-          <p [hidden]="!gender.hasError('required')" class="field-error">champ obligatoire</p>
-        </div>
-      </div>
-    </div>
     <!--agency-->
-    <div class="galaxy-form-row">
+    <div class="galaxy-form-row" >
       <select name="galaxy-agency" required #agency="ngModel" [(ngModel)]="alien.agence_id">
         <option value="" disabled selected>Choisir une agence</option>
         <option *ngFor="let agency of agencies" value={{agency.id}}>{{agency.name}}</option>
       </select>
-      <div  [hidden]="gender.valid || gender.pristine">
-        <p [hidden]="!gender.hasError('required')" class="field-error">champ obligatoire</p>
+    </div>
+    <!--nickname-->
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-nickname" placeholder="pseudo de l'avatar" id="nickname" required autocomplete="off" [(ngModel)]="alien.nickName"
+             name="nickname" #nickname="ngModel">
+      <div [hidden]="nickname.valid || nickname.pristine">
+        <p [hidden]="!nickname.hasError('required')" class="field-error">champ obligatoire</p>
       </div>
     </div>
     <!--avatar-->
