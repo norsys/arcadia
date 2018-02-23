@@ -5,7 +5,8 @@
       <div *ngFor="let category of getCategoriesBySpace(number)" class="planet-frame" attr.data-planet="planet-{{category.id}}"></div>
     </div>
   </section>
-
+  <a (click)="swip('left','left')"  class="clickable img-navigation " id="btn-navigation-left"></a>
+  <a (click)="swip('right','right')"  class="clickable img-navigation " id="btn-navigation-right"></a>
   <section class="spaceship">
     <img class="spaceship-cockpit" src="/assets/img/spaceship.png" alt="spaceship-cockpit">
 

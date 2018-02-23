@@ -54,14 +54,22 @@ export class ShipComponent {
       case 3: return this.categories.slice(this.nbrOuterSpace * 2, this.nbrOuterSpace * 3);
     }
   }
-  swip(swipeDirection: string) {
+  swip(swipeDirection: string , btnClicked: string) {
     const _current_galaxy = document.querySelector('.outer-space-approached');
     const _galaxy_classes = _current_galaxy.classList;
     //var _sector_number = parseInt(_current_galaxy.getAttribute('data-outer-space'));
     let _sector_number = parseInt(localStorage.getItem('galaxy_arcadia'));
 
     const _current_screen_planets = document.querySelector('.frame-container-active');
-
+  if(btnClicked == 'left' || btnClicked == 'right') {
+    var btn_click ;
+    if (swipeDirection == 'left') {
+      btn_click = document.querySelector('#btn-navigation-left');
+    } else if (swipeDirection == 'right') {
+      btn_click = document.querySelector('#btn-navigation-right');
+    }
+    btn_click.classList.add('clickable-active');
+    }
     if (swipeDirection == 'left' || swipeDirection == 'right') {
       if (swipeDirection == 'left') {
         _sector_number -= 1;
@@ -108,6 +116,7 @@ export class ShipComponent {
       setTimeout(() => {
         _next_galaxy.classList.add('outer-space-approached');
         _next_galaxy.classList.remove('outer-space-approaching');
+        btn_click.classList.remove('clickable-active');
       }, 2750);
     }
   }

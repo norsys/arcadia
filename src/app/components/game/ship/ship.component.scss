@@ -3,3 +3,40 @@
   color: white;
   text-align: center;
 }
+
+.img-navigation{
+  margin-top: 70%;
+  z-index: 10;
+  position: fixed;
+}
+#btn-navigation-left{
+  margin-left: 3%;
+  background:url('/assets/img/nav-left.png');
+  background-size: 100%;
+}
+#btn-navigation-right{
+  margin-left: 86%;
+  background:url('/assets/img/nav-right.png');
+  background-size: 100%;
+}
+.clickable {
+  font-family: 'VT323-Regular', sans-serif;
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  width:10px;
+  height:45px;
+
+}
+
+.clickable-active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
