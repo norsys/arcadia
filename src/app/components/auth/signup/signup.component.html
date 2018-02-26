@@ -6,7 +6,7 @@
     <!--email-->
     <div class="galaxy-form-row">
       <input type="text" name="galaxy-last-name" placeholder="utilisateur@norsys.fr" id="email" required autocomplete="off" [(ngModel)]="alien.email"
-        name="email" #email="ngModel" pattern="^[A-Za-z]+@norsys.fr$">
+        name="email" #email="ngModel" pattern="^[A-Za-z0-9]+@norsys.fr$">
       <div  [hidden]="email.valid || email.pristine">
         <p [hidden]="!email.hasError('required')" class="field-error">champ obligatoire</p>
         <p [hidden]="!email.hasError('pattern')" class="field-error">Ex: utilisateur@norsys.fr</p>
