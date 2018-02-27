@@ -12,13 +12,9 @@
 }
 #btn-navigation-left{
   margin-left: 3%;
-  background:url('/assets/img/nav-left.png');
-  background-size: 100%;
 }
 #btn-navigation-right{
-  margin-left: 86%;
-  background:url('/assets/img/nav-right.png');
-  background-size: 100%;
+  margin-left: 93%;
 }
 .clickable {
   font-family: 'VT323-Regular', sans-serif;
@@ -36,8 +32,9 @@
 
 }
 
-.clickable-active {
-  background-color: #3e8e41;
-  box-shadow: 0 2px #666;
-  transform: translateY(4px);
+.test {
+  font-size: 9vw;
+  color: white;
+  padding: 6vw 0;
+  text-align: center;
 }

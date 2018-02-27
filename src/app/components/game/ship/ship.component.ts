@@ -44,7 +44,7 @@ export class ShipComponent {
   }
 
   getPlanetImage(planet, index) {
-    return this.sanitizer.bypassSecurityTrustStyle('url(\'/assets/img/fuel-gauges-' + index + '.png\'), url(\'/assets/img/planets/planet-' + planet + '.png\')');
+    return this.sanitizer.bypassSecurityTrustStyle('url(\'/assets/img/fuel-gauges-' + index + '.png\')');
   }
 
   getCategoriesBySpace(number) {
@@ -63,12 +63,11 @@ export class ShipComponent {
     const _current_screen_planets = document.querySelector('.frame-container-active');
   if(btnClicked == 'left' || btnClicked == 'right') {
     var btn_click ;
-    if (swipeDirection == 'left') {
-      btn_click = document.querySelector('#btn-navigation-left');
-    } else if (swipeDirection == 'right') {
-      btn_click = document.querySelector('#btn-navigation-right');
-    }
-    btn_click.classList.add('clickable-active');
+      if (swipeDirection == 'left') {
+        btn_click = document.querySelector('#btn-navigation-left');
+      } else if (swipeDirection == 'right') {
+        btn_click = document.querySelector('#btn-navigation-right');
+      }
     }
     if (swipeDirection == 'left' || swipeDirection == 'right') {
       if (swipeDirection == 'left') {
@@ -116,7 +115,6 @@ export class ShipComponent {
       setTimeout(() => {
         _next_galaxy.classList.add('outer-space-approached');
         _next_galaxy.classList.remove('outer-space-approaching');
-        btn_click.classList.remove('clickable-active');
       }, 2750);
     }
   }
