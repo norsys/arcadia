@@ -38,3 +38,42 @@
   padding: 6vw 0;
   text-align: center;
 }
+
+.spaceship-data-frame {
+  position: absolute;
+  width: 20vw;
+  height: auto;
+  padding-bottom: 20vw;
+  background-size: 100%, 75%;
+  background-repeat: no-repeat;
+  background-position:  50% 15%, center;
+  z-index: 0;
+
+  &.completed {
+    opacity: 0.35;
+  }
+}
+
+.data-label-color {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+[data-label-position="1"] {
+  left: 49vw;
+  top: -39vw;
+  transform: translateX(-50%);
+}
+
+[data-label-position="2"] {
+  left: 7.5vw;
+  top: -32vw;
+  transform: translateX(-25%);
+}
+
+[data-label-position="3"] {
+  right: 7.5vw;
+  top: -32vw;
+  transform: translateX(25%);
+}

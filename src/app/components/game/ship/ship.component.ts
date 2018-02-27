@@ -44,7 +44,7 @@ export class ShipComponent {
   }
 
   getPlanetImage(planet, index) {
-    return this.sanitizer.bypassSecurityTrustStyle('url(\'/assets/img/fuel-gauges-' + index + '.png\')');
+    return this.sanitizer.bypassSecurityTrustStyle('url(\'/assets/img/fuel-gauges-' + index + '.png\'), url(\'/assets/img/planets/planet-' + planet + '.png\')');
   }
 
   getCategoriesBySpace(number) {
