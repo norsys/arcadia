@@ -28,6 +28,9 @@
         <a *ngFor="let category of getCategoriesBySpace(number)" (click)="goToPlanet(category.id)" class="planet-frame-link" attr.data-planet='planet-{{category.id}}'>
         </a>
       </div>
+      <div class="planets-help-link">
+        <span class="data-help-color">Aide ?</span>
+      </div>
     </div>
 
   </section>
