@@ -10,9 +10,12 @@
     <div class="galaxy-form-row">
       <input type="password" name="galaxy-password" placeholder="mot de passe" id="password" required [(ngModel)]="alien.password" autocomplete="off">
     </div>
+
+    <h1 class="app-title" (swipeleft)="swip()" (click)="swip()">
+     S'INSCRIRE >>>
+    </h1>
+
     <!--submit-->
     <button type="submit" class="button button-submit" [disabled]="!alienForm.form.valid">Se connecter</button>
   </form>
-  <h1 class="app-title" (swipeleft)="swip()" (click)="swip()">
-   S'INSCRIRE >>></h1>
 </section>
