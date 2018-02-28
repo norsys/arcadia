@@ -20,22 +20,6 @@
         <p [hidden]="!password.hasError('required')" class="field-error">champ obligatoire</p>
       </div>
     </div>
-    <!--firstname-->
-    <div class="galaxy-form-row">
-      <input type="text" name="galaxy-first-name" placeholder="prénom" id="firstname" required autocomplete="off" [(ngModel)]="alien.firstName"
-        name="firstname" #firstname="ngModel">
-      <div  [hidden]="firstname.valid || firstname.pristine">
-        <p [hidden]="!firstname.hasError('required')" class="field-error">champ obligatoire</p>
-      </div>
-    </div>
-    <!--lastname-->
-    <div class="galaxy-form-row">
-      <input type="text" name="galaxy-last-name" placeholder="nom" id="lastname" required autocomplete="off" [(ngModel)]="alien.lastName"
-        name="lastname" #lastname="ngModel">
-      <div  [hidden]="lastname.valid || lastname.pristine">
-        <p [hidden]="!lastname.hasError('required')" class="field-error">champ obligatoire</p>
-      </div>
-    </div>
     <!--agency-->
     <div class="galaxy-form-row" >
       <select name="galaxy-agency" required #agency="ngModel" [(ngModel)]="alien.agence_id">
