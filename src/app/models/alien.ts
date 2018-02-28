@@ -5,6 +5,7 @@ export class Alien {
   public password: string;
   public firstName: string;
   public lastName: string;
+  public postalCode: string;
   public nickName: string;
   public agence_id: string;
   public avatar: string;

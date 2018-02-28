@@ -43,6 +43,14 @@
         <option *ngFor="let agency of agencies" value={{agency.id}}>{{agency.name}}</option>
       </select>
     </div>
+    <!--code postale-->
+    <div class="galaxy-form-row">
+      <input type="text" name="galaxy-postalCode" placeholder="code postale" id="postalCode" required autocomplete="off" [(ngModel)]="alien.postalCode"
+             name="postalCode" #postalCode="ngModel">
+      <div [hidden]="postalCode.valid || postalCode.pristine">
+        <p [hidden]="!postalCode.hasError('required')" class="field-error">champ obligatoire</p>
+      </div>
+    </div>
     <!--nickname-->
     <div class="galaxy-form-row">
       <input type="text" name="galaxy-nickname" placeholder="pseudo de l'avatar" id="nickname" required autocomplete="off" [(ngModel)]="alien.nickName"
