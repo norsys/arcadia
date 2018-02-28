@@ -30,9 +30,10 @@
     <!--code postale-->
     <div class="galaxy-form-row">
       <input type="text" name="galaxy-postalCode" placeholder="code postale" id="postalCode" required autocomplete="off" [(ngModel)]="alien.postalCode"
-             name="postalCode" #postalCode="ngModel">
+             name="postalCode" #postalCode="ngModel" pattern="^[0-9]+$">
       <div [hidden]="postalCode.valid || postalCode.pristine">
         <p [hidden]="!postalCode.hasError('required')" class="field-error">champ obligatoire</p>
+        <p [hidden]="!postalCode.hasError('pattern')" class="field-error">Ex: 40000</p>
       </div>
     </div>
     <!--nickname-->
