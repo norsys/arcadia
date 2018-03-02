@@ -3,8 +3,7 @@ export class Alien {
   public id: number;
   public email: string;
   public password: string;
-  public firstName: string;
-  public lastName: string;
+  public postalCode: string;
   public nickName: string;
   public agence_id: string;
   public avatar: string;
