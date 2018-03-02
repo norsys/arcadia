@@ -25,3 +25,9 @@ span{
   width: 100%;
     margin-left: 7vh;
 }
+.img-click-animat {
+  //-webkit-transform: rotate(360deg); /* Safari */
+  //transform: rotate(360deg);
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}

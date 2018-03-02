@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Question, Response } from '../../../../models';
 import {PercentageService} from '../../../../services/percentage.service';
 import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
+import {NotifyService} from '../../../../services/notify.service';
 
 @Component({
   selector: 'app-camera',
@@ -22,10 +23,10 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
   imageData: any;
   isImageSelected = false;
 
-  constructor(private authService: AuthService, responseService: ResponseService,
+  constructor(private authService: AuthService, responseService: ResponseService, notif: NotifyService,
     private imageService: ImagesService, percentageService: PercentageService,
     private sanitizer: DomSanitizer) {
-    super(responseService, percentageService);
+    super(responseService, percentageService, notif);
   }
 
   ngOnInit() {

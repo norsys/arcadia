@@ -1,7 +1,7 @@
 <header *ngIf="display" class="top-header">
-  <img (click)="profil()" class="header-logout" src="/assets/img/avatars/{{alien.avatar}}.svg">
-  <div class="header-item item-completion" (click)="resume()">
+  <img (click)="profil()" class="header-logout" src="/assets/img/avatars/{{alien.avatar}}.svg" id="profile-btn">
+  <div class="header-item item-completion" (click)="resume()" id="trophees-btn">
     <p class="completion">Trophées {{percentage}} %</p>
   </div>
-  <img class="header-avatar" src="/assets/img/logout.jpg" (click)="home()">
+  <img class="header-avatar img-click" src="/assets/img/logout.jpg" (click)="home()" id="home-btn">
 </header>

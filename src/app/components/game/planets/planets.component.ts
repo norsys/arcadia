@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuestionsService } from '../../../services/questions.service';
 import { ResponseService } from '../../../services/response.service';
@@ -24,6 +24,8 @@ export class PlanetsComponent implements OnInit {
   public questions: Array<Question>;
   public positions: Array<Position> = new Array();
   private responses: Array<Response>;
+  message = 'dddddd';
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -63,8 +65,16 @@ export class PlanetsComponent implements OnInit {
     }
   }
 
+
+
   openDefi(id) {
+    var btnclick = document.querySelector('#id' + id).classList;
+    btnclick.add('img-click-animat');
     this.router.navigate(['planets/' + this.questions[id].category_id + '/questions', this.questions[id].id]);
+    setTimeout(() => {
+      btnclick.remove('img-click-animat');
+    }, 2000);
+
   }
 
   isUp() {

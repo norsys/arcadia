@@ -1,8 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { Alien, Agency } from '../../../models/index';
-import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
-import { AgenciesService } from '../../../services/agencies.service';
+import {Alien, Agency} from '../../../models/index';
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+import {AgenciesService} from '../../../services/agencies.service';
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +30,8 @@ export class SignupComponent implements OnInit {
 
   public isUserAlreadyRegistred = false;
 
-  constructor(private auth: AuthService, private agenciesService: AgenciesService, private router: Router) { }
+  constructor(private auth: AuthService, private agenciesService: AgenciesService, private router: Router) {
+  }
 
   ngOnInit() {
     this.agenciesService.findAll().subscribe(
@@ -55,7 +56,12 @@ export class SignupComponent implements OnInit {
   }
 
   swip() {
+    var btnclick = document.querySelector('#SingUp-animat').classList;
+    btnclick.add('SingUp-animat');
     this.onSwipe.emit(!this.swipeValue);
+    setTimeout(() => {
+      btnclick.remove('SingUp-animat');
+    }, 1000);
   }
 
   selectAvatar(avatar: string) {

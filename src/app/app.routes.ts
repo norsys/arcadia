@@ -7,6 +7,7 @@ import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
 import { QuestionsComponent } from './components/game/questions/questions.component'
 import {ResumeComponent} from './components/game/resume/resume.component';
+import {AideComponent} from './components/game/aide/aide.component';
 
 export const routes: Routes = [
   {
@@ -19,7 +20,8 @@ export const routes: Routes = [
   { path: 'profil', component: ProfilComponent, canActivate: [EnsureAuthenticated] },
   { path: 'resume', component: ResumeComponent, canActivate: [EnsureAuthenticated] },
   { path: 'planets/:categoryId', component: PlanetsComponent, canActivate: [EnsureAuthenticated] },
-  { path: 'planets/:categoryId/questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] }
+  { path: 'planets/:categoryId/questions/:questionId', component: QuestionsComponent, canActivate: [EnsureAuthenticated] },
+  { path: 'aide', component: AideComponent, canActivate: [EnsureAuthenticated] }
 
 ];
 

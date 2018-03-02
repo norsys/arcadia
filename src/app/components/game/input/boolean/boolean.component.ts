@@ -4,6 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
 import {PercentageService} from '../../../../services/percentage.service';
 import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
+import {NotifyService} from '../../../../services/notify.service';
 
 @Component({
   selector: 'app-boolean',
@@ -17,8 +18,9 @@ export class BooleanComponent extends AbstractInputComponent implements OnInit {
 
   constructor(responseService: ResponseService,
               private authService: AuthService,
-              percentageService: PercentageService) {
-    super(responseService, percentageService);
+              percentageService: PercentageService,
+              notif: NotifyService ) {
+    super(responseService, percentageService, notif);
   }
 
   ngOnInit() {

@@ -1,4 +1,17 @@
 .item-avatar{
     background-image: url('/assets/img/avatar-green-alien.png')
+}
 
+.img-click {
+  -webkit-transition:linear, width 2s, height 2s, -webkit-transform 2s; /* Safari */
+  transition: linear,width 2s, height 2s, transform 2s;
+}
+
+.img-click-animat {
+  -webkit-transform: rotate(360deg); /* Safari */
+  transform: rotate(360deg);
+}
+
+.trophees-click-animat {
+  text-shadow: 1px 1px 5px yellow;
 }

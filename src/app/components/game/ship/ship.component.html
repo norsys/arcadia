@@ -20,18 +20,19 @@
             <a *ngFor="let category of getCategoriesBySpace(number);let i=index" class="spaceship-planet-frame" attr.data-planet-position={{i+1}}></a>
           </div>
           <div class="spaceship-frame-label">
-            <span *ngFor="let category of getCategoriesBySpace(number);let i=index" (click)="goToPlanet(category.id)" class="spaceship-planet-frame data-label-color" attr.data-label-position={{i+1}}>{{ category.name }}</span>
+            <span *ngFor="let category of getCategoriesBySpace(number);let i=index" (click)="goToPlanet(category.id)" class="spaceship-planet-frame data-label-color" attr.data-label-position={{i+1}}
+                  id="{{'id-' + category.id}}">{{ category.name }}</span>
           </div>
         </div>
       </div>
       <div class="planets-frame-links">
-        <a *ngFor="let category of getCategoriesBySpace(number)" (click)="goToPlanet(category.id)" class="planet-frame-link" attr.data-planet='planet-{{category.id}}'>
+        <a *ngFor="let category of getCategoriesBySpace(number)" (click)="goToPlanet(category.id)" class="planet-frame-link" attr.data-planet='planet-{{category.id}}'
+           id="id{{category.id}}">
         </a>
       </div>
-      <div class="planets-help-link">
-        <span class="data-help-color">Aide ?</span>
+      <div [ngClass]="{ 'aide-title':click == false,'aide-click-animat': clicked == true }" (click)="aide()" id="aide-btn">
+        Aide ?
       </div>
     </div>
-
   </section>
 </main>

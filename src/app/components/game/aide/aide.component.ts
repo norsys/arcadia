@@ -1,4 +1,6 @@
+///<reference path="../../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from '@angular/core';
+import {DisplayService} from '../../../services/display.service';
 
 @Component({
   selector: 'app-aide',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AideComponent implements OnInit {
 
-  constructor() { }
+  constructor(private displayService: DisplayService) { }
 
   ngOnInit() {
+    this.displayService.setShowHeader(true);
   }
 
 }

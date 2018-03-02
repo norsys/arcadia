@@ -28,6 +28,11 @@ import { HttpClientModule} from '@angular/common/http';
 import {QuestionsService} from './services/questions.service';
 import {ResponseService} from './services/response.service';
 import {PercentageService} from './services/percentage.service';
+import {AideComponent} from './components/game/aide/aide.component';
+import {NotifyService} from './services/notify.service';
+import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
+import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class HammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -51,19 +56,26 @@ export class HammerConfig extends HammerGestureConfig {
     BooleanComponent,
     ProfilComponent,
     ResumeComponent,
+    AideComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
-    Routing
+    Routing,
+    SimpleNotificationsModule.forRoot(),
+    BrowserAnimationsModule
   ],
-  providers: [AuthService, PercentageService, QuestionsService, ResponseService, LoginRedirect, EnsureAuthenticated, DisplayService,
+  providers: [AuthService, PercentageService, QuestionsService, ResponseService, LoginRedirect, EnsureAuthenticated, DisplayService, NotifyService,
     {
     provide: HAMMER_GESTURE_CONFIG,
-    useClass: HammerConfig
-  }],
+    useClass: HammerConfig,
+  },
+    {
+      provide: 'SnotifyToastConfig', useValue: ToastDefaults,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

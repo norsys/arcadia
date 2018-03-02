@@ -3,7 +3,7 @@ import { QuestionsService } from '../../../services/questions.service';
 import { ResponseService } from '../../../services/response.service';
 import { CategoryService } from '../../../services/category.service';
 
-import { Question, Response, Category } from '../../../models'
+import { Question, Response, Category } from '../../../models';
 import {AuthService} from '../../../services/auth.service';
 import {DisplayService} from '../../../services/display.service';
 import {Router} from '@angular/router';
@@ -31,7 +31,7 @@ export class ResumeComponent implements OnInit {
 
   ngOnInit() {
     this.displayService.setShowHeader(true);
-    this.categoryService.getAll().then(categories => this.categories = categories.json())
+    this.categoryService.getAll().then(categories => this.categories = categories.json());
     this.questionsService.getAll().then(questions => this.questions = questions.json());
     this.responseService.getAllResponseByUser().then(responses => this.responses = responses.json());
   }
@@ -56,6 +56,11 @@ export class ResumeComponent implements OnInit {
   }
 
   goToQuestion(question: Question, category) {
+    var btnclick = document.querySelector('#id' + question.id + '-' + category.id).classList;
+    btnclick.add('img-click-animat');
     this.router.navigate(['/planets/' + category.id + '/questions/' + question.id]);
+    setTimeout(() => {
+      btnclick.remove('img-click-animat');
+    }, 1000);
   }
 }

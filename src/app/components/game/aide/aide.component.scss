@@ -1,5 +1,14 @@
+.container {
+  position: relative;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  background-size: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  text-align: center;
+}
 .aide{
-  position: absolute;
   color: white;
   font-size: 20px;
   background-size: 100%;

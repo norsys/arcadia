@@ -4,6 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { ResponseService } from '../../../../services/response.service';
 import {PercentageService} from '../../../../services/percentage.service';
 import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
+import {NotifyService} from '../../../../services/notify.service';
 
 @Component({
   selector: 'app-text',
@@ -16,11 +17,11 @@ export class TextComponent extends AbstractInputComponent implements OnInit {
   @Input() question: Question;
   @Input() response: Response;
 
-
   constructor(private authService: AuthService,
                responseService: ResponseService,
-               percentageService: PercentageService) {
-    super(responseService, percentageService);
+               percentageService: PercentageService,
+               notif: NotifyService) {
+    super(responseService, percentageService, notif);
   }
 
   ngOnInit() {
@@ -42,6 +43,4 @@ export class TextComponent extends AbstractInputComponent implements OnInit {
       this.updateResponse(this.response, this.question.id, true);
     }
   }
-
-
 }

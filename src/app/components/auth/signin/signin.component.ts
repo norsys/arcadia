@@ -54,7 +54,12 @@ export class SigninComponent {
   }
 
   swip() {
+    var btnclick = document.querySelector('#SingIn-animat').classList;
+    btnclick.add('SingIn-animat');
     this.onSwipe.emit(!this.swipeValue);
+    setTimeout(() => {
+      btnclick.remove('SingIn-animat');
+    }, 1000);
   }
 
 }

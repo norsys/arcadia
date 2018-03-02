@@ -1,9 +1,9 @@
-import { Component} from '@angular/core';
-import { CategoryService } from '../../../services/category.service';
-import { Category } from '../../../models/category';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { DisplayService } from '../../../services/display.service';
+import {Component} from '@angular/core';
+import {CategoryService} from '../../../services/category.service';
+import {Category} from '../../../models/category';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {DisplayService} from '../../../services/display.service';
 
 @Component({
   selector: 'app-ship',
@@ -20,15 +20,19 @@ export class ShipComponent {
 
   private nbrOuterSpace: number;
 
+  public clicked: boolean;
+  public click: boolean = false;
+  public clickedPlanet: boolean;
+
   constructor(private sanitizer: DomSanitizer,
-    private categoryService: CategoryService,
-    private router: Router,
-    private displayService: DisplayService) {
+              private categoryService: CategoryService,
+              private router: Router,
+              private displayService: DisplayService) {
     this.categoryService.getAll().then((categories) => {
       this.categories = categories.json(),
         this.nbrOuterSpace = Math.ceil(this.categories.length / 3);
     });
-    if (localStorage.getItem('galaxy_arcadia') === null){
+    if (localStorage.getItem('galaxy_arcadia') === null) {
       localStorage.setItem('galaxy_arcadia', '1');
     }
     this.galaxySelector = localStorage.getItem('galaxy_arcadia');
@@ -36,6 +40,9 @@ export class ShipComponent {
   }
 
   goToPlanet(index) {
+     this.animate('#id-' + index, 'planet-click-animat');
+    this.animate('#id' + index, 'planet-click-animat');
+    this.clickedPlanet = true;
     if (index - 1 < this.categories.length) {
       this.router.navigate(['/planets', index]);
     } else {
@@ -49,20 +56,24 @@ export class ShipComponent {
 
   getCategoriesBySpace(number) {
     switch (number) {
-      case 1: return this.categories.slice(0, this.nbrOuterSpace);
-      case 2: return this.categories.slice(this.nbrOuterSpace, this.nbrOuterSpace * 2);
-      case 3: return this.categories.slice(this.nbrOuterSpace * 2, this.nbrOuterSpace * 3);
+      case 1:
+        return this.categories.slice(0, this.nbrOuterSpace);
+      case 2:
+        return this.categories.slice(this.nbrOuterSpace, this.nbrOuterSpace * 2);
+      case 3:
+        return this.categories.slice(this.nbrOuterSpace * 2, this.nbrOuterSpace * 3);
     }
   }
-  swip(swipeDirection: string , btnClicked: string) {
+
+  swip(swipeDirection: string, btnClicked: string) {
     const _current_galaxy = document.querySelector('.outer-space-approached');
     const _galaxy_classes = _current_galaxy.classList;
     //var _sector_number = parseInt(_current_galaxy.getAttribute('data-outer-space'));
     let _sector_number = parseInt(localStorage.getItem('galaxy_arcadia'));
 
     const _current_screen_planets = document.querySelector('.frame-container-active');
-  if(btnClicked == 'left' || btnClicked == 'right') {
-    var btn_click ;
+    if (btnClicked == 'left' || btnClicked == 'right') {
+      var btn_click;
       if (swipeDirection == 'left') {
         btn_click = document.querySelector('#btn-navigation-left');
       } else if (swipeDirection == 'right') {
@@ -117,6 +128,22 @@ export class ShipComponent {
         _next_galaxy.classList.remove('outer-space-approaching');
       }, 2750);
     }
+  }
+
+  aide() {
+    this.clicked = true;
+    this.router.navigate(['/aide']);
+  }
+
+  animate(id: string, classcss: string) {
+    console.log('id :' + id + ', classcss :' + classcss)
+    let btnclick = document.querySelector(id).classList;
+    btnclick.add(classcss);
+    console.log('ok1');
+    setTimeout(() => {
+      btnclick.remove(classcss);
+    }, 2000);
+    console.log('ok2');
   }
 
 }
