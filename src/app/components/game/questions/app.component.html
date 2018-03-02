@@ -1,0 +1,25 @@
+<div class="ui-g ui-sm-12 header">
+
+</div>
+<ul class="ui-g ui-sm-12 menu">
+  <a class="ui-g-2 ui-sm-4 menu-item" routerLink="/reponses" routerLinkActive="active">
+    <i class="fa fa-commenting-o"></i>
+    <p class="menu-item-title">Réponses</p>
+  </a>
+  <a class="ui-g-2 ui-sm-4 menu-item" routerLink="/questions" routerLinkActive="active">
+    <i class="fa fa-question"></i>
+    <p class="menu-item-title">Questions</p>
+  </a>
+  <a class="ui-g-2 ui-sm-4 menu-item" routerLink="/categories" routerLinkActive="active">
+    <i class="fa fa-tags"></i>
+    <p class="menu-item-title">Catégories</p>
+  </a>
+</ul>
+<div class="ui-g ui-sm-12 main">
+    <div class="ui-g-10 ui-g-offset-1 main-content">
+      <router-outlet></router-outlet>
+    </div>
+</div>
+<div class="ui-g ui-sm-12 footer">
+  <img src="../assets/img/norsys-logo.png"/>
+</div>
