@@ -30,7 +30,6 @@ import {ResponseService} from './services/response.service';
 import {PercentageService} from './services/percentage.service';
 import {AideComponent} from './components/game/aide/aide.component';
 import {NotifyService} from './services/notify.service';
-import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -71,10 +70,7 @@ export class HammerConfig extends HammerGestureConfig {
     {
     provide: HAMMER_GESTURE_CONFIG,
     useClass: HammerConfig,
-  },
-    {
-      provide: 'SnotifyToastConfig', useValue: ToastDefaults,
-    }
+  }
   ],
   bootstrap: [AppComponent]
 })
