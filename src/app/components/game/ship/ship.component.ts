@@ -136,14 +136,11 @@ export class ShipComponent {
   }
 
   animate(id: string, classcss: string) {
-    console.log('id :' + id + ', classcss :' + classcss)
     let btnclick = document.querySelector(id).classList;
     btnclick.add(classcss);
-    console.log('ok1');
     setTimeout(() => {
       btnclick.remove(classcss);
     }, 2000);
-    console.log('ok2');
   }
 
 }
