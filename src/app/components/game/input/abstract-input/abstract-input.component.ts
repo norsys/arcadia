@@ -3,8 +3,6 @@ import {PercentageService} from '../../../../services/percentage.service';
 import {Config} from '../../../../config/config';
 import {ErrorsLanguage} from '../../../../config/errors-language.enum';
 import {NotifyService} from '../../../../services/notify.service';
-import {NotificationsService} from 'angular2-notifications';
-
 
 export abstract class AbstractInputComponent {
 
@@ -15,11 +13,10 @@ export abstract class AbstractInputComponent {
               protected percentageService: PercentageService,
               protected notif: NotifyService) { }
 
-
   protected saveResponse(response, isTextResponse) {
     return this.responseService.save(response).then((body) => {
       this.percentageService.calculatePercentage();
-      this.notif.notifyWithSuccess();
+      this.notif.verifierPourcentage();
       window.history.back();
     }).catch((error) => {
       this.handleResponseError(error);
@@ -31,7 +28,7 @@ export abstract class AbstractInputComponent {
 
   protected updateResponse(response, questionId, isTextResponse) {
     return this.responseService.update(response, questionId).then((body) => {
-      this.notif.notifyWithSuccess();
+      this.notif.verifierPourcentage();
       window.history.back();
     }).catch((error) => {
       this.handleResponseError(error);
