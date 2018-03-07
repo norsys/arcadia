@@ -22,6 +22,7 @@ import { QuestionsComponent } from './components/game/questions/questions.compon
 import { DisplayService } from './services/display.service';
 import { TextComponent } from './components/game/input/text/text.component';
 import { BooleanComponent } from './components/game/input/boolean/boolean.component';
+import {MultipleComponent} from './components/game/input/multiple/multiple.component';
 import { ProfilComponent } from './components/game/profil/profil.component';
 import { ResumeComponent } from './components/game/resume/resume.component';
 import { HttpClientModule} from '@angular/common/http';
@@ -32,6 +33,7 @@ import {AideComponent} from './components/game/aide/aide.component';
 import {NotifyService} from './services/notify.service';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 export class HammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -53,6 +55,7 @@ export class HammerConfig extends HammerGestureConfig {
     QuestionsComponent,
     TextComponent,
     BooleanComponent,
+    MultipleComponent,
     ProfilComponent,
     ResumeComponent,
     AideComponent

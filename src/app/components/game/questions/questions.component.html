@@ -1,3 +1,4 @@
 <app-camera *ngIf="question && response && question.inputType==='CAMERA'" [question]=question [response]=response></app-camera>
 <app-text *ngIf="question && response && question.inputType==='TEXT'" [question]=question [response]=response></app-text>
 <app-boolean *ngIf="question && response && question.inputType==='BOOLEAN'" [question]=question [response]=response></app-boolean>
+<app-multiple *ngIf="question && response && question.inputType==='MULTI'" [question]=question [response]=response></app-multiple>
