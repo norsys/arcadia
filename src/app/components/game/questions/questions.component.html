@@ -2,3 +2,4 @@
 <app-text *ngIf="question && response && question.inputType==='TEXT'" [question]=question [response]=response></app-text>
 <app-boolean *ngIf="question && response && question.inputType==='BOOLEAN'" [question]=question [response]=response></app-boolean>
 <app-multiple *ngIf="question && response && question.inputType==='MULTI'" [question]=question [response]=response></app-multiple>
+<app-check-box *ngIf="question && response && question.inputType==='CHECK'" [question]=question [response]=response></app-check-box>

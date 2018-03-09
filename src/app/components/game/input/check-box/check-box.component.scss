@@ -1,0 +1,22 @@
+.app-title{
+    margin: 10px;
+}
+
+.home .galaxy-form .galaxy-form-row .galaxy-radio-container:first-child {
+   border-top-left-radius: 0vw;
+   border-bottom-left-radius: 0vw;
+ }
+.home .galaxy-form .galaxy-form-row .galaxy-radio-container:last-child {
+  border-top-right-radius: 0vw;
+  border-bottom-right-radius: 0vw;
+}
+
+.galaxy-radio-container{
+  padding: 5%;
+}
+.galaxy-response{
+  margin: 1% !important;
+}
+.text-multi{
+  margin-left: 5%;
+}
