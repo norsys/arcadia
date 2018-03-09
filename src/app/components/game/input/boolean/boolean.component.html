@@ -2,8 +2,8 @@
   <main class="outer-space outer-space-planet-zoom" [style.backgroundImage]="getBackgroundImage()" data-planet="cloudy-purple">
     <section class="home" id="home-login">
       <h1 class="app-title">{{question.question}}</h1>
+      <p *ngIf="textErrorEmpty" [hidden]="isTextErrorEmptyHidden" class="error-submit">{{textErrorEmpty}}</p>
       <form class="galaxy-form" #alienForm="ngForm">
-
         <div class="galaxy-form-row">
           <div class="galaxy-radio-group">
             <div class="galaxy-radio-container">

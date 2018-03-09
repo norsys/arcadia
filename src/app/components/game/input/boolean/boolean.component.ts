@@ -15,7 +15,8 @@ export class BooleanComponent extends AbstractInputComponent implements OnInit {
 
   @Input() question: Question;
   @Input() response: Response;
-
+  textErrorEmpty= 'Erreur reponse est vide!';
+  isTextErrorEmptyHidden= true;
   constructor(responseService: ResponseService,
               private authService: AuthService,
               percentageService: PercentageService,
@@ -32,13 +33,18 @@ export class BooleanComponent extends AbstractInputComponent implements OnInit {
   }
 
   onSubmit() {
-    this.response.question_id = this.question.id;
-    this.response.user_id = this.authService.getCurrentUser().id;
-    this.percentageService.calculatePercentage();
-    if (!this.response.id) {
-      this.saveResponse(this.response, false);
-    }else {
-      this.updateResponse(this.response, this.question.id, false);
+    if (!this.response.response) {
+      this.isTextErrorEmptyHidden = false;
+    } else {
+      this.isTextErrorEmptyHidden = true;
+      this.response.question_id = this.question.id;
+      this.response.user_id = this.authService.getCurrentUser().id;
+      this.percentageService.calculatePercentage();
+      if (!this.response.id) {
+        this.saveResponse(this.response, false);
+      } else {
+        this.updateResponse(this.response, this.question.id, false);
+      }
     }
   }
 

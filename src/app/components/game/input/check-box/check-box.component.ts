@@ -18,6 +18,8 @@ import {NotificationsService} from 'angular2-notifications';
 
     @Input() question: Question;
     @Input() response: Response;
+    textErrorEmpty= 'Erreur reponse est vide!';
+    isTextErrorEmptyHidden= true;
 
     questionText: string;
     questions: string[];
@@ -41,6 +43,7 @@ import {NotificationsService} from 'angular2-notifications';
     }
 
   handleSelect(value: string, event) {
+    this.isTextErrorEmptyHidden = true;
     this.options.forEach(option => {
       if (option.value === value) {
         option.checked = event.target.checked;
@@ -71,15 +74,20 @@ import {NotificationsService} from 'angular2-notifications';
       return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
     }
     onSubmit() {
-      this.response.question_id = this.question.id;
-      this.response.user_id = this.authService.getCurrentUser().id;
-      this.response.response = this.selectedOptions;
+      if (!this.selectedOptions) {
+        this.isTextErrorEmptyHidden = false;
+      } else {
+        this.isTextErrorEmptyHidden = true;
+        this.response.question_id = this.question.id;
+        this.response.user_id = this.authService.getCurrentUser().id;
+        this.response.response = this.selectedOptions;
         this.percentageService.calculatePercentage();
         if (!this.response.id) {
           this.saveResponse(this.response, false);
         } else {
           this.updateResponse(this.response, this.question.id, false);
         }
+      }
 
     }
 

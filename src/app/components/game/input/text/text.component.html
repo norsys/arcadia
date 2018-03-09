@@ -3,6 +3,7 @@
     <section class="home" id="home-login">
       <h1 class="app-title">{{question.question}}</h1>
       <p *ngIf="textErrorSubmission" [hidden]="isTextErrorSubmissionHidden" class="error-submit">{{textErrorSubmission}}</p>
+      <p *ngIf="textErrorEmpty" [hidden]="isTextErrorEmptyHidden" class="error-submit">{{textErrorEmpty}}</p>
       <form class="galaxy-form" #alienForm="ngForm">
         <div class="galaxy-form-row">
           <textarea type="text" autocomplete="off" rows=7 name="galaxy-last-name" placeholder="Réponse" id="response" required [(ngModel)]="this.response.response"
