@@ -24,7 +24,7 @@ export class NotifyService {
           'Wonderful',
           'Tu as repondu à toutes les questions',
           {
-            timeOut: 3000,
+            timeOut: 5000,
             showProgressBar: false,
             pauseOnHover: false,
             clickToClose: false,
