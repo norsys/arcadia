@@ -5,9 +5,7 @@ import { ResponseService } from '../../../../services/response.service';
 import {PercentageService} from '../../../../services/percentage.service';
 import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
 import {NotifyService} from '../../../../services/notify.service';
-import {forEach} from '@angular/router/src/utils/collection';
-import {equal} from 'assert';
-import {NotificationsService} from 'angular2-notifications';
+
 @Component({
   selector: 'app-check-box',
   templateUrl: './check-box.component.html',
@@ -18,7 +16,7 @@ import {NotificationsService} from 'angular2-notifications';
 
     @Input() question: Question;
     @Input() response: Response;
-    textErrorEmpty= 'Erreur reponse est vide!';
+    textErrorEmpty= 'Erreur de la réponse est vide!';
     isTextErrorEmptyHidden= true;
 
     questionText: string;
@@ -39,7 +37,7 @@ import {NotificationsService} from 'angular2-notifications';
                 private authService: AuthService,
                 percentageService: PercentageService,
                 notif: NotifyService) {
-      super(responseService, percentageService, notif,);
+      super(responseService, percentageService, notif);
     }
 
   handleSelect(value: string, event) {

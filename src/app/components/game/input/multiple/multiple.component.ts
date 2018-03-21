@@ -1,3 +1,4 @@
+///<reference path="../../../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, Input , OnInit} from '@angular/core';
 import { Question, Response } from '../../../../models';
 import { AuthService } from '../../../../services/auth.service';

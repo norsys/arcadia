@@ -34,7 +34,7 @@ export class NotifyService {
       }else {
       this.notif.success(
         'Bravo',
-        'Tu as réussi le défis !',
+        'Tu as réussi le défi !',
         {
           timeOut: 2000,
           showProgressBar: false,

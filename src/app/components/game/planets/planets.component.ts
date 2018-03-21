@@ -24,7 +24,6 @@ export class PlanetsComponent implements OnInit {
   public questions: Array<Question>;
   public positions: Array<Position> = new Array();
   private responses: Array<Response>;
-  message = 'dddddd';
 
   constructor(
     private route: ActivatedRoute,
@@ -85,7 +84,8 @@ export class PlanetsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
       this.categoriesService.getById(this.categoryId).then((response) => this.categoryName = response.json().name);
-      this.questionsService.getAll().then((response) => {
+      //this.questionsService.getAll().then((response) => {
+      this.questionsService.getAllByAgency(this.authService.getCurrentUser().agence_id).then((response) => {
         this.questions = response.json().filter(question => question.category_id.toString() === this.categoryId);
         this.responsesService.getAllResponseByUser().then(response => this.responses = response.json());
         this.writeAlienPosition();

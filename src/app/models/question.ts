@@ -4,4 +4,5 @@ export class Question {
     public response: string;
     public inputType: string;
     public category_id: string;
+    public agency_id: string;
 }

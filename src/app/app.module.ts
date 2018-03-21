@@ -33,7 +33,7 @@ import {AideComponent} from './components/game/aide/aide.component';
 import {NotifyService} from './services/notify.service';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CheckBoxComponent} from "./components/game/input/check-box/check-box.component";
+import {CheckBoxComponent} from './components/game/input/check-box/check-box.component';
 
 
 export class HammerConfig extends HammerGestureConfig {
