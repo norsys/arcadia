@@ -13,7 +13,7 @@
     <div class="frame-container" *ngFor="let number of [1,2,3]" [attr.data-sector]=number [ngClass]="{'frame-container-active': this.galaxySelector==number }">
       <div class="spaceship-planet-frame-container">
         <div class="spaceship-frame-planets">
-          <div class="spaceship-planet-frame" *ngFor="let category of getCategoriesBySpace(number);let i=index" attr.data-planet-position={{i+1}} [style.background-image]="getPlanetImage(category.id,(i+1))">
+          <div class="spaceship-planet-frame" *ngFor="let category of getCategoriesBySpace(number);let i=index" attr.data-planet-position={{i+1}} [style.background-image]="donneeImg[category.id]">
             <!--<h1 class="categ-title">{{category.name}}</h1>-->
           </div>
           <div class="spaceship-frame-links">

@@ -38,6 +38,7 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
          const urlCreator = window.URL;
          this.imageData = this.sanitizer.bypassSecurityTrustUrl(
            urlCreator.createObjectURL(blob));
+         console.log('this.imageData : ' + this.imageData);
        });
     }
   }

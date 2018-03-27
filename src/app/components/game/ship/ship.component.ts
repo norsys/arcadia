@@ -4,12 +4,13 @@ import {Category} from '../../../models/category';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {DisplayService} from '../../../services/display.service';
+import {ImagesService} from '../../../services/images.service';
 
 @Component({
   selector: 'app-ship',
   templateUrl: './ship.component.html',
   styleUrls: ['./ship.component.scss'],
-  providers: [CategoryService]
+  providers: [CategoryService, ImagesService]
 
 })
 export class ShipComponent {
@@ -17,20 +18,25 @@ export class ShipComponent {
   public galaxySelector: String;
 
   public categories: Array<Category>;
+  public categs: Array<Category>;
 
   private nbrOuterSpace: number;
 
   public clicked: boolean;
   public click: boolean = false;
   public clickedPlanet: boolean;
+  donneeImg = [];
 
   constructor(private sanitizer: DomSanitizer,
               private categoryService: CategoryService,
               private router: Router,
-              private displayService: DisplayService) {
+              private displayService: DisplayService,
+              private imageService: ImagesService) {
     this.categoryService.getAll().then((categories) => {
       this.categories = categories.json(),
         this.nbrOuterSpace = Math.ceil(this.categories.length / 3);
+      this.categs = categories;
+      this.getImages();
     });
     if (localStorage.getItem('galaxy_arcadia') === null) {
       localStorage.setItem('galaxy_arcadia', '1');
@@ -50,10 +56,20 @@ export class ShipComponent {
     }
   }
 
-  getPlanetImage(planet, index) {
+  /* getPlanetImage(planet, index) {
     return this.sanitizer.bypassSecurityTrustStyle('url(\'/assets/img/fuel-gauges-' + index + '.png\'), url(\'/assets/img/planets/planet-' + planet + '.png\')');
   }
 
+  getPlanetImage(planet, index) {
+    this.imageService.getImage(planet.image).then((res: any) => {
+      const blob = new Blob([res._body], {
+        type: res.headers.get('Content-Type')
+      });
+      const urlCreator = window.URL;
+    return this.sanitizer.bypassSecurityTrustStyle(urlCreator.createObjectURL(blob));
+    });
+  }
+  */
   getCategoriesBySpace(number) {
     switch (number) {
       case 1:
@@ -141,6 +157,21 @@ export class ShipComponent {
     setTimeout(() => {
       btnclick.remove(classcss);
     }, 2000);
+  }
+
+  getImages() {
+    var i = 0;
+    while (i < this.categories.length) {
+      let categ = this.categories[i] ;
+      this.imageService.getImage(categ.image).then((res: any) => {
+        const blob = new Blob([res._body], {
+          type: res.headers.get('Content-Type')
+        });
+        const urlCreator = window.URL;
+        this.donneeImg[categ.id] = this.sanitizer.bypassSecurityTrustStyle('url(' + urlCreator.createObjectURL(blob) + ')');
+      });
+      i++;
+    }
   }
 
 }

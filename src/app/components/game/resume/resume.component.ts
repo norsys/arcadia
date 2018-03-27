@@ -32,7 +32,8 @@ export class ResumeComponent implements OnInit {
   ngOnInit() {
     this.displayService.setShowHeader(true);
     this.categoryService.getAll().then(categories => this.categories = categories.json());
-    this.questionsService.getAllByAgency(this.authService.getCurrentUser().agence_id).then(questions => this.questions = questions.json());
+    this.questionsService.getAllQuestionsByAgency(this.authService.getCurrentUser().agence_id)
+      .then(questions => this.questions = questions.json());
     this.responseService.getAllResponseByUser().then(responses => this.responses = responses.json());
   }
 

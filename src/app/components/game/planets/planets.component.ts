@@ -9,7 +9,7 @@ import { Question, Position, Response } from '../../../models';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import {AuthService} from '../../../services/auth.service';
-import {DisplayService} from "../../../services/display.service";
+import {DisplayService} from '../../../services/display.service';
 
 @Component({
   selector: 'app-planets',
@@ -39,6 +39,9 @@ export class PlanetsComponent implements OnInit {
   writeAlienPosition() {
     for (let i = 0, len = this.questions.length; i < len; i++) {
       const position = new Position();
+      position.top = (Math.floor(Math.random() * 15) + Math.random()) + '%';
+      position.left = (Math.floor(Math.random() * 60)) + '%';
+      /*
       if (i === 0) {
         position.top = (Math.floor(Math.random() * 15) + 10) + '%';
         position.left = (Math.floor(Math.random() * 60)) + '%';
@@ -48,7 +51,7 @@ export class PlanetsComponent implements OnInit {
       } else if (i === 2) {
         position.top = (Math.floor(Math.random() * 20) + 50) + '%';
         position.left = (Math.floor(Math.random() * 60)) + '%';
-      }
+      }*/
       this.positions.push(position);
     }
   }
@@ -60,7 +63,8 @@ export class PlanetsComponent implements OnInit {
     if (this.responses.filter(response => response.question_id == this.questions[index].id).length > 0) {
       return '/assets/img/avatars/' + this.authService.getCurrentUser().avatar + '.svg'
     } else {
-      return '/assets/img/planets/zoom/aliens/planet-' + this.categoryId + '-alien-' + ++index + '.png';
+      //return '/assets/img/planets/zoom/aliens/planet-' + this.categoryId + '-alien-' + ++index + '.png';
+      return '/assets/img/planets/zoom/aliens/planet-' + this.categoryId + '-alien-1.png';
     }
   }
 
@@ -69,6 +73,7 @@ export class PlanetsComponent implements OnInit {
   openDefi(id) {
     var btnclick = document.querySelector('#id' + id).classList;
     btnclick.add('img-click-animat');
+    console.log('test open défi');
     this.router.navigate(['planets/' + this.questions[id].category_id + '/questions', this.questions[id].id]);
     setTimeout(() => {
       btnclick.remove('img-click-animat');
@@ -85,7 +90,7 @@ export class PlanetsComponent implements OnInit {
       this.categoryId = params['categoryId'];
       this.categoriesService.getById(this.categoryId).then((response) => this.categoryName = response.json().name);
       //this.questionsService.getAll().then((response) => {
-      this.questionsService.getAllByAgency(this.authService.getCurrentUser().agence_id).then((response) => {
+      this.questionsService.getAllQuestionsByAgency(this.authService.getCurrentUser().agence_id).then((response) => {
         this.questions = response.json().filter(question => question.category_id.toString() === this.categoryId);
         this.responsesService.getAllResponseByUser().then(response => this.responses = response.json());
         this.writeAlienPosition();

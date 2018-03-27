@@ -18,7 +18,7 @@ export class QuestionsService {
     return this.http.get('/v1/questions/' + questionId, this.auth.getOptions()).toPromise();
   }
 
-  getAllByAgency(agencyId: string): Promise<any> {
+  getAllQuestionsByAgency(agencyId: string): Promise<any> {
     return this.http.get('/v1/questions/agency/' + agencyId, this.auth.getOptions()).toPromise();
   }
 }

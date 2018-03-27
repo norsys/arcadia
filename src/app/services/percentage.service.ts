@@ -18,7 +18,7 @@ export class PercentageService {
 
   calculatePercentage() {
     const context = this;
-      context.questionsService.getAllByAgency(this.authService.getCurrentUser().agence_id).then((questions) => {
+      context.questionsService.getAllQuestionsByAgency(this.authService.getCurrentUser().agence_id).then((questions) => {
         context.responseService.getAll().then((response) => {
           const percentage = (Math.floor((response.json().length * 100) / questions.json().length));
           this.subject.next(percentage);
