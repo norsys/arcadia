@@ -7,17 +7,20 @@ import { Question, Response, Category } from '../../../models';
 import {AuthService} from '../../../services/auth.service';
 import {DisplayService} from '../../../services/display.service';
 import {Router} from '@angular/router';
+import {ImagesService} from '../../../services/images.service';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-resume',
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],
-  providers: [QuestionsService, ResponseService, CategoryService]
+  providers: [QuestionsService, ResponseService, CategoryService, ImagesService]
 })
 export class ResumeComponent implements OnInit {
 
   public categories: Array<Category>;
   public questions: Array<Question>;
   public responses: Array<Response>;
+  donneeImg = [];
 
   constructor(
     private questionsService: QuestionsService,
@@ -25,13 +28,18 @@ export class ResumeComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private displayService: DisplayService,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private imageService: ImagesService,
+    private sanitizer: DomSanitizer) {
 
   }
 
   ngOnInit() {
     this.displayService.setShowHeader(true);
-    this.categoryService.getAll().then(categories => this.categories = categories.json());
+    this.categoryService.getAll().then(categories => {
+      this.categories = categories.json();
+      this.getImagesPlanets();
+    });
     this.questionsService.getAllQuestionsByAgency(this.authService.getCurrentUser().agence_id)
       .then(questions => this.questions = questions.json());
     this.responseService.getAllResponseByUser().then(responses => this.responses = responses.json());
@@ -45,9 +53,17 @@ export class ResumeComponent implements OnInit {
     }
   }
 
+  /*
   getCategoryImage(category) {
-    return '/assets/img/planets/planet-' + category.id + '.png';
-  }
+    this.imageService.getImage(category.image).then((res: any) => {
+      const blob = new Blob([res._body], {
+        type: res.headers.get('Content-Type')
+      });
+      const urlCreator = window.URL;
+      return this.sanitizer.bypassSecurityTrustUrl(
+        urlCreator.createObjectURL(blob));
+    });
+  } */
   getQuestions(category) {
     return this.questions.filter(question => question.category_id == category.id);
   }
@@ -63,5 +79,21 @@ export class ResumeComponent implements OnInit {
     setTimeout(() => {
       btnclick.remove('img-click-animat');
     }, 1000);
+  }
+
+  getImagesPlanets() {
+    var i = 0;
+    while (i < this.categories.length) {
+      let categ = this.categories[i];
+      this.imageService.getImage(categ.image).then((res: any) => {
+        const blob = new Blob([res._body], {
+          type: res.headers.get('Content-Type')
+        });
+        const urlCreator = window.URL;
+        this.donneeImg[categ.id] = this.sanitizer.bypassSecurityTrustUrl(
+          urlCreator.createObjectURL(blob));
+      });
+      i++;
+    }
   }
 }

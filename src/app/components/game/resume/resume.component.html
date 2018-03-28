@@ -4,7 +4,7 @@
       <form *ngIf="isUp()" class="galaxy-formhome">
         <div class="category" *ngFor="let category of categories">
           <div class="title">
-            <img class="planet" [src]="getCategoryImage(category)">
+            <img class="planet" [src]="donneeImg[category.id]">
             <span>{{category.name}}</span>
           </div>
           <div class="images">

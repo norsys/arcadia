@@ -56,20 +56,6 @@ export class ShipComponent {
     }
   }
 
-  /* getPlanetImage(planet, index) {
-    return this.sanitizer.bypassSecurityTrustStyle('url(\'/assets/img/fuel-gauges-' + index + '.png\'), url(\'/assets/img/planets/planet-' + planet + '.png\')');
-  }
-
-  getPlanetImage(planet, index) {
-    this.imageService.getImage(planet.image).then((res: any) => {
-      const blob = new Blob([res._body], {
-        type: res.headers.get('Content-Type')
-      });
-      const urlCreator = window.URL;
-    return this.sanitizer.bypassSecurityTrustStyle(urlCreator.createObjectURL(blob));
-    });
-  }
-  */
   getCategoriesBySpace(number) {
     switch (number) {
       case 1:

@@ -5,11 +5,14 @@ import { ResponseService } from '../../../../services/response.service';
 import {PercentageService} from '../../../../services/percentage.service';
 import {AbstractInputComponent} from '../abstract-input/abstract-input.component';
 import {NotifyService} from '../../../../services/notify.service';
+import {ImagesService} from '../../../../services/images.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-check-box',
   templateUrl: './check-box.component.html',
-  styleUrls: ['./check-box.component.scss']
+  styleUrls: ['./check-box.component.scss'],
+  providers: [ImagesService]
 })
 
   export class CheckBoxComponent extends AbstractInputComponent implements OnInit {
@@ -22,6 +25,7 @@ import {NotifyService} from '../../../../services/notify.service';
     questionText: string;
     questions: string[];
     public options: Option[];
+    DataZoom: any;
 
     get selectedOptions() {
       const selected =  this.options
@@ -36,7 +40,9 @@ import {NotifyService} from '../../../../services/notify.service';
     constructor(responseService: ResponseService,
                 private authService: AuthService,
                 percentageService: PercentageService,
-                notif: NotifyService) {
+                notif: NotifyService,
+                private imageService: ImagesService,
+                private sanitizer: DomSanitizer) {
       super(responseService, percentageService, notif);
     }
 
@@ -64,12 +70,22 @@ import {NotifyService} from '../../../../services/notify.service';
           });
         }
       );
-
+      this.getBackgroundImage();
     }
 
     /* DOM events */
     getBackgroundImage() {
-      return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
+      //return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
+      if (this.question) {
+        let categ = this.question.Category;
+        this.imageService.getImage(categ.imageZoom).then((res: any) => {
+          const blob = new Blob([res._body], {
+            type: res.headers.get('Content-Type')
+          });
+          const urlCreator = window.URL;
+          this.DataZoom = this.sanitizer.bypassSecurityTrustStyle('url(' + urlCreator.createObjectURL(blob) + ')');
+        });
+      }
     }
     onSubmit() {
       if (!this.selectedOptions) {

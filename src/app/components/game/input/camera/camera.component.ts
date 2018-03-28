@@ -22,6 +22,7 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
 
   imageData: any;
   isImageSelected = false;
+  DataZoom: any;
 
   constructor(private authService: AuthService, responseService: ResponseService, notif: NotifyService,
     private imageService: ImagesService, percentageService: PercentageService,
@@ -41,11 +42,22 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
          console.log('this.imageData : ' + this.imageData);
        });
     }
+    this.getBackgroundImage();
   }
 
   /*DOM events*/
   getBackgroundImage() {
-    return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
+    //return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
+    if (this.question) {
+      let categ = this.question.Category;
+      this.imageService.getImage(categ.imageZoom).then((res: any) => {
+        const blob = new Blob([res._body], {
+          type: res.headers.get('Content-Type')
+        });
+        const urlCreator = window.URL;
+        this.DataZoom = this.sanitizer.bypassSecurityTrustStyle('url(' + urlCreator.createObjectURL(blob) + ')');
+      });
+    }
   }
 
   readUrl(event) {

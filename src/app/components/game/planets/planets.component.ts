@@ -39,9 +39,6 @@ export class PlanetsComponent implements OnInit {
   writeAlienPosition() {
     for (let i = 0, len = this.questions.length; i < len; i++) {
       const position = new Position();
-      position.top = (Math.floor(Math.random() * 15) + Math.random()) + '%';
-      position.left = (Math.floor(Math.random() * 60)) + '%';
-      /*
       if (i === 0) {
         position.top = (Math.floor(Math.random() * 15) + 10) + '%';
         position.left = (Math.floor(Math.random() * 60)) + '%';
@@ -51,7 +48,7 @@ export class PlanetsComponent implements OnInit {
       } else if (i === 2) {
         position.top = (Math.floor(Math.random() * 20) + 50) + '%';
         position.left = (Math.floor(Math.random() * 60)) + '%';
-      }*/
+      }
       this.positions.push(position);
     }
   }
