@@ -16,10 +16,10 @@ before_script:
   - npm install
 
 script:
-#change command
+  #change command
   - $(npm bin)/ng build --prod --build-optimizer --aot
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" hub-docker.norsys.fr
-  - docker build -t hub-docker.norsys.fr/norsys/arcadia .
-  - docker push hub-docker.norsys.fr/norsys/arcadia
+  - docker build -t hub-docker.norsys.fr/norsys/arcadia:$TRAVIS_BRANCH .
+  - docker push hub-docker.norsys.fr/norsys/arcadia:$TRAVIS_BRANCH
