@@ -62,4 +62,7 @@ export class SigninComponent {
     }, 1000);
   }
 
+  swipreset() {
+    this.router.navigate(['/reset']);
+  }
 }

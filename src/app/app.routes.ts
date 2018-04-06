@@ -8,6 +8,7 @@ import { LoginRedirect } from './services/login-redirect.service';
 import { QuestionsComponent } from './components/game/questions/questions.component'
 import {ResumeComponent} from './components/game/resume/resume.component';
 import {AideComponent} from './components/game/aide/aide.component';
+import { ResetpasswordComponent } from './components/auth/resetpassword/resetpassword.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', component: AuthComponent, canActivate: [LoginRedirect] },
+  { path: 'reset', component: ResetpasswordComponent, canActivate: [LoginRedirect] },
   { path: 'home', component: HomeComponent, canActivate: [EnsureAuthenticated] },
   { path: 'profil', component: ProfilComponent, canActivate: [EnsureAuthenticated] },
   { path: 'resume', component: ResumeComponent, canActivate: [EnsureAuthenticated] },

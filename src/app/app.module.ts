@@ -34,6 +34,7 @@ import {NotifyService} from './services/notify.service';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CheckBoxComponent} from './components/game/input/check-box/check-box.component';
+import { ResetpasswordComponent } from './components/auth/resetpassword/resetpassword.component';
 
 
 export class HammerConfig extends HammerGestureConfig {
@@ -60,7 +61,8 @@ export class HammerConfig extends HammerGestureConfig {
     CheckBoxComponent,
     ProfilComponent,
     ResumeComponent,
-    AideComponent
+    AideComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,15 @@ export class HammerConfig extends HammerGestureConfig {
     SimpleNotificationsModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [AuthService, PercentageService, QuestionsService, ResponseService, LoginRedirect, EnsureAuthenticated, DisplayService, NotifyService,
+  providers: [
+    AuthService,
+    PercentageService,
+    QuestionsService,
+    ResponseService,
+    LoginRedirect,
+    EnsureAuthenticated,
+    DisplayService,
+    NotifyService,
     {
     provide: HAMMER_GESTURE_CONFIG,
     useClass: HammerConfig,
