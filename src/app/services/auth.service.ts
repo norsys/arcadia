@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
+import { Headers, Http, RequestOptions, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Alien} from '../models/alien';
+import { Alien } from '../models/alien';
 
 @Injectable()
 export class AuthService {
 
 
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   /*login logout methods*/
   login(alien): Promise<any> {
@@ -17,7 +17,8 @@ export class AuthService {
   }
 
   logout(): Promise<any> {
-    return this.http.delete('/v1/auth', { params: { accessToken: this.getCurrentUser().accessToken, apiKey: environment.apiKey } }).toPromise();
+    return this.http.delete('/v1/auth', { params: { accessToken: this.getCurrentUser().accessToken, apiKey: environment.apiKey } })
+      .toPromise();
   }
 
   /* CRUD */
@@ -29,9 +30,18 @@ export class AuthService {
     return this.http.put('/v1/users/' + alien.id, alien, this.getOptions()).toPromise();
   }
 
+  updateUserPassword(alien): Promise<any> {
+    console.log('updateUserPassword service --- ' + alien.password);
+    return this.http.put('/v1/users/passwordupdate/' + alien.id , alien).toPromise();
+  }
+
+  getUserByEmail(alien): Promise<any> {
+    return this.http.get('http://localhost:3000/v1/users/getbyemail/' + alien).toPromise();
+  }
+
   /* functions to add options to header requests */
-   getOptions() {
-    const headers = new Headers({'Authorization': 'Bearer ' + this.getCurrentUser().accessToken});
+  getOptions() {
+    const headers = new Headers({ 'Authorization': 'Bearer ' + this.getCurrentUser().accessToken });
     const options = new RequestOptions({
       headers: headers
     });
@@ -39,7 +49,7 @@ export class AuthService {
   }
 
   getOptionsForBlob() {
-    const headers = new Headers({'Authorization': 'Bearer ' + this.getCurrentUser().accessToken});
+    const headers = new Headers({ 'Authorization': 'Bearer ' + this.getCurrentUser().accessToken });
     const options = new RequestOptions({
       headers: headers,
       responseType: ResponseContentType.Blob

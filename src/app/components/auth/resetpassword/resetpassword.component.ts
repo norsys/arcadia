@@ -1,5 +1,8 @@
-import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Alien } from '../../../models/alien';
+import { AuthService } from '../../../services/auth.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-resetpassword',
@@ -9,10 +12,10 @@ import { Router } from '@angular/router';
 export class ResetpasswordComponent implements OnInit {
   @Input() swipeValue = false;
   @Output() onSwipe = new EventEmitter<boolean>();
-  public resetemail: string;
+  public alien = new Alien();
   public error = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService, private notif: NotificationsService) { }
 
   ngOnInit() {
   }
@@ -22,7 +25,35 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('-------------on submit reset password ');
+    this.auth.getUserByEmail(this.alien.email)
+      .then((alien) => {
+        this.alien = alien.json();
+        this.alien.password = 'badouch';
+        this.auth.updateUserPassword(this.alien)
+          .then((user) => {
+            console.log('mbadouch@norsys.fr = ' + user.json().id);
+            this.notif.success(
+              'Envoyé',
+              'Ton nouveau mot de passe a été envoyé',
+              {
+                timeOut: 2000,
+                showProgressBar: false,
+                pauseOnHover: false,
+                clickToClose: false,
+                maxLength: 50
+              }
+            );
+            this.router.navigate(['/']);
+          }).catch((err) => {
+            console.log('err ' + err);
+          });
+      })
+      .catch((err) => {
+        this.error = 'Cet email n\'existe pas ';
+      });
+
+
+
   }
 
   swipsignin() {
