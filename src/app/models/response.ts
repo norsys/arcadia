@@ -6,5 +6,6 @@ export class Response {
     public response: string;
     public id: number;
     public Question: Question;
-
+    public valide:boolean;
+    
 }
