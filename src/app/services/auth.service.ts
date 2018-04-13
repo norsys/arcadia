@@ -31,7 +31,6 @@ export class AuthService {
   }
 
   updateUserPassword(alien): Promise<any> {
-    console.log('updateUserPassword service --- ' + alien.password);
     return this.http.put('/v1/users/passwordupdate/' + alien.id , alien).toPromise();
   }
 

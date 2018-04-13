@@ -39,7 +39,6 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
          const urlCreator = window.URL;
          this.imageData = this.sanitizer.bypassSecurityTrustUrl(
            urlCreator.createObjectURL(blob));
-         console.log('this.imageData : ' + this.imageData);
        });
     }
     this.getBackgroundImage();
@@ -47,7 +46,6 @@ export class CameraComponent extends AbstractInputComponent implements OnInit {
 
   /*DOM events*/
   getBackgroundImage() {
-    //return 'url(\'/assets/img/planets/zoom/surface-planet-' + this.question.category_id + '.png\')';
     if (this.question) {
       let categ = this.question.Category;
       this.imageService.getImage(categ.imageZoom).then((res: any) => {

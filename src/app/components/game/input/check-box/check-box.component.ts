@@ -52,7 +52,6 @@ export class CheckBoxComponent extends AbstractInputComponent implements OnInit 
       if (option.value === value) {
         option.checked = event.target.checked;
       }
-      console.log('option.value ' + option.value);
     });
   }
 
@@ -69,7 +68,6 @@ export class CheckBoxComponent extends AbstractInputComponent implements OnInit 
         value: q,
         checked: (responses.indexOf(q) > -1)
       });
-      console.log('responses.indexOf(q)'  + responses.indexOf(q));
     }
 
     );

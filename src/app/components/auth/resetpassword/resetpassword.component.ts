@@ -31,7 +31,6 @@ export class ResetpasswordComponent implements OnInit {
         this.alien.password = 'badouch';
         this.auth.updateUserPassword(this.alien)
           .then((user) => {
-            console.log('mbadouch@norsys.fr = ' + user.json().id);
             this.notif.success(
               'Envoyé',
               'Ton nouveau mot de passe a été envoyé',
