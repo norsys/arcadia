@@ -13,7 +13,7 @@ import { ImagesService } from '../../../services/images.service';
   providers: [CategoryService, ImagesService]
 
 })
-export class ShipComponent {
+export class ShipComponent  {
 
   public galaxySelector: String;
 
@@ -22,10 +22,10 @@ export class ShipComponent {
 
   private nbrOuterSpace: number;
 
-  private classNumber: number=0;
+  private classNumber: number;
 
   public clicked: boolean;
-  public click: boolean = false;
+  public click = false;
   public clickedPlanet: boolean;
   donneeImg = [];
   nbrScreen = [];
@@ -48,6 +48,7 @@ export class ShipComponent {
     }
     this.galaxySelector = localStorage.getItem('galaxy_arcadia');
     this.displayService.setShowHeader(true);
+    this.classNumber = 0;
   }
 
   goToPlanet(index) {
@@ -63,7 +64,7 @@ export class ShipComponent {
 
   getCategoriesBySpace(number) {
 
-    return this.categories.slice((number - 1) * 3, number * 3) ;
+    return this.categories.slice((number - 1) * 3, number * 3);
 
   }
 
@@ -160,15 +161,16 @@ export class ShipComponent {
 
 
 
-  getClass(){
-
-    if(this.classNumber == 3){
-      this.classNumber = 0;
+  getClass(number) {
+    if (number % 3 === 0) {
+      return 1;
     }
-
-  this.classNumber++;
-
-  return this.classNumber;
+    if (number % 3 === 1) {
+      return 2;
+    }
+    if (number % 3 === 2) {
+      return 3;
+    }
   }
 
 }

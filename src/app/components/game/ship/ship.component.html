@@ -26,10 +26,8 @@
             </div>
           </div>
           <div class="planets-frame-links">
-            <a *ngFor="let category of getCategoriesBySpace(number)" (click)=" (category.id)" class="planet-frame-link" attr.data-planet='planet-{{getClass()}}'
-              id="id{{category.id}}" [style.background-image]="donneeImg[category.id]" style="background-size:100% 100%;">
-              
-              
+            <a *ngFor="let category of getCategoriesBySpace(number)" (click)=" (category.id)" class="planet-frame-link" attr.data-planet='planet-{{getClass(category.id)}}'
+              id="id{{category.id}}" [style.background-image]="donneeImg[category.id]" style="background-size:100% 100%;">              
             </a>
             
           </div>
