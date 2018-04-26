@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {CategoryService} from '../../../services/category.service';
-import {Category} from '../../../models/category';
-import {DomSanitizer} from '@angular/platform-browser';
-import {Router} from '@angular/router';
-import {DisplayService} from '../../../services/display.service';
-import {ImagesService} from '../../../services/images.service';
+import { Component } from '@angular/core';
+import { CategoryService } from '../../../services/category.service';
+import { Category } from '../../../models/category';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { DisplayService } from '../../../services/display.service';
+import { ImagesService } from '../../../services/images.service';
 
 @Component({
   selector: 'app-ship',
@@ -22,19 +22,24 @@ export class ShipComponent {
 
   private nbrOuterSpace: number;
 
+  private classNumber: number=0;
+
   public clicked: boolean;
   public click: boolean = false;
   public clickedPlanet: boolean;
   donneeImg = [];
+  nbrScreen = [];
 
   constructor(private sanitizer: DomSanitizer,
-              private categoryService: CategoryService,
-              private router: Router,
-              private displayService: DisplayService,
-              private imageService: ImagesService) {
+    private categoryService: CategoryService,
+    private router: Router,
+    private displayService: DisplayService,
+    private imageService: ImagesService) {
     this.categoryService.getAll().then((categories) => {
       this.categories = categories.json(),
         this.nbrOuterSpace = Math.ceil(this.categories.length / 3);
+      this.nbrScreen = Array.from({ length: this.nbrOuterSpace }, (v, k) => k + 1);
+
       this.categs = categories;
       this.getImages();
     });
@@ -46,7 +51,7 @@ export class ShipComponent {
   }
 
   goToPlanet(index) {
-     this.animate('#id-' + index, 'planet-click-animat');
+    this.animate('#id-' + index, 'planet-click-animat');
     this.animate('#id' + index, 'planet-click-animat');
     this.clickedPlanet = true;
     if (index - 1 < this.categories.length) {
@@ -57,20 +62,14 @@ export class ShipComponent {
   }
 
   getCategoriesBySpace(number) {
-    switch (number) {
-      case 1:
-        return this.categories.slice(0, this.nbrOuterSpace);
-      case 2:
-        return this.categories.slice(this.nbrOuterSpace, this.nbrOuterSpace * 2);
-      case 3:
-        return this.categories.slice(this.nbrOuterSpace * 2, this.nbrOuterSpace * 3);
-    }
+
+    return this.categories.slice((number - 1) * 3, number * 3) ;
+
   }
 
   swip(swipeDirection: string, btnClicked: string) {
     const _current_galaxy = document.querySelector('.outer-space-approached');
     const _galaxy_classes = _current_galaxy.classList;
-    //var _sector_number = parseInt(_current_galaxy.getAttribute('data-outer-space'));
     let _sector_number = parseInt(localStorage.getItem('galaxy_arcadia'));
 
     const _current_screen_planets = document.querySelector('.frame-container-active');
@@ -94,7 +93,6 @@ export class ShipComponent {
           _sector_number = 1;
         }
       }
-
       _galaxy_classes.add('outer-space-leaving');
       _galaxy_classes.remove('outer-space-approached');
       _current_screen_planets.classList.remove('frame-container-active');
@@ -148,7 +146,7 @@ export class ShipComponent {
   getImages() {
     var i = 0;
     while (i < this.categories.length) {
-      let categ = this.categories[i] ;
+      let categ = this.categories[i];
       this.imageService.getImage(categ.image).then((res: any) => {
         const blob = new Blob([res._body], {
           type: res.headers.get('Content-Type')
@@ -158,6 +156,19 @@ export class ShipComponent {
       });
       i++;
     }
+  }
+
+
+
+  getClass(){
+
+    if(this.classNumber == 3){
+      this.classNumber = 0;
+    }
+
+  this.classNumber++;
+
+  return this.classNumber;
   }
 
 }
