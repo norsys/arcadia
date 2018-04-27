@@ -13,6 +13,7 @@ export class ResetpasswordComponent implements OnInit {
   @Input() swipeValue = false;
   public alien = new Alien();
   public error = '';
+  public swipe = false;
 
   constructor(private router: Router, private auth: AuthService, private notif: NotificationsService) { }
 
