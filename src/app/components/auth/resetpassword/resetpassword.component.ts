@@ -11,7 +11,6 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class ResetpasswordComponent implements OnInit {
   @Input() swipeValue = false;
-  @Output() onSwipe = new EventEmitter<boolean>();
   public alien = new Alien();
   public error = '';
 
